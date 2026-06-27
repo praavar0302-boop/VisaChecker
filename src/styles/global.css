@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+
+  /* Custom glowing box-shadows for active slabs */
+  --shadow-glow-emerald: 0 0 25px 2px rgba(16, 185, 129, 0.35), inset 0 0 0 1px rgba(16, 185, 129, 0.4);
+  --shadow-glow-blue: 0 0 25px 2px rgba(59, 130, 246, 0.35), inset 0 0 0 1px rgba(59, 130, 246, 0.4);
+  --shadow-glow-amber: 0 0 25px 2px rgba(245, 158, 11, 0.35), inset 0 0 0 1px rgba(245, 158, 11, 0.4);
+  --shadow-glow-rose: 0 0 25px 2px rgba(244, 63, 94, 0.35), inset 0 0 0 1px rgba(244, 63, 94, 0.4);
+}
+
+/* Custom global styles to ensure smooth page background */
+html,
+body {
+  background-color: #030303; /* stark black/ink canvas */
+  color: #fafafa; /* canvas-soft for default text */
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbars to fit the Vercel dark mode aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
