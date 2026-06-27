@@ -1,0 +1,32 @@
+name: Daily Visa Data Sync
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download Latest Live Visa Dataset
+        run: |
+          mkdir -p src/data
+          curl -s https://raw.githubusercontent.com/imorte/passport-index-data/master/passport-index.json -o src/data/passport-index.json
+
+      - name: Check for Data Variations
+        id: git-check
+        run: |
+          git diff --exit-code src/data/passport-index.json || echo "changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and Push Updates to Main Branch
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --global user.name "Visa Tracker Sync Bot"
+          git config --global user.email "actions@github.com"
+          git add src/data/passport-index.json
+          git commit -m "chore: automated daily global visa dataset refresh"
+          git push
