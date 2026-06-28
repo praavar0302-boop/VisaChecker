@@ -1,166 +1,359 @@
 ---
-import Layout from '../layouts/Layout.astro';
-const isDev = import.meta.env.DEV;
+import Layout from "../layouts/Layout.astro";
+import visaDataMatrix from "../data/passport-index.json";
 ---
 
 <Layout>
   <!-- Background Glow FX (Vercel atmospheric depth) -->
-  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#007cf0]/10 via-[#7928ca]/10 to-[#ff0080]/5 blur-[130px] pointer-events-none"></div>
-  <div class="absolute bottom-10 right-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#00dfd8]/5 via-[#f9cb28]/5 to-emerald-500/5 blur-[120px] pointer-events-none"></div>
+  <div
+    class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#007cf0]/10 via-[#7928ca]/10 to-[#ff0080]/5 blur-[130px] pointer-events-none"
+  >
+  </div>
+  <div
+    class="absolute bottom-10 right-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#00dfd8]/5 via-[#f9cb28]/5 to-emerald-500/5 blur-[120px] pointer-events-none"
+  >
+  </div>
 
   <!-- Header Nav -->
-  <header class="sticky top-0 z-50 border-b border-zinc-900 bg-black/80 backdrop-blur-md">
+  <header
+    class="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 dark:border-zinc-900 dark:bg-black/80 backdrop-blur-md transition-colors duration-300"
+  >
     <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <!-- Minimal geometric logo mark -->
-        <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <svg
+          class="w-6 h-6 text-zinc-950 dark:text-white transition-colors"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
           <path d="M12 2L2 22h20L12 2z" stroke-linejoin="round"></path>
         </svg>
-        <span class="font-sans font-semibold tracking-tight text-white text-base">Global Visa Tracker</span>
+        <span
+          class="font-sans font-semibold tracking-tight text-zinc-950 dark:text-white text-base transition-colors"
+          >Global Visa Tracker</span
+        >
       </div>
-      <div class="flex items-center gap-3">
-        <span class="font-mono text-[10px] text-zinc-400 uppercase tracking-widest bg-zinc-900 border border-zinc-800 px-2 py-1 rounded">
-          v1.0.0 Stable
-        </span>
+      
+      <div class="flex items-center gap-6">
+        <nav class="hidden md:flex items-center gap-6 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          <a href="/" class="text-zinc-950 dark:text-white font-semibold transition-colors">Home</a>
+          <a href="/about" class="hover:text-zinc-950 dark:hover:text-white transition-colors">About</a>
+          <a href="/privacy" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Privacy</a>
+          <a href="/terms" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Terms</a>
+          <a href="/contact" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Contact</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <!-- Theme Toggle Button -->
+          <button
+            id="theme-toggle"
+            type="button"
+            aria-label="Toggle dark/light mode"
+            class="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors cursor-pointer"
+          >
+            <!-- Sun Icon (visible in dark mode) -->
+            <svg
+              class="w-4 h-4 hidden dark:block"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"
+              ></path>
+            </svg>
+            <!-- Moon Icon (visible in light mode) -->
+            <svg
+              class="w-4 h-4 block dark:hidden"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+              ></path>
+            </svg>
+          </button>
+
+          <span
+            class="hidden sm:inline-block font-mono text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest bg-zinc-100 border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800 px-2 py-1 rounded transition-colors"
+          >
+            v1.0.0 Stable
+          </span>
+        </div>
       </div>
     </div>
   </header>
 
   <!-- Main Hero Section -->
   <main class="max-w-5xl mx-auto px-4 pt-12 pb-24 relative">
-    
     <!-- Title Area -->
     <div class="text-center md:text-left mb-10">
-      <div class="inline-block mb-3 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/60 font-mono text-xs text-zinc-400">
-        Database Relational Lookup System
+      <div
+        class="inline-block mb-3 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-100/60 dark:border-zinc-800 dark:bg-zinc-900/60 font-mono text-xs text-zinc-600 dark:text-zinc-400 transition-colors"
+      >
+        Instant VISA Search Engine
       </div>
-      <h1 class="font-sans text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">
-        Explore global travel parameters.
+      <h1
+        class="font-sans text-4xl md:text-5xl font-semibold tracking-tight text-zinc-950 dark:text-white mb-4 transition-colors"
+      >
+        Can I Fly There? — Instant Visa Requirement Checker
       </h1>
-      <p class="font-sans text-zinc-400 text-lg max-w-2xl leading-relaxed">
-        Select your origin and destination countries to cross-reference their bilateral visa outcome configurations in real-time.
+      <p
+        class="font-sans text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl leading-relaxed transition-colors"
+      >
+        Select your origin and destination countries to check the current VISA
+        requirements in real-time.
       </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      
       <!-- Left side: Select Panel -->
       <section class="lg:col-span-5 space-y-6">
-        <div class="p-6 rounded-lg border border-zinc-900 bg-[#080808] shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
-          <h2 class="font-sans text-lg font-medium text-white mb-6 flex items-center gap-2">
-            <svg class="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        <div
+          class="p-6 rounded-lg border border-zinc-200 bg-white dark:border-zinc-900 dark:bg-[#080808] shadow-[0_1px_2px_rgba(0,0,0,0.05)] dark:shadow-[0_1px_2px_rgba(0,0,0,0.4)] transition-colors"
+        >
+          <h2
+            class="font-sans text-lg font-medium text-zinc-950 dark:text-white mb-6 flex items-center gap-2 transition-colors"
+          >
+            <svg
+              class="w-4 h-4 text-zinc-500 dark:text-zinc-400 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
-            Bilateral Query
+            Enter your country
           </h2>
-          
+
           <form class="space-y-5" onsubmit="return false;">
-            
+            <!-- Warning Message -->
+            <div
+              id="same-country-warning"
+              class="hidden p-3 rounded-lg border border-amber-200/50 bg-amber-50/50 text-amber-800 dark:border-amber-900/30 dark:bg-amber-950/10 dark:text-amber-400 text-xs flex items-center gap-2 transition-colors"
+            >
+              <svg
+                class="w-4 h-4 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                ></path>
+              </svg>
+              <span>Origin and Destination countries cannot be the same.</span>
+            </div>
+
             <!-- Origin Combobox -->
             <div class="space-y-2 relative">
-              <label for="origin-input" class="block font-mono text-[11px] text-zinc-400 uppercase tracking-wider">
+              <label
+                for="origin-input"
+                class="block font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors"
+              >
                 Origin Nationality (Passport)
               </label>
               <div class="relative">
-                <input 
-                  type="text" 
-                  id="origin-input" 
-                  placeholder="Type to search origin..." 
-                  class="w-full bg-[#0d0d0d] text-white border border-zinc-800 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-500 transition-colors cursor-text"
+                <input
+                  type="text"
+                  id="origin-input"
+                  placeholder="Type to search origin..."
+                  class="w-full bg-zinc-50 text-zinc-950 border border-zinc-200 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 dark:bg-[#0d0d0d] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-500 transition-colors cursor-text"
                   autocomplete="off"
                   data-selected-code="US"
                   value="United States (US)"
                 />
-                <div class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-500 pointer-events-none">
-                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-400 dark:text-zinc-500 transition-colors pointer-events-none"
+                >
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </div>
               </div>
               <!-- Dropdown Options List -->
-              <div id="origin-dropdown" class="absolute z-20 w-full mt-1 max-h-60 overflow-y-auto rounded-md border border-zinc-800 bg-[#0d0d0d] hidden shadow-[0_10px_20px_-10px_rgba(0,0,0,0.7)] divide-y divide-zinc-900/50">
+              <div
+                id="origin-dropdown"
+                class="absolute z-20 w-full mt-1 max-h-60 overflow-y-auto rounded-md border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#0d0d0d] hidden shadow-lg dark:shadow-[0_10px_20px_-10px_rgba(0,0,0,0.7)] divide-y divide-zinc-100 dark:divide-zinc-900/50 transition-colors"
+              >
               </div>
             </div>
 
             <!-- Arrow icon separator -->
             <div class="flex justify-center py-1">
-              <div class="w-8 h-8 rounded-full border border-zinc-800 bg-zinc-900/60 flex items-center justify-center text-zinc-500">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              <div
+                class="w-8 h-8 rounded-full border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900/60 flex items-center justify-center text-zinc-400 dark:text-zinc-500 transition-colors"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                 </svg>
               </div>
             </div>
 
             <!-- Destination Combobox -->
             <div class="space-y-2 relative">
-              <label for="destination-input" class="block font-mono text-[11px] text-zinc-400 uppercase tracking-wider">
+              <label
+                for="destination-input"
+                class="block font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors"
+              >
                 Destination Territory
               </label>
               <div class="relative">
-                <input 
-                  type="text" 
-                  id="destination-input" 
-                  placeholder="Type to search destination..." 
-                  class="w-full bg-[#0d0d0d] text-white border border-zinc-800 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-500 transition-colors cursor-text"
+                <input
+                  type="text"
+                  id="destination-input"
+                  placeholder="Type to search destination..."
+                  class="w-full bg-zinc-50 text-zinc-950 border border-zinc-200 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 dark:bg-[#0d0d0d] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-500 transition-colors cursor-text"
                   autocomplete="off"
                   data-selected-code="DE"
                   value="Germany (DE)"
                 />
-                <div class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-500 pointer-events-none">
-                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                <div
+                  class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-400 dark:text-zinc-500 transition-colors pointer-events-none"
+                >
+                  <svg
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </div>
               </div>
               <!-- Dropdown Options List -->
-              <div id="destination-dropdown" class="absolute z-20 w-full mt-1 max-h-60 overflow-y-auto rounded-md border border-zinc-800 bg-[#0d0d0d] hidden shadow-[0_10px_20px_-10px_rgba(0,0,0,0.7)] divide-y divide-zinc-900/50">
+              <div
+                id="destination-dropdown"
+                class="absolute z-20 w-full mt-1 max-h-60 overflow-y-auto rounded-md border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#0d0d0d] hidden shadow-lg dark:shadow-[0_10px_20px_-10px_rgba(0,0,0,0.7)] divide-y divide-zinc-100 dark:divide-zinc-900/50 transition-colors"
+              >
               </div>
             </div>
           </form>
         </div>
 
         <!-- Optional Direct Portal Apply Alert Box -->
-        <div id="portal-link-container" class="hidden p-5 rounded-lg border border-blue-900/30 bg-blue-950/10 text-zinc-300 text-sm flex-col gap-3">
-          <div class="flex items-center gap-2 text-blue-400 font-medium">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+        <div
+          id="portal-link-container"
+          class="hidden p-5 rounded-lg border border-blue-200/50 bg-blue-50/50 text-zinc-800 dark:border-blue-900/30 dark:bg-blue-950/10 dark:text-zinc-300 text-sm flex-col gap-3 transition-colors"
+        >
+          <div
+            class="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-medium transition-colors"
+          >
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+              ></path>
             </svg>
             <span>Digital Application Portal Found</span>
           </div>
-          <p class="text-zinc-400 leading-relaxed text-xs">
-            This destination supports an online electronic application process. You can apply directly through the authorized government portal.
+          <p
+            class="text-zinc-600 dark:text-zinc-400 leading-relaxed text-xs transition-colors"
+          >
+            This destination supports an online electronic application process.
+            You can apply directly through the authorized government portal.
           </p>
-          <a id="portal-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-white font-sans text-xs py-2 px-3 rounded mt-1 transition-colors">
+          <a
+            id="portal-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center w-full bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 hover:border-zinc-700 text-white dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-zinc-800 dark:hover:border-zinc-700 font-sans text-xs py-2 px-3 rounded mt-1 transition-colors"
+          >
             Access Application Portal
           </a>
         </div>
       </section>
 
       <!-- Right side: Matrix Output & PDF Viewer -->
-      <section class="lg:col-span-7 space-y-8">
-        
+      <section id="results-section" class="lg:col-span-7 space-y-8">
         <!-- Matrix Slabs -->
-        <div class="p-6 rounded-lg border border-zinc-900 bg-[#080808] space-y-4">
+        <div
+          class="p-6 rounded-lg border border-zinc-200 bg-white dark:border-zinc-900 dark:bg-[#080808] space-y-4 transition-colors"
+        >
           <div class="flex justify-between items-center mb-2">
-            <h2 class="font-sans text-lg font-medium text-white">
-              Visa Requirements Matrix
+            <h2
+              class="font-sans text-lg font-medium text-zinc-950 dark:text-white transition-colors"
+            >
+              Visa Requirements
             </h2>
             <span class="font-mono text-[10px] text-zinc-500">
-              ISO-2 Bilateral Output
+              Search Results
             </span>
           </div>
-          
-          <div class="space-y-3">
+
+          <div class="space-y-3" aria-live="polite">
             <!-- Slab 1: Visa-Free (Emerald) -->
-            <div data-status-type="visa_free" class="relative flex flex-col md:flex-row items-start md:items-center justify-between p-5 rounded-lg border bg-gray-950/40 border-gray-800 opacity-30 transition-all duration-300 scale-100 ease-out">
+            <div
+              data-status-type="visa_free"
+              class="relative flex flex-col md:flex-row items-start md:items-center justify-between p-5 rounded-lg border bg-zinc-50/50 border-zinc-200 dark:bg-gray-950/40 dark:border-gray-800 opacity-30 transition-all duration-300 scale-100 ease-out"
+            >
               <div class="flex items-center gap-4">
-                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    ></path>
                   </svg>
                 </div>
                 <div>
-                  <div class="status-label font-sans font-semibold text-zinc-400 transition-colors duration-300">
+                  <div
+                    class="status-label font-sans font-semibold text-zinc-400 transition-colors duration-300"
+                  >
                     Visa-Free Travel
                   </div>
                   <div class="text-[11px] text-zinc-500 mt-0.5">
@@ -173,15 +366,32 @@ const isDev = import.meta.env.DEV;
             </div>
 
             <!-- Slab 2: e-Visa (Blue) -->
-            <div data-status-type="evisa" class="relative flex flex-col md:flex-row items-start md:items-center justify-between p-5 rounded-lg border bg-gray-950/40 border-gray-800 opacity-30 transition-all duration-300 scale-100 ease-out">
+            <div
+              data-status-type="evisa"
+              class="relative flex flex-col md:flex-row items-start md:items-center justify-between p-5 rounded-lg border bg-zinc-50/50 border-zinc-200 dark:bg-gray-950/40 dark:border-gray-800 opacity-30 transition-all duration-300 scale-100 ease-out"
+            >
               <div class="flex items-center gap-4">
-                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    ></path>
                   </svg>
                 </div>
                 <div>
-                  <div class="status-label font-sans font-semibold text-zinc-400 transition-colors duration-300">
+                  <div
+                    class="status-label font-sans font-semibold text-zinc-400 transition-colors duration-300"
+                  >
                     e-Visa / Electronic Authorization
                   </div>
                   <div class="text-[11px] text-zinc-500 mt-0.5">
@@ -194,15 +404,31 @@ const isDev = import.meta.env.DEV;
             </div>
 
             <!-- Slab 3: Visa on Arrival (Amber) -->
-            <div data-status-type="visa_on_arrival" class="relative flex flex-col md:flex-row items-start md:items-center justify-between p-5 rounded-lg border bg-gray-950/40 border-gray-800 opacity-30 transition-all duration-300 scale-100 ease-out">
+            <div
+              data-status-type="visa_on_arrival"
+              class="relative flex flex-col md:flex-row items-start md:items-center justify-between p-5 rounded-lg border bg-zinc-50/50 border-zinc-200 dark:bg-gray-950/40 dark:border-gray-800 opacity-30 transition-all duration-300 scale-100 ease-out"
+            >
               <div class="flex items-center gap-4">
-                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
                 </div>
                 <div>
-                  <div class="status-label font-sans font-semibold text-zinc-400 transition-colors duration-300">
+                  <div
+                    class="status-label font-sans font-semibold text-zinc-400 transition-colors duration-300"
+                  >
                     Visa on Arrival
                   </div>
                   <div class="text-[11px] text-zinc-500 mt-0.5">
@@ -215,15 +441,32 @@ const isDev = import.meta.env.DEV;
             </div>
 
             <!-- Slab 4: Embassy Visa (Rose) -->
-            <div data-status-type="visa_required" class="relative flex flex-col md:flex-row items-start md:items-center justify-between p-5 rounded-lg border bg-gray-950/40 border-gray-800 opacity-30 transition-all duration-300 scale-100 ease-out">
+            <div
+              data-status-type="visa_required"
+              class="relative flex flex-col md:flex-row items-start md:items-center justify-between p-5 rounded-lg border bg-zinc-50/50 border-zinc-200 dark:bg-gray-950/40 dark:border-gray-800 opacity-30 transition-all duration-300 scale-100 ease-out"
+            >
               <div class="flex items-center gap-4">
-                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400">
-                  <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-600 dark:text-rose-450"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                    ></path>
                   </svg>
                 </div>
                 <div>
-                  <div class="status-label font-sans font-semibold text-zinc-400 transition-colors duration-300">
+                  <div
+                    class="status-label font-sans font-semibold text-zinc-400 transition-colors duration-300"
+                  >
                     Embassy Visa Required
                   </div>
                   <div class="text-[11px] text-zinc-500 mt-0.5">
@@ -231,149 +474,308 @@ const isDev = import.meta.env.DEV;
                   </div>
                 </div>
               </div>
-              <!-- Hidden placeholder for stay duration -->
-              <div class="stay-badge hidden mt-2 md:mt-0"></div>
             </div>
           </div>
-        </div>
 
-        <!-- PDF Embed Block -->
-        <div class="p-6 rounded-lg border border-zinc-900 bg-[#080808] space-y-4">
-          <div class="flex items-center justify-between">
-            <h2 class="font-sans text-lg font-medium text-white flex items-center gap-2">
-              <svg class="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Official Compliance Resources
-            </h2>
-            <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider">
-              Document Viewer
-            </span>
-          </div>
-
-          <!-- Document embed frame wrapper -->
-          <div class="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#0c0c0c] border border-zinc-800/80 rounded overflow-hidden">
-            <iframe 
-              id="compliance-pdf-viewer" 
-              src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" 
-              class="w-full h-full border-0" 
-              title="Official Visa Compliance Document">
-            </iframe>
-          </div>
-
-          <div class="pt-2 flex justify-between items-center text-xs">
-            <span class="text-zinc-500 font-sans">Can't see the document frame?</span>
-            <a 
-              id="compliance-external-link" 
-              href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="inline-flex items-center gap-1.5 text-zinc-400 border border-zinc-800 hover:border-zinc-700 bg-zinc-900/60 px-3 py-1.5 rounded transition-all font-mono text-[11px]">
-              <span>Open Document in Secure External Tab</span>
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          <!-- Reference Link Row -->
+          <div
+            id="reference-link-container"
+            class="hidden pt-4 border-t border-zinc-200 dark:border-zinc-800 mt-4 flex justify-center md:justify-start transition-colors"
+          >
+            <a
+              id="reference-link"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 text-xs font-mono transition-colors"
+            >
+              <span>View Official Destination Visa Rules (PDF/Portal)</span>
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                ></path>
               </svg>
             </a>
           </div>
         </div>
 
+        <!-- News Section -->
+        <div
+          id="news-section-container"
+          class="hidden p-6 rounded-lg border border-zinc-200 bg-white dark:border-zinc-900 dark:bg-[#080808] shadow-[0_1px_2px_rgba(0,0,0,0.05)] dark:shadow-[0_1px_2px_rgba(0,0,0,0.4)] space-y-4 transition-colors"
+        >
+          <div class="flex justify-between items-center mb-2">
+            <h3
+              class="font-sans text-sm font-semibold text-zinc-950 dark:text-white transition-colors"
+            >
+              What's Happening?
+            </h3>
+            <span class="font-mono text-[10px] text-zinc-500">
+              Recent Travel Alerts
+            </span>
+          </div>
+          <div
+            id="news-list"
+            class="divide-y divide-zinc-150 dark:divide-zinc-900/50 space-y-4"
+          >
+            <!-- Dynamically populated links -->
+          </div>
+        </div>
       </section>
-
     </div>
+
+    <!-- Frequently Asked Questions (FAQ) Section -->
+    <section class="mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-900/50 space-y-8">
+      <div class="max-w-3xl mx-auto space-y-6">
+        <h2 class="font-sans text-xl font-semibold text-zinc-950 dark:text-white transition-colors">
+          Frequently Asked Questions — Visa & Passport Requirements
+        </h2>
+        
+        <div class="space-y-4">
+          <!-- Question 1 -->
+          <details class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300">
+            <summary class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none">
+              <span id="faq-q1-text">Do I need a visa if I already hold a valid passport?</span>
+              <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-500">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
+              <p id="faq-a1-text">
+                A passport is required for all international travel, but it does not guarantee entry. Visa requirements depend strictly on your nationality and the bilateral agreements between your home country and your destination.
+              </p>
+            </div>
+          </details>
+
+          <!-- Question 2 -->
+          <details class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300">
+            <summary class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none">
+              <span id="faq-q2-text">What are the different global visa requirement categories?</span>
+              <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-500">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
+              <p id="faq-a2-text">
+                Entry rules typically fall into four distinct tiers: Visa-Free (no prior approval needed), eVisa (electronic application processed online before departure), Visa on Arrival (issued instantly at the border checkpoint), and Embassy Visa Required (traditional paper application needed before flying).
+              </p>
+            </div>
+          </details>
+
+          <!-- Question 3 -->
+          <details class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300">
+            <summary class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none">
+              <span id="faq-q3-text">Do I need a visa to go to Japan, Mexico, or Italy?</span>
+              <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-500">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
+              <div id="faq-a3-text">
+                Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly.
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Google FAQ Schema Markup (JSON-LD) -->
+    <script type="application/ld+json" id="faq-schema">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do I need a visa if I already hold a valid passport?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A passport is required for all international travel, but it does not guarantee entry. Visa requirements depend strictly on your nationality and the bilateral agreements between your home country and your destination."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the different global visa requirement categories?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Entry rules typically fall into four distinct tiers: Visa-Free (no prior approval needed), eVisa (electronic application processed online before departure), Visa on Arrival (issued instantly at the border checkpoint), and Embassy Visa Required (traditional paper application needed before flying)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a visa to go to Japan, Mexico, or Italy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Contextual SEO Travel Reference Guide -->
+    <section class="mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-900/50 space-y-8 text-zinc-500 dark:text-zinc-400">
+      <div class="max-w-3xl mx-auto space-y-6">
+        <h2 class="font-sans text-base font-semibold text-zinc-950 dark:text-white transition-colors">
+          Bilateral Travel Agreements & Global Visa Frameworks: An Informational Reference
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[12px] leading-relaxed">
+          <div class="space-y-4">
+            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200">
+              1. The Foundations of Sovereign Border Regulations
+            </h3>
+            <p>
+              Every sovereign state retains the absolute legal authority to regulate foreign nationals crossing its borders. These entry parameters are defined by bilateral diplomatic agreements, trade treaties, and geopolitical alliances. Passport strength, often measured by the number of visa-free destinations a citizen can access, is a direct outcome of these relationships. International travelers must navigate this complex, fragmented matrix of bilateral policies to ensure compliance before embarkation.
+            </p>
+            <p>
+              Bilateral agreements can establish mutual visa exemptions, meaning passport holders from either state can visit the other without pre-authorizations. Alternatively, unilateral concessions can be made, where a nation grants visa-free access to citizens of another country to promote tourism, even if its own citizens face restrictions in return.
+            </p>
+
+            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200 mt-6">
+              2. Categorizing Admission Tiers: Visa-Free, eVisas, and VoA
+            </h3>
+            <p>
+              International admission categories typically fall into four primary tiers. <strong>Visa-Free entry</strong> is the most seamless, enabling travelers to pass border checks with only a valid passport for short-term stays, typically capped at 30, 90, or 180 days. <strong>e-Visas</strong> and <strong>Electronic Travel Authorizations (eTAs)</strong> are online alternatives, requiring applicants to submit documents through digital government portal paths and receive confirmation emails prior to departure.
+            </p>
+            <p>
+              In contrast, <strong>Visas on Arrival (VoA)</strong> are issued instantly at border checkpoints. While convenient, VoA poses a slight risk of entry denial if travelers fail to present return flights, sufficient funds, or passport validity requirements. Understanding these differences helps travelers prepare itineraries correctly and avoid boarding denials by airlines.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200">
+              3. Consular Clearances & Pre-Travel Checklist Essentials
+            </h3>
+            <p>
+              When no visa waiver or digital portal is available, travelers must apply for a traditional <strong>Embassy Visa</strong>. This process requires submitting physical passports, biometrics, bank details, and itineraries directly to destination consulates weeks in advance. Because passport processing times can vary, early consular preparation is critical to avoid travel disruptions.
+            </p>
+            <p>
+              Regardless of your destination's visa requirements, a critical pre-travel requirement is ensuring your passport has at least <strong>six months of validity</strong> remaining from your planned arrival date. Many airlines and border authorities strictly enforce this rule, denying boarding or entry to travelers with expiring passports. Additionally, maintaining proof of onward travel (such as return flight tickets) and sufficient travel insurance is highly recommended.
+            </p>
+
+            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200 mt-6">
+              4. Leveraging the Instant Visa Checker Utility
+            </h3>
+            <p>
+              Our <strong>Instant Visa Requirement Checker</strong> simplifies this geopolitical complexity by cross-referencing bilateral visa statuses across 197 countries in real-time. By selecting your passport nationality and target destination territory, you can instantly see which admission tier applies, maximum stay limits, and official government application links.
+            </p>
+            <p>
+              While our system updates its dataset frequently to track rule shifts and travel alerts, we strongly advise all travelers to verify destination rules using the direct government portal links provided under our matrix search results. Using the right combination of tools ensures a smooth, trouble-free international travel experience.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Sticky footer -->
-  <footer class="border-t border-zinc-900 bg-black py-12">
-    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+  <footer
+    class="border-t border-zinc-200 bg-white dark:border-zinc-900 dark:bg-black py-12 transition-colors duration-300"
+  >
+    <div
+      class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
+    >
       <div class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg
+          class="w-5 h-5 text-zinc-450 dark:text-zinc-500 transition-colors"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
           <path d="M12 2L2 22h20L12 2z" stroke-linejoin="round"></path>
         </svg>
-        <span class="text-zinc-500 font-mono text-xs">GLOBAL VISA REQUIREMENTS MATRIX SYSTEM.</span>
+        <span
+          class="text-zinc-400 dark:text-zinc-500 font-mono text-xs transition-colors"
+          >GLOBAL VISA REQUIREMENTS MATRIX SYSTEM.</span
+        >
       </div>
-      <div class="flex gap-6 font-mono text-[11px] text-zinc-500">
-        <span class="hover:text-zinc-300 cursor-pointer">Security Protocol</span>
-        <span class="hover:text-zinc-300 cursor-pointer">Privacy System</span>
-        <span class="hover:text-zinc-300 cursor-pointer">Government APIs</span>
+      <div
+        class="flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-[11px] text-zinc-400 dark:text-zinc-500 transition-colors"
+      >
+        <a href="/" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Home</a>
+        <a href="/about" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">About Us</a>
+        <a href="/privacy" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy Policy</a>
+        <a href="/terms" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Terms & Conditions</a>
+        <a href="/contact" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Contact Us</a>
       </div>
     </div>
   </footer>
 
-  {isDev && (
-    <div id="diagnostics-panel" class="fixed bottom-4 right-4 z-50 w-80 bg-zinc-950/95 border border-zinc-800 rounded-lg shadow-xl transition-all duration-300 font-mono text-[11px] overflow-hidden">
-      <div id="diagnostics-header" class="flex items-center justify-between px-3 py-2 bg-zinc-900 border-b border-zinc-800 cursor-pointer select-none">
-        <div class="flex items-center gap-2 text-zinc-300 font-semibold">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#007cf0] animate-pulse"></span>
-          <span>Connection Diagnostics</span>
-        </div>
-        <button id="diagnostics-toggle" class="text-zinc-500 hover:text-zinc-300 transition-colors">
-          <svg id="diagnostics-toggle-icon" class="w-3.5 h-3.5 transform transition-transform duration-300 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </div>
-
-      <div id="diagnostics-body" class="p-3 space-y-3">
-        <div class="space-y-1">
-          <div class="text-zinc-500 text-[10px] uppercase tracking-wider font-semibold">Database Ping</div>
-          <div class="flex items-center justify-between">
-            <span id="db-status-text" class="text-zinc-400">Pinging...</span>
-            <span id="db-status-badge" class="px-1.5 py-0.5 rounded text-[10px] bg-zinc-900 border border-zinc-800 text-zinc-400 font-semibold">PENDING</span>
-          </div>
-        </div>
-
-        <div class="space-y-1">
-          <div class="text-zinc-500 text-[10px] uppercase tracking-wider font-semibold">RPC Fallback (XX -> YY)</div>
-          <div class="flex items-center justify-between">
-            <span id="rpc-status-text" class="text-zinc-400">Testing...</span>
-            <span id="rpc-status-badge" class="px-1.5 py-0.5 rounded text-[10px] bg-zinc-900 border border-zinc-800 text-zinc-400 font-semibold">PENDING</span>
-          </div>
-        </div>
-
-        <div class="space-y-1">
-          <div class="text-zinc-500 text-[10px] uppercase tracking-wider font-semibold">Diagnostics Log</div>
-          <pre id="diagnostics-log" class="w-full max-h-24 overflow-y-auto bg-black border border-zinc-900 rounded p-1.5 text-[10px] text-zinc-400 font-mono whitespace-pre-wrap select-text leading-tight">All systems operational.</pre>
-        </div>
-      </div>
-    </div>
-  )}
-
   <!-- Interactivity controller script -->
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const originInput = document.getElementById('origin-input') as HTMLInputElement;
-      const originDropdown = document.getElementById('origin-dropdown') as HTMLDivElement;
-      const destinationInput = document.getElementById('destination-input') as HTMLInputElement;
-      const destinationDropdown = document.getElementById('destination-dropdown') as HTMLDivElement;
-      const slabs = document.querySelectorAll('[data-status-type]');
-      const iframeViewer = document.getElementById('compliance-pdf-viewer') as HTMLIFrameElement;
-      const externalLink = document.getElementById('compliance-external-link') as HTMLAnchorElement;
-      const portalLinkContainer = document.getElementById('portal-link-container') as HTMLDivElement;
-      const portalLink = document.getElementById('portal-link') as HTMLAnchorElement;
+    import visaDataMatrix from "../data/passport-index.json";
 
-      // Fallback local countries catalog in case database fetch fails
-      const fallbackCountries = [
-        { code: "US", name: "United States (US)", flag: "🇺🇸" },
-        { code: "DE", name: "Germany (DE)", flag: "🇩🇪" },
-        { code: "IN", name: "India (IN)", flag: "🇮🇳" },
-        { code: "SG", name: "Singapore (SG)", flag: "🇸🇬" },
-        { code: "AE", name: "United Arab Emirates (AE)", flag: "🇦🇪" }
-      ];
+    document.addEventListener("DOMContentLoaded", () => {
+      const originInput = document.getElementById(
+        "origin-input",
+      ) as HTMLInputElement;
+      const originDropdown = document.getElementById(
+        "origin-dropdown",
+      ) as HTMLDivElement;
+      const destinationInput = document.getElementById(
+        "destination-input",
+      ) as HTMLInputElement;
+      const destinationDropdown = document.getElementById(
+        "destination-dropdown",
+      ) as HTMLDivElement;
+      const slabs = document.querySelectorAll("[data-status-type]");
+      const portalLinkContainer = document.getElementById(
+        "portal-link-container",
+      ) as HTMLDivElement;
+      const portalLink = document.getElementById(
+        "portal-link",
+      ) as HTMLAnchorElement;
+      const sameCountryWarning = document.getElementById(
+        "same-country-warning",
+      ) as HTMLDivElement;
+      const referenceLinkContainer = document.getElementById(
+        "reference-link-container",
+      ) as HTMLDivElement;
+      const referenceLink = document.getElementById(
+        "reference-link",
+      ) as HTMLAnchorElement;
+      const themeToggleBtn = document.getElementById("theme-toggle");
 
-      // Dynamic list populated from database
-      let countries = [...fallbackCountries];
+      // Theme Toggle Event Listener
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+          const isDark = document.documentElement.classList.contains("dark");
+          if (isDark) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+          }
+        });
+      }
 
-      // Supabase Client Config (Fallback values provided; override with environment tokens if needed)
-      const SUPABASE_URL = (window as any).PUBLIC_SUPABASE_URL || import.meta.env.PUBLIC_SUPABASE_URL || 'https://your-supabase-project.supabase.co';
-      const SUPABASE_ANON_KEY = (window as any).PUBLIC_SUPABASE_ANON_KEY || import.meta.env.PUBLIC_SUPABASE_ANON_KEY || 'your-supabase-anon-key';
+      // Helper to check if string is numeric (represents days/duration)
+      const isNumerical = (str: string) => /^\d+$/.test(str);
 
-      // Convert ISO code to flag emoji dynamically
+      // Convert ISO-2 country code to flag emoji
       function getFlagEmoji(countryCode: string) {
         if (!countryCode || countryCode.length !== 2) return "🏳️";
         const codePoints = countryCode
           .toUpperCase()
-          .split('')
-          .map(char => 127397 + char.charCodeAt(0));
+          .split("")
+          .map((char) => 127397 + char.charCodeAt(0));
         try {
           return String.fromCodePoint(...codePoints);
         } catch (e) {
@@ -381,411 +783,646 @@ const isDev = import.meta.env.DEV;
         }
       }
 
-      // Fetch all countries dynamically from Supabase countries table
-      async function fetchCountries() {
-        const url = `${SUPABASE_URL}/rest/v1/countries?select=iso_code,name&order=name`;
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'apikey': SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-          }
-        });
-        if (!response.ok) {
-          throw new Error(`Countries fetch failed with status: ${response.status}`);
-        }
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          return data.map(item => ({
-            code: item.iso_code,
-            name: `${item.name} (${item.iso_code})`,
-            flag: getFlagEmoji(item.iso_code)
-          }));
-        }
-        throw new Error('Malformed countries payload');
-      }
-
-      // Clean fetch wrapper mapping active ISO tokens directly toward Supabase RPC endpoint
-      async function queryDatabaseRpc(originIso: string, destinationIso: string) {
-        const url = `${SUPABASE_URL}/rest/v1/rpc/get_visa_requirement`;
-
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': SUPABASE_ANON_KEY,
-            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-          },
-          body: JSON.stringify({
-            p_origin_iso: originIso,
-            p_destination_iso: destinationIso
+      // Generate the dynamic countries list from the JSON keys using Intl.DisplayNames
+      let countries: { code: string; name: string; flag: string }[] = [];
+      try {
+        const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
+        countries = Object.keys(visaDataMatrix)
+          .map((code) => {
+            let name = code;
+            try {
+              name = regionNames.of(code) || code;
+            } catch (e) {}
+            return {
+              code: code,
+              name: `${name} (${code})`,
+              flag: getFlagEmoji(code),
+            };
           })
-        });
-
-        if (!response.ok) {
-          throw new Error(`Database lookup request failed with status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        // RPC returns setof table format (an array containing exactly one matching row)
-        if (Array.isArray(data) && data.length > 0) {
-          return data[0];
-        } else if (data && !Array.isArray(data)) {
-          return data;
-        }
-        
-        throw new Error('Malformed or empty database response payload');
+          .sort((a, b) => a.name.localeCompare(b.name));
+      } catch (err) {
+        console.error(
+          "Failed to initialize countries list via Intl.DisplayNames:",
+          err,
+        );
       }
 
-      async function checkStatus() {
-        const origin = originInput.getAttribute('data-selected-code');
-        const destination = destinationInput.getAttribute('data-selected-code');
+      const defaultTitle = "Can I Fly There? | Instant Visa Requirement Checker";
+      const defaultDescription = "Instant visa requirement checker for international travelers. Verify bilateral visa rules, stay limits, and visa on arrival eligibility for 197+ countries instantly.";
 
-        if (!origin || !destination) return;
-
-        // Clean Reset routine for all slabs (opacity-30, border-gray-800, scale-100, remove shadows)
-        slabs.forEach(slab => {
-          slab.classList.remove('opacity-100', 'scale-[1.01]', 'shadow-glow-emerald', 'shadow-glow-blue', 'shadow-glow-amber', 'shadow-glow-rose', 'border-emerald-500/50', 'border-blue-500/50', 'border-amber-500/50', 'border-rose-500/50');
-          slab.classList.add('opacity-30', 'scale-100');
-
-          // Reset status label text colors to muted state
-          const textLabel = slab.querySelector('.status-label');
-          if (textLabel) {
-            textLabel.classList.remove('text-emerald-400', 'text-blue-400', 'text-amber-400', 'text-rose-500');
-            textLabel.classList.add('text-zinc-400');
-          }
-
-          // Hide duration text badges
-          const stayBadge = slab.querySelector('.stay-badge');
-          if (stayBadge) {
-            stayBadge.classList.add('hidden');
-            stayBadge.textContent = '';
-          }
-        });
-
-        let outcome;
-        try {
-          // Fire asynchronous request dynamically to DB backend
-          outcome = await queryDatabaseRpc(origin, destination);
-        } catch (error) {
-          console.warn("Supabase database RPC failed. Falling back gracefully to default 'visa_required' configuration.", error);
-          // Clean catch state block: graceful fallback
-          outcome = {
-            status_type: "visa_required",
-            max_stay_days: 0,
-            official_pdf_url: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
-          };
-        }
-
-        // Pass payload variables straight to highlighting state engine
-        highlightVisaSlab(outcome ? outcome.status_type : 'visa_required', outcome ? outcome.max_stay_days : 0, outcome ? outcome.official_pdf_url : '');
-      }
-
-      // Collapsible Diagnostics Panel Handler
-      const diagPanel = document.getElementById('diagnostics-panel');
-      const diagHeader = document.getElementById('diagnostics-header');
-      const diagBody = document.getElementById('diagnostics-body');
-      const diagToggleIcon = document.getElementById('diagnostics-toggle-icon');
-
-      if (diagHeader && diagBody && diagToggleIcon) {
-        let isExpanded = localStorage.getItem('diag_expanded') !== 'false';
+      function getVisaStatusFriendly(origin: string, destination: string) {
+        if (!visaDataMatrix[origin as keyof typeof visaDataMatrix]) return "Visa Required";
+        const rule = (visaDataMatrix[origin as keyof typeof visaDataMatrix] as any)[destination];
+        if (!rule) return "Visa Required";
+        const status = rule.status ? rule.status.toLowerCase() : "";
+        const days = rule.days ? parseInt(rule.days) : 0;
         
-        const updatePanelState = () => {
-          if (isExpanded) {
-            diagBody.classList.remove('hidden');
-            diagToggleIcon.classList.add('rotate-180');
-          } else {
-            diagBody.classList.add('hidden');
-            diagToggleIcon.classList.remove('rotate-180');
-          }
-        };
-
-        updatePanelState();
-
-        diagHeader.addEventListener('click', () => {
-          isExpanded = !isExpanded;
-          localStorage.setItem('diag_expanded', String(isExpanded));
-          updatePanelState();
-        });
+        if (status === "visa free" || !isNaN(Number(status))) {
+          return `Visa-Free (${status === "visa free" ? (days ? days + " Days" : "Yes") : status + " Days"})`;
+        } else if (status === "eta" || status === "e-visa") {
+          return `eVisa (${days ? days + " Days" : "Yes"})`;
+        } else if (status === "visa on arrival") {
+          return `Visa on Arrival (${days ? days + " Days" : "Yes"})`;
+        }
+        return "Visa Required";
       }
 
-      // Run Connection Diagnostics
-      async function runDiagnostics() {
-        const dbText = document.getElementById('db-status-text');
-        const dbBadge = document.getElementById('db-status-badge');
-        const rpcText = document.getElementById('rpc-status-text');
-        const rpcBadge = document.getElementById('rpc-status-badge');
-        const logArea = document.getElementById('diagnostics-log');
+      function updateFAQSchema(originName: string, originCode: string) {
+        const faqSchema = document.getElementById("faq-schema");
+        if (!faqSchema) return;
 
-        if (!dbText || !dbBadge || !rpcText || !rpcBadge || !logArea) return;
+        let q3Name = "Do I need a visa to go to Japan, Mexico, or Italy?";
+        let q3Answer = "Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly.";
 
-        let logContent = '';
-        const appendLog = (msg: string) => {
-          logContent += msg + '\n';
-          logArea.textContent = logContent.trim() || 'All systems operational.';
-        };
-
-        // Test 1: Ping Supabase Countries
-        try {
-          dbText.textContent = 'Pinging Database...';
-          const pingStart = performance.now();
-          const response = await fetch(`${SUPABASE_URL}/rest/v1/countries?select=iso_code`, {
-            method: 'GET',
-            headers: {
-              'apikey': SUPABASE_ANON_KEY,
-              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
-            }
-          });
-          const latency = Math.round(performance.now() - pingStart);
-
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-          }
-
-          const data = await response.json();
-          if (!Array.isArray(data)) {
-            throw new Error('Database returned invalid payload format');
-          }
-
-          dbText.textContent = `Connected (${latency}ms)`;
-          dbBadge.textContent = 'CONNECTED';
-          dbBadge.className = 'px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
-          appendLog(`[DB] Successfully fetched ${data.length} countries.`);
-        } catch (err: any) {
-          dbText.textContent = 'Connection Failed';
-          dbBadge.textContent = 'FAILED';
-          dbBadge.className = 'px-1.5 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 border border-rose-500/20 text-rose-400';
-          appendLog(`[DB ERROR] ${err.message || err}`);
+        if (originName && originCode) {
+          q3Name = `Do I need a visa to go to Japan, Mexico, or Italy from ${originName}?`;
+          const jpStatus = getVisaStatusFriendly(originCode, "JP");
+          const mxStatus = getVisaStatusFriendly(originCode, "MX");
+          const itStatus = getVisaStatusFriendly(originCode, "IT");
+          q3Answer = `Based on your selected passport (${originName}): Japan status: ${jpStatus}; Mexico status: ${mxStatus}; Italy status: ${itStatus}. Use our instant lookup scanner above to cross-reference your specific nationality against any destination instantly.`;
         }
 
-        // Test 2: RPC Fallback Validation
-        try {
-          rpcText.textContent = 'Testing RPC Fallback...';
-          const rpcStart = performance.now();
-          const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_visa_requirement`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'apikey': SUPABASE_ANON_KEY,
-              'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        const schemaData = {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Do I need a visa if I already hold a valid passport?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A passport is required for all international travel, but it does not guarantee entry. Visa requirements depend strictly on your nationality and the bilateral agreements between your home country and your destination."
+              }
             },
-            body: JSON.stringify({
-              p_origin_iso: 'XX',
-              p_destination_iso: 'YY'
-            })
-          });
-          const latency = Math.round(performance.now() - rpcStart);
+            {
+              "@type": "Question",
+              "name": "What are the different global visa requirement categories?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Entry rules typically fall into four distinct tiers: Visa-Free (no prior approval needed), eVisa (electronic application processed online before departure), Visa on Arrival (issued instantly at the border checkpoint), and Embassy Visa Required (traditional paper application needed before flying)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": q3Name,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": q3Answer
+              }
+            }
+          ]
+        };
 
-          if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-          }
+        faqSchema.textContent = JSON.stringify(schemaData, null, 2);
+      }
 
-          const data = await response.json();
-          const outcome = Array.isArray(data) ? data[0] : data;
+      function updateDynamicFAQ(origin: string | null) {
+        const faqQ3Text = document.getElementById("faq-q3-text");
+        const faqA3Text = document.getElementById("faq-a3-text");
+        
+        if (!faqQ3Text || !faqA3Text) return;
 
-          if (!outcome || outcome.status_type !== 'visa_required') {
-            throw new Error(`Expected visa_required fallback, got ${JSON.stringify(outcome)}`);
-          }
+        if (origin) {
+          const originCountry = countries.find((c) => c.code === origin);
+          const originName = originCountry ? originCountry.name.split(" (")[0] : origin;
 
-          rpcText.textContent = `Passed (${latency}ms)`;
-          rpcBadge.textContent = 'PASSED';
-          rpcBadge.className = 'px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
-          appendLog(`[RPC] Fallback test succeeded. Returned 'visa_required'.`);
-        } catch (err: any) {
-          rpcText.textContent = 'RPC Failed';
-          rpcBadge.textContent = 'FAILED';
-          rpcBadge.className = 'px-1.5 py-0.5 rounded text-[10px] font-semibold bg-rose-500/10 border border-rose-500/20 text-rose-400';
-          appendLog(`[RPC ERROR] ${err.message || err}`);
+          faqQ3Text.textContent = `Do I need a visa to go to Japan, Mexico, or Italy from ${originName}?`;
+
+          const jpStatus = getVisaStatusFriendly(origin, "JP");
+          const mxStatus = getVisaStatusFriendly(origin, "MX");
+          const itStatus = getVisaStatusFriendly(origin, "IT");
+
+          faqA3Text.innerHTML = `
+            Based on your selected passport (<strong>${originName}</strong>):
+            <ul class="list-disc pl-5 mt-2 space-y-1 font-mono text-[11px] text-zinc-700 dark:text-zinc-300">
+              <li>Japan: <span class="text-zinc-950 dark:text-white font-semibold">${jpStatus}</span></li>
+              <li>Mexico: <span class="text-zinc-950 dark:text-white font-semibold">${mxStatus}</span></li>
+              <li>Italy: <span class="text-zinc-950 dark:text-white font-semibold">${itStatus}</span></li>
+            </ul>
+            <p class="mt-3">Use our instant lookup scanner above to cross-reference your specific nationality against any destination instantly.</p>
+          `;
+          
+          updateFAQSchema(originName, origin);
+        } else {
+          faqQ3Text.textContent = "Do I need a visa to go to Japan, Mexico, or Italy?";
+          faqA3Text.innerHTML = "Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly.";
+          updateFAQSchema("", "");
         }
       }
 
-      if (diagPanel) {
-        runDiagnostics();
+      function resetSEO() {
+        document.title = defaultTitle;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute("content", defaultDescription);
+        }
+        updateDynamicFAQ(null);
       }
 
-      function highlightVisaSlab(statusType: string, maxStayDays: number, officialPdfUrl: string) {
-        // Map database enum outcomes to frontend UI layout outcome markers
-        let uiStatusType = statusType || 'visa_required';
-        if (uiStatusType === 'voa') {
-          uiStatusType = 'visa_on_arrival';
+      function checkStatus() {
+        const origin = originInput.getAttribute("data-selected-code");
+        const destination = destinationInput.getAttribute("data-selected-code");
+
+        // Dynamic update of FAQ based on origin selection alone
+        updateDynamicFAQ(origin);
+
+        if (!origin || !destination) {
+          if (referenceLinkContainer) {
+            referenceLinkContainer.classList.add("hidden");
+          }
+          hideNewsSection();
+          resetSEO();
+          return;
         }
 
-        const validStatuses = ['visa_free', 'evisa', 'visa_on_arrival', 'visa_required'];
-        if (!validStatuses.includes(uiStatusType)) {
-          uiStatusType = 'visa_required';
+        // Reset warning display
+        if (sameCountryWarning) {
+          sameCountryWarning.classList.add("hidden");
         }
 
-        const activeSlab = document.querySelector(`[data-status-type="${uiStatusType}"]`) as HTMLDivElement;
-        if (activeSlab) {
-          activeSlab.classList.remove('opacity-30', 'scale-100');
-          activeSlab.classList.add('opacity-100', 'scale-[1.01]');
+        // Clean Reset routine for all slabs
+        if (referenceLinkContainer) {
+          referenceLinkContainer.classList.add("hidden");
+        }
 
-          const textLabel = activeSlab.querySelector('.status-label');
+        slabs.forEach((slab) => {
+          slab.classList.remove(
+            "opacity-100",
+            "scale-[1.01]",
+            "shadow-glow-emerald",
+            "shadow-glow-blue",
+            "shadow-glow-amber",
+            "shadow-glow-rose",
+            "border-emerald-500/50",
+            "border-blue-500/50",
+            "border-amber-500/50",
+            "border-rose-500/50",
+          );
+          slab.classList.add("opacity-30", "scale-100");
+
+          const textLabel = slab.querySelector(".status-label");
           if (textLabel) {
-            textLabel.classList.remove('text-zinc-400');
+            textLabel.classList.remove(
+              "text-emerald-600",
+              "dark:text-emerald-400",
+              "text-blue-600",
+              "dark:text-blue-400",
+              "text-amber-600",
+              "dark:text-amber-400",
+              "text-rose-600",
+              "dark:text-rose-450",
+              "text-emerald-400",
+              "text-blue-400",
+              "text-amber-400",
+              "text-rose-500",
+            );
+            textLabel.classList.add("text-zinc-500", "dark:text-zinc-400");
           }
 
-          // Apply specific glowing shadows, active borders, and color schemes
-          if (uiStatusType === 'visa_free') {
-            activeSlab.classList.add('shadow-glow-emerald', 'border-emerald-500/50');
-            if (textLabel) textLabel.classList.add('text-emerald-400');
-          } else if (uiStatusType === 'evisa') {
-            activeSlab.classList.add('shadow-glow-blue', 'border-blue-500/50');
-            if (textLabel) textLabel.classList.add('text-blue-400');
-          } else if (uiStatusType === 'visa_on_arrival') {
-            activeSlab.classList.add('shadow-glow-amber', 'border-amber-500/50');
-            if (textLabel) textLabel.classList.add('text-amber-400');
-          } else if (uiStatusType === 'visa_required') {
-            activeSlab.classList.add('shadow-glow-rose', 'border-rose-500/50');
-            if (textLabel) textLabel.classList.add('text-rose-500');
+          const stayBadge = slab.querySelector(".stay-badge");
+          if (stayBadge) {
+            stayBadge.classList.add("hidden");
+            stayBadge.textContent = "";
+          }
+        });
+
+        // Strict validation: origin cannot be destination
+        if (origin === destination) {
+          if (sameCountryWarning) {
+            sameCountryWarning.classList.remove("hidden");
+          }
+          if (portalLinkContainer) {
+            portalLinkContainer.classList.remove("flex");
+            portalLinkContainer.classList.add("hidden");
+          }
+          if (referenceLinkContainer) {
+            referenceLinkContainer.classList.add("hidden");
+          }
+          hideNewsSection();
+          resetSEO();
+          return;
+        }
+
+        // Lookup in-memory matrix
+        let outcome = {
+          status_type: "visa_required",
+          max_stay_days: 0,
+        };
+
+        if (
+          visaDataMatrix[origin as keyof typeof visaDataMatrix] &&
+          (visaDataMatrix[origin as keyof typeof visaDataMatrix] as any)[
+            destination
+          ]
+        ) {
+          const rule = (
+            visaDataMatrix[origin as keyof typeof visaDataMatrix] as any
+          )[destination];
+          const status = rule.status ? rule.status.toLowerCase() : "";
+          const days = rule.days ? parseInt(rule.days) : 0;
+
+          if (status === "visa free" || isNumerical(status)) {
+            outcome.status_type = "visa_free";
+            outcome.max_stay_days = isNumerical(status)
+              ? parseInt(status)
+              : days;
+          } else if (status === "eta" || status === "e-visa") {
+            outcome.status_type = "evisa";
+            outcome.max_stay_days = days;
+          } else if (status === "visa on arrival") {
+            outcome.status_type = "visa_on_arrival";
+            outcome.max_stay_days = days;
+          } else if (status === "visa required") {
+            outcome.status_type = "visa_required";
+            outcome.max_stay_days = 0;
+          }
+        }
+
+        highlightVisaSlab(outcome.status_type, outcome.max_stay_days);
+
+        const originCountry = countries.find((c) => c.code === origin);
+        const destCountry = countries.find((c) => c.code === destination);
+        const originName = originCountry
+          ? originCountry.name.split(" (")[0]
+          : origin || "";
+        const destinationName = destCountry
+          ? destCountry.name.split(" (")[0]
+          : destination || "";
+
+        // Dynamic Title Template
+        document.title = `Do citizens of ${originName} need a visa for ${destinationName}? | Can I Fly There?`;
+
+        // Dynamic Meta Description Template
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) {
+          metaDesc.setAttribute(
+            "content",
+            `${originName} to ${destinationName} tourist visa rules, max stay limits, and visa on arrival requirements for ${originName} passport holding travelers. Verify official bilateral entry guidelines instantly.`
+          );
+        }
+
+        // Resolve external official reference URL
+        if (referenceLinkContainer && referenceLink) {
+          const officialImmigrationDomains: Record<string, string> = {
+            US: "https://travel.state.gov",
+            DE: "https://www.auswaertiges-amt.de",
+            SG: "https://www.ica.gov.sg",
+            IN: "https://indianvisaonline.gov.in",
+            GB: "https://www.gov.uk",
+            FR: "https://france-visas.gouv.fr",
+            JP: "https://www.mofa.go.jp",
+            CA: "https://www.canada.ca",
+            AU: "https://immi.homeaffairs.gov.au",
+            AE: "https://smartservices.icp.gov.ae",
+          };
+
+          const destDomain = officialImmigrationDomains[destination];
+          const finalUrl =
+            destDomain ||
+            `https://www.google.com/search?q=official+${encodeURIComponent(destinationName)}+visa+requirements+for+${encodeURIComponent(originName)}+citizens+filetype:pdf`;
+
+          referenceLink.href = finalUrl;
+          referenceLinkContainer.classList.remove("hidden");
+        }
+
+        // Fetch relevant news
+        fetchNews(origin, destination);
+
+        // Auto-scroll to results on mobile viewports
+        const resultsSection = document.getElementById("results-section");
+        if (resultsSection && window.innerWidth < 1024) {
+          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      function hideNewsSection() {
+        const container = document.getElementById("news-section-container");
+        if (container) {
+          container.classList.add("hidden");
+        }
+      }
+
+      function displayNews(items: any[]) {
+        const container = document.getElementById("news-section-container");
+        const newsList = document.getElementById("news-list");
+        if (!container || !newsList) return;
+
+        newsList.innerHTML = "";
+
+        // Show at most 3 items
+        const itemsToShow = items.slice(0, 3);
+
+        itemsToShow.forEach((item, index) => {
+          const div = document.createElement("div");
+          div.className = `${index > 0 ? "pt-4 border-t border-zinc-150 dark:border-zinc-900/50" : ""} pb-1`;
+
+          let dateStr = "";
+          try {
+            const date = new Date(item.pubDate);
+            dateStr = date.toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            });
+          } catch (e) {
+            dateStr = item.pubDate;
           }
 
-          // Unhide right-hand duration text container and append max allowed stay
-          const stayBadge = activeSlab.querySelector('.stay-badge') as HTMLDivElement;
+          div.innerHTML = `
+            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="group block space-y-1">
+              <h4 class="font-sans text-xs font-medium text-zinc-800 hover:text-blue-600 dark:text-zinc-300 dark:hover:text-blue-400 group-hover:underline transition-colors leading-relaxed">
+                ${item.title}
+              </h4>
+              <div class="flex items-center gap-2 text-[10px] text-zinc-400 dark:text-zinc-500 font-mono">
+                <span>${dateStr}</span>
+                <span>•</span>
+                <span>Visa Alert Update</span>
+              </div>
+            </a>
+          `;
+          newsList.appendChild(div);
+        });
+
+        container.classList.remove("hidden");
+      }
+
+      function filterRecentNews(items: any[]): any[] {
+        const now = new Date().getTime();
+        const relevantKeywords = [
+          "visa",
+          "travel",
+          "passport",
+          "airport",
+          "entry",
+          "border",
+          "rule",
+          "policy",
+          "transit",
+          "immigration",
+          "flight",
+          "arrival",
+          "tourist",
+          "citizen",
+          "admission",
+          "eta",
+          "electronic travel authorization",
+        ];
+
+        return items.filter((item) => {
+          let isRecent = false;
+          try {
+            const pubTime = new Date(item.pubDate).getTime();
+            const diffDays = (now - pubTime) / (1000 * 60 * 60 * 24);
+            isRecent = diffDays >= 0 && diffDays <= 180;
+          } catch (e) {
+            // date parsing failed
+          }
+
+          if (!isRecent) return false;
+
+          const titleLower = item.title.toLowerCase();
+          const matchesKeyword = relevantKeywords.some((keyword) =>
+            titleLower.includes(keyword),
+          );
+
+          return matchesKeyword;
+        });
+      }
+
+      function fetchNews(origin: string, destination: string) {
+        const originCountry = countries.find((c) => c.code === origin);
+        const destinationCountry = countries.find(
+          (c) => c.code === destination,
+        );
+        if (!originCountry || !destinationCountry) return;
+
+        const originName = originCountry.name.split(" (")[0];
+        const destinationName = destinationCountry.name.split(" (")[0];
+
+        const query = encodeURIComponent(
+          `${originName} ${destinationName} visa travel rule changes`,
+        );
+        const rssUrl = encodeURIComponent(
+          `https://news.google.com/rss/search?q=${query}&hl=en-US&gl=US&ceid=US:en`,
+        );
+        const url = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.status === "ok" && data.items && data.items.length > 0) {
+              const filtered = filterRecentNews(data.items);
+              if (filtered.length > 0) {
+                displayNews(filtered);
+              } else {
+                hideNewsSection();
+              }
+            } else {
+              hideNewsSection();
+            }
+          })
+          .catch((err) => {
+            console.error("Failed to fetch news:", err);
+            hideNewsSection();
+          });
+      }
+
+      function highlightVisaSlab(statusType: string, maxStayDays: number) {
+        let uiStatusType = statusType;
+
+        const activeSlab = document.querySelector(
+          `[data-status-type="${uiStatusType}"]`,
+        ) as HTMLDivElement;
+        if (activeSlab) {
+          activeSlab.classList.remove("opacity-30", "scale-100");
+          activeSlab.classList.add("opacity-100", "scale-[1.01]");
+
+          const textLabel = activeSlab.querySelector(".status-label");
+          if (textLabel) {
+            textLabel.classList.remove("text-zinc-500", "dark:text-zinc-400");
+          }
+
+          if (uiStatusType === "visa_free") {
+            activeSlab.classList.add(
+              "shadow-glow-emerald",
+              "border-emerald-500/50",
+            );
+            if (textLabel)
+              textLabel.classList.add(
+                "text-emerald-600",
+                "dark:text-emerald-400",
+              );
+          } else if (uiStatusType === "evisa") {
+            activeSlab.classList.add("shadow-glow-blue", "border-blue-500/50");
+            if (textLabel)
+              textLabel.classList.add("text-blue-600", "dark:text-blue-400");
+          } else if (uiStatusType === "visa_on_arrival") {
+            activeSlab.classList.add(
+              "shadow-glow-amber",
+              "border-amber-500/50",
+            );
+            if (textLabel)
+              textLabel.classList.add("text-amber-600", "dark:text-amber-400");
+          } else if (uiStatusType === "visa_required") {
+            activeSlab.classList.add("shadow-glow-rose", "border-rose-500/50");
+            if (textLabel)
+              textLabel.classList.add("text-rose-600", "dark:text-rose-450");
+          }
+
+          const stayBadge = activeSlab.querySelector(
+            ".stay-badge",
+          ) as HTMLDivElement;
           if (stayBadge && maxStayDays > 0) {
-            stayBadge.classList.remove('hidden');
+            stayBadge.classList.remove("hidden");
             stayBadge.textContent = `Max Allowed Stay: ${maxStayDays} Days`;
-            
-            // Assign specific colored classes to the stay badge to match theme
-            if (uiStatusType === 'visa_free') {
-              stayBadge.className = 'stay-badge text-[11px] font-mono px-3 py-1 rounded-full border bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-            } else if (uiStatusType === 'evisa') {
-              stayBadge.className = 'stay-badge text-[11px] font-mono px-3 py-1 rounded-full border bg-blue-500/10 text-blue-400 border-blue-500/20';
-            } else if (uiStatusType === 'visa_on_arrival') {
-              stayBadge.className = 'stay-badge text-[11px] font-mono px-3 py-1 rounded-full border bg-amber-500/10 text-amber-400 border-amber-500/20';
+
+            if (uiStatusType === "visa_free") {
+              stayBadge.className =
+                "stay-badge mt-2 md:mt-0 ml-14 md:ml-0 text-[11px] font-mono px-3 py-1 rounded-full border bg-emerald-55/50 text-emerald-700 border-emerald-200/50 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20 transition-colors";
+            } else if (uiStatusType === "evisa") {
+              stayBadge.className =
+                "stay-badge mt-2 md:mt-0 ml-14 md:ml-0 text-[11px] font-mono px-3 py-1 rounded-full border bg-blue-55/50 text-blue-700 border-blue-200/50 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20 transition-colors";
+            } else if (uiStatusType === "visa_on_arrival") {
+              stayBadge.className =
+                "stay-badge mt-2 md:mt-0 ml-14 md:ml-0 text-[11px] font-mono px-3 py-1 rounded-full border bg-amber-55/50 text-amber-700 border-amber-200/50 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20 transition-colors";
             }
           }
-        }
-
-        // Dynamically assign PDF URL parameter directly to the active source path of the viewer
-        const pdfUrl = officialPdfUrl || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf';
-        if (iframeViewer) {
-          iframeViewer.src = pdfUrl;
-        }
-
-        // Update target URL for the external tab anchor link
-        if (externalLink) {
-          externalLink.href = pdfUrl;
         }
 
         // Dynamically construct digital application portals matching specific eVisa destinations
-        const origin = originInput.getAttribute('data-selected-code') || '';
-        const destination = destinationInput.getAttribute('data-selected-code') || '';
+        const origin = originInput.getAttribute("data-selected-code") || "";
+        const destination =
+          destinationInput.getAttribute("data-selected-code") || "";
         let portalUrl = "";
 
-        if (uiStatusType === 'evisa') {
-          if (origin === 'US' && destination === 'IN') portalUrl = "https://indianvisaonline.gov.in/evisa/tvoa.html";
-          else if (origin === 'DE' && destination === 'IN') portalUrl = "https://indianvisaonline.gov.in/evisa/tvoa.html";
-          else if (origin === 'SG' && destination === 'IN') portalUrl = "https://indianvisaonline.gov.in/evisa/tvoa.html";
-          else if (origin === 'AE' && destination === 'IN') portalUrl = "https://indianvisaonline.gov.in/evisa/tvoa.html";
-          else if (origin === 'DE' && destination === 'US') portalUrl = "https://esta.cbp.dhs.gov/";
-          else if (origin === 'SG' && destination === 'US') portalUrl = "https://esta.cbp.dhs.gov/";
-          else if (origin === 'IN' && destination === 'SG') portalUrl = "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements";
+        if (uiStatusType === "evisa") {
+          if (origin === "US" && destination === "IN")
+            portalUrl = "https://indianvisaonline.gov.in/evisa/tvoa.html";
+          else if (origin === "DE" && destination === "IN")
+            portalUrl = "https://indianvisaonline.gov.in/evisa/tvoa.html";
+          else if (origin === "SG" && destination === "IN")
+            portalUrl = "https://indianvisaonline.gov.in/evisa/tvoa.html";
+          else if (origin === "AE" && destination === "IN")
+            portalUrl = "https://indianvisaonline.gov.in/evisa/tvoa.html";
+          else if (origin === "DE" && destination === "US")
+            portalUrl = "https://esta.cbp.dhs.gov/";
+          else if (origin === "SG" && destination === "US")
+            portalUrl = "https://esta.cbp.dhs.gov/";
+          else if (origin === "IN" && destination === "SG")
+            portalUrl =
+              "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements";
         }
 
         if (portalLinkContainer && portalLink) {
           if (portalUrl) {
             portalLink.href = portalUrl;
-            portalLinkContainer.classList.remove('hidden');
-            portalLinkContainer.classList.add('flex');
+            portalLinkContainer.classList.remove("hidden");
+            portalLinkContainer.classList.add("flex");
           } else {
-            portalLinkContainer.classList.remove('flex');
-            portalLinkContainer.classList.add('hidden');
+            portalLinkContainer.classList.remove("flex");
+            portalLinkContainer.classList.add("hidden");
           }
         }
       }
 
-      function setupCombobox(input: HTMLInputElement, dropdown: HTMLDivElement) {
-        function renderOptions(filterText = '') {
-          dropdown.innerHTML = '';
-          const filtered = countries.filter(c => 
-            c.name.toLowerCase().includes(filterText.toLowerCase()) || 
-            c.code.toLowerCase().includes(filterText.toLowerCase())
+      function setupCombobox(
+        input: HTMLInputElement,
+        dropdown: HTMLDivElement,
+      ) {
+        function renderOptions(filterText = "") {
+          dropdown.innerHTML = "";
+          const filtered = countries.filter(
+            (c) =>
+              c.name.toLowerCase().includes(filterText.toLowerCase()) ||
+              c.code.toLowerCase().includes(filterText.toLowerCase()),
           );
 
           if (filtered.length === 0) {
-            const noMatch = document.createElement('div');
-            noMatch.className = 'px-4 py-3 text-xs text-zinc-500 italic';
-            noMatch.textContent = 'No matching countries';
+            const noMatch = document.createElement("div");
+            noMatch.className = "px-4 py-3 text-xs text-zinc-500 italic";
+            noMatch.textContent = "No matching countries";
             dropdown.appendChild(noMatch);
             return;
           }
 
-          filtered.forEach(c => {
-            const option = document.createElement('div');
-            option.className = 'px-4 py-3 text-sm text-zinc-300 hover:bg-zinc-900 hover:text-white cursor-pointer transition-colors flex items-center gap-2';
+          filtered.forEach((c) => {
+            const option = document.createElement("div");
+            option.className =
+              "px-4 py-3 text-sm text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-white cursor-pointer transition-colors flex items-center gap-2";
             option.innerHTML = `<span>${c.flag}</span> <span>${c.name}</span>`;
-            
-            option.addEventListener('mousedown', (e) => {
-              e.preventDefault(); // prevent input blur before selection
+
+            option.addEventListener("mousedown", (e) => {
+              e.preventDefault();
               selectOption(c);
             });
             dropdown.appendChild(option);
           });
         }
 
-        function selectOption(country: typeof countries[number]) {
+        function selectOption(country: {
+          code: string;
+          name: string;
+          flag: string;
+        }) {
           input.value = country.name;
-          input.setAttribute('data-selected-code', country.code);
+          input.setAttribute("data-selected-code", country.code);
           hideDropdown();
           checkStatus();
         }
 
         function showDropdown() {
-          dropdown.classList.remove('hidden');
+          dropdown.classList.remove("hidden");
           renderOptions(input.value);
         }
 
         function hideDropdown() {
-          dropdown.classList.add('hidden');
+          dropdown.classList.add("hidden");
         }
 
-        input.addEventListener('focus', showDropdown);
-        input.addEventListener('click', showDropdown);
-        input.addEventListener('input', showDropdown);
-        
-        input.addEventListener('blur', () => {
-          // Revert back to match code name if input is left blank or has mismatch
-          const code = input.getAttribute('data-selected-code');
-          const current = countries.find(c => c.code === code);
+        function resetInput() {
+          input.value = "";
+          input.removeAttribute("data-selected-code");
+          showDropdown();
+          checkStatus();
+        }
+
+        input.addEventListener("focus", resetInput);
+        input.addEventListener("click", () => {
+          if (input.value !== "") {
+            resetInput();
+          } else {
+            showDropdown();
+          }
+        });
+        input.addEventListener("input", showDropdown);
+
+        input.addEventListener("blur", () => {
+          const code = input.getAttribute("data-selected-code");
+          const current = countries.find((c) => c.code === code);
           if (current) {
             input.value = current.name;
           }
-          setTimeout(hideDropdown, 150); // slight delay to allow mousedown to trigger first
+          setTimeout(hideDropdown, 150);
         });
       }
 
-      async function initializeApp() {
-        try {
-          // Attempt to load the complete country list dynamically from Supabase database
-          const liveCountries = await fetchCountries();
-          if (liveCountries && liveCountries.length > 0) {
-            countries = liveCountries;
-            
-            // Sync current inputs with newly loaded database list
-            const originCode = originInput.getAttribute('data-selected-code');
-            const destCode = destinationInput.getAttribute('data-selected-code');
+      function initializeApp() {
+        if (countries.length > 0) {
+          const originCode = originInput.getAttribute("data-selected-code");
+          const destCode = destinationInput.getAttribute("data-selected-code");
 
-            const originCountry = countries.find(c => c.code === originCode);
-            if (originCountry) originInput.value = originCountry.name;
+          const originCountry = countries.find((c) => c.code === originCode);
+          if (originCountry) originInput.value = originCountry.name;
 
-            const destCountry = countries.find(c => c.code === destCode);
-            if (destCountry) destinationInput.value = destCountry.name;
-          }
-        } catch (error) {
-          console.warn("Could not load countries from live Supabase table. Utilizing static fallback list.", error);
+          const destCountry = countries.find((c) => c.code === destCode);
+          if (destCountry) destinationInput.value = destCountry.name;
         }
 
-        // Initialize both searchable comboboxes
         setupCombobox(originInput, originDropdown);
         setupCombobox(destinationInput, destinationDropdown);
-
-        // Perform initial check on application mount
         checkStatus();
       }
 
-      // Start the application initialization
       initializeApp();
     });
   </script>

@@ -2,23 +2,49 @@
 import '../styles/global.css';
 ---
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="CIFD" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="generator" content={Astro.generator} />
 		
+		<!-- Theme Sync Script to prevent FOUC -->
+		<script is:inline>
+			(function() {
+				const theme = (() => {
+					if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+						return localStorage.getItem('theme');
+					}
+					return 'dark';
+				})();
+				
+				if (theme === 'dark') {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			})();
+		</script>
+
 		<!-- SEO Meta Tags -->
-		<title>Global Visa Tracker • Visa Requirements Matrix</title>
-		<meta name="description" content="Check international travel visa requirements instantly. Interactive 4-slab matrix tracking visa-free, e-visa, visa-on-arrival, and embassy visa options." />
+		<title>Can I Fly There? | Instant Visa Requirement Checker</title>
+		<meta name="description" content="Instant visa requirement checker for international travelers. Verify bilateral visa rules, stay limits, and visa on arrival eligibility for 197+ countries instantly." />
+		<link rel="canonical" href={Astro.url.href} />
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet" />
 	</head>
-	<body class="bg-[#030303] text-[#fafafa] antialiased selection:bg-[#fafafa] selection:text-[#030303]">
-		<slot />
+	<body class="bg-[#fafafa] text-[#171717] dark:bg-[#030303] dark:text-[#fafafa] antialiased selection:bg-zinc-900 selection:text-white dark:selection:bg-[#fafafa] dark:selection:text-[#030303]">
+		<div class="relative overflow-x-hidden min-h-screen w-full flex flex-col justify-between">
+			<slot />
+		</div>
 	</body>
 </html>

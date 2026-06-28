@@ -1,37 +1,65 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 
   /* Custom glowing box-shadows for active slabs */
-  --shadow-glow-emerald: 0 0 25px 2px rgba(16, 185, 129, 0.35), inset 0 0 0 1px rgba(16, 185, 129, 0.4);
-  --shadow-glow-blue: 0 0 25px 2px rgba(59, 130, 246, 0.35), inset 0 0 0 1px rgba(59, 130, 246, 0.4);
-  --shadow-glow-amber: 0 0 25px 2px rgba(245, 158, 11, 0.35), inset 0 0 0 1px rgba(245, 158, 11, 0.4);
-  --shadow-glow-rose: 0 0 25px 2px rgba(244, 63, 94, 0.35), inset 0 0 0 1px rgba(244, 63, 94, 0.4);
+  --shadow-glow-emerald: var(--glow-emerald);
+  --shadow-glow-blue: var(--glow-blue);
+  --shadow-glow-amber: var(--glow-amber);
+  --shadow-glow-rose: var(--glow-rose);
+}
+
+:root {
+  --glow-emerald: 0 0 20px 1px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.25);
+  --glow-blue: 0 0 20px 1px rgba(59, 130, 246, 0.15), inset 0 0 0 1px rgba(59, 130, 246, 0.25);
+  --glow-amber: 0 0 20px 1px rgba(245, 158, 11, 0.15), inset 0 0 0 1px rgba(245, 158, 11, 0.25);
+  --glow-rose: 0 0 20px 1px rgba(244, 63, 94, 0.15), inset 0 0 0 1px rgba(244, 63, 94, 0.25);
+}
+
+.dark {
+  --glow-emerald: 0 0 25px 2px rgba(16, 185, 129, 0.35), inset 0 0 0 1px rgba(16, 185, 129, 0.4);
+  --glow-blue: 0 0 25px 2px rgba(59, 130, 246, 0.35), inset 0 0 0 1px rgba(59, 130, 246, 0.4);
+  --glow-amber: 0 0 25px 2px rgba(245, 158, 11, 0.35), inset 0 0 0 1px rgba(245, 158, 11, 0.4);
+  --glow-rose: 0 0 25px 2px rgba(244, 63, 94, 0.35), inset 0 0 0 1px rgba(244, 63, 94, 0.4);
 }
 
 /* Custom global styles to ensure smooth page background */
 html,
 body {
-  background-color: #030303; /* stark black/ink canvas */
-  color: #fafafa; /* canvas-soft for default text */
   font-family: var(--font-sans);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom scrollbars to fit the Vercel dark mode aesthetic */
+/* Custom scrollbars to fit the Vercel theme aesthetics */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+.dark ::-webkit-scrollbar-track,
+html.dark::-webkit-scrollbar-track {
   background: #030303;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: #e4e4e7;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
+  background: #d4d4d8;
+}
+.dark ::-webkit-scrollbar-thumb,
+html.dark::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb:hover,
+html.dark::-webkit-scrollbar-thumb:hover {
   background: #404040;
 }
