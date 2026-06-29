@@ -11,13 +11,47 @@
   --shadow-glow-blue: var(--glow-blue);
   --shadow-glow-amber: var(--glow-amber);
   --shadow-glow-rose: var(--glow-rose);
+
+  /* Subtle pulsing glow animation for empty input fields on landing */
+  --animate-subtle-glow: subtle-glow 3.5s infinite ease-in-out;
+
+  @keyframes subtle-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0px transparent;
+      border-color: var(--input-border-base);
+    }
+    50% {
+      box-shadow: var(--input-glow-pulse);
+      border-color: var(--input-border-pulse);
+    }
+  }
 }
 
 :root {
-  --glow-emerald: 0 0 20px 1px rgba(16, 185, 129, 0.15), inset 0 0 0 1px rgba(16, 185, 129, 0.25);
-  --glow-blue: 0 0 20px 1px rgba(59, 130, 246, 0.15), inset 0 0 0 1px rgba(59, 130, 246, 0.25);
-  --glow-amber: 0 0 20px 1px rgba(245, 158, 11, 0.15), inset 0 0 0 1px rgba(245, 158, 11, 0.25);
-  --glow-rose: 0 0 20px 1px rgba(244, 63, 94, 0.15), inset 0 0 0 1px rgba(244, 63, 94, 0.25);
+  --glow-emerald: 0 0 24px 2px rgba(16, 185, 129, 0.26), inset 0 0 0 1px rgba(16, 185, 129, 0.4);
+  --glow-blue: 0 0 24px 2px rgba(59, 130, 246, 0.26), inset 0 0 0 1px rgba(59, 130, 246, 0.4);
+  --glow-amber: 0 0 24px 2px rgba(245, 158, 11, 0.26), inset 0 0 0 1px rgba(245, 158, 11, 0.4);
+  --glow-rose: 0 0 24px 2px rgba(244, 63, 94, 0.26), inset 0 0 0 1px rgba(244, 63, 94, 0.4);
+
+  --glow-emerald-start: rgba(16, 185, 129, 0.26);
+  --glow-emerald-end: rgba(16, 185, 129, 0.1);
+  --glow-emerald-inset: rgba(16, 185, 129, 0.4);
+
+  --glow-blue-start: rgba(59, 130, 246, 0.26);
+  --glow-blue-end: rgba(59, 130, 246, 0.1);
+  --glow-blue-inset: rgba(59, 130, 246, 0.4);
+
+  --glow-amber-start: rgba(245, 158, 11, 0.26);
+  --glow-amber-end: rgba(245, 158, 11, 0.1);
+  --glow-amber-inset: rgba(245, 158, 11, 0.4);
+
+  --glow-rose-start: rgba(244, 63, 94, 0.26);
+  --glow-rose-end: rgba(244, 63, 94, 0.1);
+  --glow-rose-inset: rgba(244, 63, 94, 0.4);
+
+  --input-glow-pulse: 0 0 15px 1px rgba(59, 130, 246, 0.12), inset 0 0 0 1px rgba(59, 130, 246, 0.18);
+  --input-border-pulse: rgba(59, 130, 246, 0.35);
+  --input-border-base: rgba(228, 228, 231, 1); /* zinc-200 */
 }
 
 .dark {
@@ -25,6 +59,76 @@
   --glow-blue: 0 0 25px 2px rgba(59, 130, 246, 0.35), inset 0 0 0 1px rgba(59, 130, 246, 0.4);
   --glow-amber: 0 0 25px 2px rgba(245, 158, 11, 0.35), inset 0 0 0 1px rgba(245, 158, 11, 0.4);
   --glow-rose: 0 0 25px 2px rgba(244, 63, 94, 0.35), inset 0 0 0 1px rgba(244, 63, 94, 0.4);
+
+  --glow-emerald-start: rgba(16, 185, 129, 0.38);
+  --glow-emerald-end: rgba(16, 185, 129, 0.15);
+  --glow-emerald-inset: rgba(16, 185, 129, 0.4);
+
+  --glow-blue-start: rgba(59, 130, 246, 0.38);
+  --glow-blue-end: rgba(59, 130, 246, 0.15);
+  --glow-blue-inset: rgba(59, 130, 246, 0.4);
+
+  --glow-amber-start: rgba(245, 158, 11, 0.38);
+  --glow-amber-end: rgba(245, 158, 11, 0.15);
+  --glow-amber-inset: rgba(245, 158, 11, 0.4);
+
+  --glow-rose-start: rgba(244, 63, 94, 0.38);
+  --glow-rose-end: rgba(244, 63, 94, 0.15);
+  --glow-rose-inset: rgba(244, 63, 94, 0.4);
+
+  --input-glow-pulse: 0 0 20px 2px rgba(59, 130, 246, 0.25), inset 0 0 0 1px rgba(59, 130, 246, 0.35);
+  --input-border-pulse: rgba(59, 130, 246, 0.45);
+  --input-border-base: rgba(39, 39, 42, 1); /* zinc-800 */
+}
+
+/* Conditional Animation for empty and unfocused search inputs */
+#origin-input:placeholder-shown:not(:focus),
+#destination-input:placeholder-shown:not(:focus) {
+  animation: subtle-glow 3.5s infinite ease-in-out;
+}
+
+/* Shifting orbit glow animation for selected visa requirement slabs */
+@keyframes running-glow {
+  0%, 100% {
+    box-shadow: -5px -5px 25px 2px var(--active-glow-start), 5px 5px 25px 2px var(--active-glow-end), inset 0 0 0 1px var(--active-glow-inset);
+  }
+  25% {
+    box-shadow: 5px -5px 25px 2px var(--active-glow-start), -5px 5px 25px 2px var(--active-glow-end), inset 0 0 0 1px var(--active-glow-inset);
+  }
+  50% {
+    box-shadow: 5px 5px 25px 2px var(--active-glow-start), -5px -5px 25px 2px var(--active-glow-end), inset 0 0 0 1px var(--active-glow-inset);
+  }
+  75% {
+    box-shadow: -5px 5px 25px 2px var(--active-glow-start), 5px -5px 25px 2px var(--active-glow-end), inset 0 0 0 1px var(--active-glow-inset);
+  }
+}
+
+.shadow-glow-emerald {
+  --active-glow-start: var(--glow-emerald-start);
+  --active-glow-end: var(--glow-emerald-end);
+  --active-glow-inset: var(--glow-emerald-inset);
+  animation: running-glow 6s infinite linear !important;
+}
+
+.shadow-glow-blue {
+  --active-glow-start: var(--glow-blue-start);
+  --active-glow-end: var(--glow-blue-end);
+  --active-glow-inset: var(--glow-blue-inset);
+  animation: running-glow 6s infinite linear !important;
+}
+
+.shadow-glow-amber {
+  --active-glow-start: var(--glow-amber-start);
+  --active-glow-end: var(--glow-amber-end);
+  --active-glow-inset: var(--glow-amber-inset);
+  animation: running-glow 6s infinite linear !important;
+}
+
+.shadow-glow-rose {
+  --active-glow-start: var(--glow-rose-start);
+  --active-glow-end: var(--glow-rose-end);
+  --active-glow-inset: var(--glow-rose-inset);
+  animation: running-glow 6s infinite linear !important;
 }
 
 /* Custom global styles to ensure smooth page background */

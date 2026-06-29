@@ -20,29 +20,46 @@ import visaDataMatrix from "../data/passport-index.json";
   >
     <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <!-- Minimal geometric logo mark -->
-        <svg
-          class="w-6 h-6 text-zinc-950 dark:text-white transition-colors"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-        >
-          <path d="M12 2L2 22h20L12 2z" stroke-linejoin="round"></path>
-        </svg>
+        <img
+          src="/favicon-96x96.png"
+          alt="Logo"
+          class="w-6 h-6 object-contain"
+        />
         <span
           class="font-sans font-semibold tracking-tight text-zinc-950 dark:text-white text-base transition-colors"
           >Global Visa Tracker</span
         >
       </div>
-      
+
       <div class="flex items-center gap-6">
-        <nav class="hidden md:flex items-center gap-6 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-          <a href="/" class="text-zinc-950 dark:text-white font-semibold transition-colors">Home</a>
-          <a href="/about" class="hover:text-zinc-950 dark:hover:text-white transition-colors">About</a>
-          <a href="/privacy" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Privacy</a>
-          <a href="/terms" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Terms</a>
-          <a href="/contact" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Contact</a>
+        <nav
+          class="hidden md:flex items-center gap-6 text-xs font-mono text-zinc-500 dark:text-zinc-400"
+        >
+          <a
+            href="/"
+            class="text-zinc-950 dark:text-white font-semibold transition-colors"
+            >Home</a
+          >
+          <a
+            href="/about"
+            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
+            >About</a
+          >
+          <a
+            href="/privacy"
+            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
+            >Privacy</a
+          >
+          <a
+            href="/terms"
+            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
+            >Terms</a
+          >
+          <a
+            href="/contact"
+            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
+            >Contact</a
+          >
         </nav>
         <div class="flex items-center gap-4">
           <!-- Theme Toggle Button -->
@@ -114,11 +131,29 @@ import visaDataMatrix from "../data/passport-index.json";
       </p>
 
       <!-- Quick Navigation Links in Hero -->
-      <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">
-        <a href="/about" class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-zinc-200 dark:border-zinc-800 pb-0.5">About Us</a>
-        <a href="/privacy" class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-zinc-200 dark:border-zinc-800 pb-0.5">Privacy Policy</a>
-        <a href="/terms" class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-zinc-200 dark:border-zinc-800 pb-0.5">Terms & Conditions</a>
-        <a href="/contact" class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-zinc-200 dark:border-zinc-800 pb-0.5">Contact Us</a>
+      <div
+        class="mt-6 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-xs font-mono text-zinc-500 dark:text-zinc-400"
+      >
+        <a
+          href="/about"
+          class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-zinc-200 dark:border-zinc-800 pb-0.5"
+          >About Us</a
+        >
+        <a
+          href="/privacy"
+          class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-zinc-200 dark:border-zinc-800 pb-0.5"
+          >Privacy Policy</a
+        >
+        <a
+          href="/terms"
+          class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-zinc-200 dark:border-zinc-800 pb-0.5"
+          >Terms & Conditions</a
+        >
+        <a
+          href="/contact"
+          class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-zinc-200 dark:border-zinc-800 pb-0.5"
+          >Contact Us</a
+        >
       </div>
     </div>
 
@@ -172,7 +207,7 @@ import visaDataMatrix from "../data/passport-index.json";
             <div class="space-y-2 relative">
               <label
                 for="origin-input"
-                class="block font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors"
+                class="block font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider transition-colors"
               >
                 Origin Nationality (Passport)
               </label>
@@ -180,11 +215,9 @@ import visaDataMatrix from "../data/passport-index.json";
                 <input
                   type="text"
                   id="origin-input"
-                  placeholder="Type to search origin..."
-                  class="w-full bg-zinc-50 text-zinc-950 border border-zinc-200 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 dark:bg-[#0d0d0d] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-500 transition-colors cursor-text"
+                  placeholder="Type origin passport country..."
+                  class="w-full bg-zinc-50 text-zinc-950 border border-zinc-200 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 dark:bg-[#0d0d0d] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-500 transition-colors cursor-text placeholder:text-zinc-400 dark:placeholder:text-zinc-600 placeholder:text-xs"
                   autocomplete="off"
-                  data-selected-code="US"
-                  value="United States (US)"
                 />
                 <div
                   class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-400 dark:text-zinc-500 transition-colors pointer-events-none"
@@ -211,31 +244,34 @@ import visaDataMatrix from "../data/passport-index.json";
               </div>
             </div>
 
-            <!-- Arrow icon separator -->
+            <!-- Swap Button Centered -->
             <div class="flex justify-center py-1">
-              <div
-                class="w-8 h-8 rounded-full border border-zinc-200 bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-900/60 flex items-center justify-center text-zinc-400 dark:text-zinc-500 transition-colors"
+              <button
+                type="button"
+                id="swap-countries-btn"
+                aria-label="Swap origin and destination countries"
+                class="w-9 h-9 rounded-full border border-zinc-200 bg-white text-zinc-500 hover:text-zinc-950 hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-white dark:hover:border-zinc-600 dark:hover:bg-zinc-900 flex items-center justify-center transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-[0_1px_2px_rgba(0,0,0,0.05)] dark:shadow-none"
               >
                 <svg
                   class="w-4 h-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  stroke-width="2.2"
                 >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    d="M9 20V4M5 8l4-4 4 4M15 4v16M11 16l4 4 4-4"></path>
                 </svg>
-              </div>
+              </button>
             </div>
 
             <!-- Destination Combobox -->
             <div class="space-y-2 relative">
               <label
                 for="destination-input"
-                class="block font-mono text-[11px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider transition-colors"
+                class="block font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider transition-colors"
               >
                 Destination Territory
               </label>
@@ -243,11 +279,9 @@ import visaDataMatrix from "../data/passport-index.json";
                 <input
                   type="text"
                   id="destination-input"
-                  placeholder="Type to search destination..."
-                  class="w-full bg-zinc-50 text-zinc-950 border border-zinc-200 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 dark:bg-[#0d0d0d] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-500 transition-colors cursor-text"
+                  placeholder="Type destination country..."
+                  class="w-full bg-zinc-50 text-zinc-950 border border-zinc-200 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 dark:bg-[#0d0d0d] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-500 transition-colors cursor-text placeholder:text-zinc-400 dark:placeholder:text-zinc-600 placeholder:text-xs"
                   autocomplete="off"
-                  data-selected-code="DE"
-                  value="Germany (DE)"
                 />
                 <div
                   class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-400 dark:text-zinc-500 transition-colors pointer-events-none"
@@ -321,6 +355,7 @@ import visaDataMatrix from "../data/passport-index.json";
       <section id="results-section" class="lg:col-span-7 space-y-8">
         <!-- Matrix Slabs -->
         <div
+          id="results-container"
           class="p-6 rounded-lg border border-zinc-200 bg-white dark:border-zinc-900 dark:bg-[#080808] space-y-4 transition-colors"
         >
           <div class="flex justify-between items-center mb-2">
@@ -541,60 +576,131 @@ import visaDataMatrix from "../data/passport-index.json";
     </div>
 
     <!-- Frequently Asked Questions (FAQ) Section -->
-    <section class="mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-900/50 space-y-8">
+    <section
+      class="mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-900/50 space-y-8"
+    >
       <div class="max-w-3xl mx-auto space-y-6">
-        <h2 class="font-sans text-xl font-semibold text-zinc-950 dark:text-white transition-colors">
+        <h2
+          class="font-sans text-xl font-semibold text-zinc-950 dark:text-white transition-colors"
+        >
           Frequently Asked Questions — Visa & Passport Requirements
         </h2>
-        
+
         <div class="space-y-4">
           <!-- Question 1 -->
-          <details class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300">
-            <summary class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none">
-              <span id="faq-q1-text">Do I need a visa if I already hold a valid passport?</span>
-              <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-500">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          <details
+            class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300"
+          >
+            <summary
+              class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none"
+            >
+              <span id="faq-q1-text"
+                >Do I need a visa if I already hold a valid passport?</span
+              >
+              <span
+                class="transition-transform duration-300 group-open:rotate-180 text-zinc-500"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"></path>
                 </svg>
               </span>
             </summary>
-            <div class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
+            <div
+              class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4"
+            >
               <p id="faq-a1-text">
-                A passport is required for all international travel, but it does not guarantee entry. Visa requirements depend strictly on your nationality and the bilateral agreements between your home country and your destination.
+                A passport is required for all international travel, but it does
+                not guarantee entry. Visa requirements depend strictly on your
+                nationality and the bilateral agreements between your home
+                country and your destination.
               </p>
             </div>
           </details>
 
           <!-- Question 2 -->
-          <details class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300">
-            <summary class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none">
-              <span id="faq-q2-text">What are the different global visa requirement categories?</span>
-              <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-500">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          <details
+            class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300"
+          >
+            <summary
+              class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none"
+            >
+              <span id="faq-q2-text"
+                >What are the different global visa requirement categories?</span
+              >
+              <span
+                class="transition-transform duration-300 group-open:rotate-180 text-zinc-500"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"></path>
                 </svg>
               </span>
             </summary>
-            <div class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
+            <div
+              class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4"
+            >
               <p id="faq-a2-text">
-                Entry rules typically fall into four distinct tiers: Visa-Free (no prior approval needed), eVisa (electronic application processed online before departure), Visa on Arrival (issued instantly at the border checkpoint), and Embassy Visa Required (traditional paper application needed before flying).
+                Entry rules typically fall into four distinct tiers: Visa-Free
+                (no prior approval needed), eVisa (electronic application
+                processed online before departure), Visa on Arrival (issued
+                instantly at the border checkpoint), and Embassy Visa Required
+                (traditional paper application needed before flying).
               </p>
             </div>
           </details>
 
           <!-- Question 3 -->
-          <details class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300">
-            <summary class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none">
-              <span id="faq-q3-text">Do I need a visa to go to Japan, Mexico, or Italy?</span>
-              <span class="transition-transform duration-300 group-open:rotate-180 text-zinc-500">
-                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          <details
+            class="group border border-zinc-200 dark:border-zinc-800 rounded-lg bg-white dark:bg-[#080808] transition-colors duration-300"
+          >
+            <summary
+              class="flex justify-between items-center font-sans text-sm font-medium text-zinc-900 dark:text-zinc-100 px-5 py-4 cursor-pointer list-none select-none"
+            >
+              <span id="faq-q3-text"
+                >Do I need a visa to go to Japan, Mexico, or Italy?</span
+              >
+              <span
+                class="transition-transform duration-300 group-open:rotate-180 text-zinc-500"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"></path>
                 </svg>
               </span>
             </summary>
-            <div class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4">
+            <div
+              class="px-5 pb-5 font-sans text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-900/50 pt-4"
+            >
               <div id="faq-a3-text">
-                Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly.
+                Visa criteria for Japan, Mexico, and Italy vary completely based
+                on your passport's country of origin. Use our instant lookup
+                scanner above to cross-reference your specific nationality
+                against these destinations instantly.
               </div>
             </div>
           </details>
@@ -637,53 +743,114 @@ import visaDataMatrix from "../data/passport-index.json";
     </script>
 
     <!-- Contextual SEO Travel Reference Guide -->
-    <section class="mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-900/50 space-y-8 text-zinc-500 dark:text-zinc-400">
+    <section
+      class="mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-900/50 space-y-8 text-zinc-500 dark:text-zinc-400"
+    >
       <div class="max-w-3xl mx-auto space-y-6">
-        <h2 class="font-sans text-base font-semibold text-zinc-950 dark:text-white transition-colors">
-          Bilateral Travel Agreements & Global Visa Frameworks: An Informational Reference
+        <h2
+          class="font-sans text-base font-semibold text-zinc-950 dark:text-white transition-colors"
+        >
+          Bilateral Travel Agreements & Global Visa Frameworks: An Informational
+          Reference
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[12px] leading-relaxed">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-8 text-[12px] leading-relaxed"
+        >
           <div class="space-y-4">
-            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200">
+            <h3
+              class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200"
+            >
               1. The Foundations of Sovereign Border Regulations
             </h3>
             <p>
-              Every sovereign state retains the absolute legal authority to regulate foreign nationals crossing its borders. These entry parameters are defined by bilateral diplomatic agreements, trade treaties, and geopolitical alliances. Passport strength, often measured by the number of visa-free destinations a citizen can access, is a direct outcome of these relationships. International travelers must navigate this complex, fragmented matrix of bilateral policies to ensure compliance before embarkation.
+              Every sovereign state retains the absolute legal authority to
+              regulate foreign nationals crossing its borders. These entry
+              parameters are defined by bilateral diplomatic agreements, trade
+              treaties, and geopolitical alliances. Passport strength, often
+              measured by the number of visa-free destinations a citizen can
+              access, is a direct outcome of these relationships. International
+              travelers must navigate this complex, fragmented matrix of
+              bilateral policies to ensure compliance before embarkation.
             </p>
             <p>
-              Bilateral agreements can establish mutual visa exemptions, meaning passport holders from either state can visit the other without pre-authorizations. Alternatively, unilateral concessions can be made, where a nation grants visa-free access to citizens of another country to promote tourism, even if its own citizens face restrictions in return.
+              Bilateral agreements can establish mutual visa exemptions, meaning
+              passport holders from either state can visit the other without
+              pre-authorizations. Alternatively, unilateral concessions can be
+              made, where a nation grants visa-free access to citizens of
+              another country to promote tourism, even if its own citizens face
+              restrictions in return.
             </p>
 
-            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200 mt-6">
+            <h3
+              class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200 mt-6"
+            >
               2. Categorizing Admission Tiers: Visa-Free, eVisas, and VoA
             </h3>
             <p>
-              International admission categories typically fall into four primary tiers. <strong>Visa-Free entry</strong> is the most seamless, enabling travelers to pass border checks with only a valid passport for short-term stays, typically capped at 30, 90, or 180 days. <strong>e-Visas</strong> and <strong>Electronic Travel Authorizations (eTAs)</strong> are online alternatives, requiring applicants to submit documents through digital government portal paths and receive confirmation emails prior to departure.
+              International admission categories typically fall into four
+              primary tiers. <strong>Visa-Free entry</strong> is the most seamless,
+              enabling travelers to pass border checks with only a valid passport
+              for short-term stays, typically capped at 30, 90, or 180 days. <strong
+                >e-Visas</strong
+              > and <strong>Electronic Travel Authorizations (eTAs)</strong> are online
+              alternatives, requiring applicants to submit documents through digital
+              government portal paths and receive confirmation emails prior to departure.
             </p>
             <p>
-              In contrast, <strong>Visas on Arrival (VoA)</strong> are issued instantly at border checkpoints. While convenient, VoA poses a slight risk of entry denial if travelers fail to present return flights, sufficient funds, or passport validity requirements. Understanding these differences helps travelers prepare itineraries correctly and avoid boarding denials by airlines.
+              In contrast, <strong>Visas on Arrival (VoA)</strong> are issued instantly
+              at border checkpoints. While convenient, VoA poses a slight risk of
+              entry denial if travelers fail to present return flights, sufficient
+              funds, or passport validity requirements. Understanding these differences
+              helps travelers prepare itineraries correctly and avoid boarding denials
+              by airlines.
             </p>
           </div>
 
           <div class="space-y-4">
-            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200">
+            <h3
+              class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200"
+            >
               3. Consular Clearances & Pre-Travel Checklist Essentials
             </h3>
             <p>
-              When no visa waiver or digital portal is available, travelers must apply for a traditional <strong>Embassy Visa</strong>. This process requires submitting physical passports, biometrics, bank details, and itineraries directly to destination consulates weeks in advance. Because passport processing times can vary, early consular preparation is critical to avoid travel disruptions.
+              When no visa waiver or digital portal is available, travelers must
+              apply for a traditional <strong>Embassy Visa</strong>. This
+              process requires submitting physical passports, biometrics, bank
+              details, and itineraries directly to destination consulates weeks
+              in advance. Because passport processing times can vary, early
+              consular preparation is critical to avoid travel disruptions.
             </p>
             <p>
-              Regardless of your destination's visa requirements, a critical pre-travel requirement is ensuring your passport has at least <strong>six months of validity</strong> remaining from your planned arrival date. Many airlines and border authorities strictly enforce this rule, denying boarding or entry to travelers with expiring passports. Additionally, maintaining proof of onward travel (such as return flight tickets) and sufficient travel insurance is highly recommended.
+              Regardless of your destination's visa requirements, a critical
+              pre-travel requirement is ensuring your passport has at least <strong
+                >six months of validity</strong
+              > remaining from your planned arrival date. Many airlines and border
+              authorities strictly enforce this rule, denying boarding or entry to
+              travelers with expiring passports. Additionally, maintaining proof of
+              onward travel (such as return flight tickets) and sufficient travel
+              insurance is highly recommended.
             </p>
 
-            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200 mt-6">
+            <h3
+              class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200 mt-6"
+            >
               4. Leveraging the Instant Visa Checker Utility
             </h3>
             <p>
-              Our <strong>Instant Visa Requirement Checker</strong> simplifies this geopolitical complexity by cross-referencing bilateral visa statuses across 197 countries in real-time. By selecting your passport nationality and target destination territory, you can instantly see which admission tier applies, maximum stay limits, and official government application links.
+              Our <strong>Instant Visa Requirement Checker</strong> simplifies this
+              geopolitical complexity by cross-referencing bilateral visa statuses
+              across 197 countries in real-time. By selecting your passport nationality
+              and target destination territory, you can instantly see which admission
+              tier applies, maximum stay limits, and official government application
+              links.
             </p>
             <p>
-              While our system updates its dataset frequently to track rule shifts and travel alerts, we strongly advise all travelers to verify destination rules using the direct government portal links provided under our matrix search results. Using the right combination of tools ensures a smooth, trouble-free international travel experience.
+              While our system updates its dataset frequently to track rule
+              shifts and travel alerts, we strongly advise all travelers to
+              verify destination rules using the direct government portal links
+              provided under our matrix search results. Using the right
+              combination of tools ensures a smooth, trouble-free international
+              travel experience.
             </p>
           </div>
         </div>
@@ -699,28 +866,44 @@ import visaDataMatrix from "../data/passport-index.json";
       class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
     >
       <div class="flex items-center gap-2">
-        <svg
-          class="w-5 h-5 text-zinc-450 dark:text-zinc-500 transition-colors"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path d="M12 2L2 22h20L12 2z" stroke-linejoin="round"></path>
-        </svg>
+        <img
+          src="/favicon-96x96.png"
+          alt="Logo"
+          class="w-5 h-5 object-contain"
+        />
         <span
           class="text-zinc-400 dark:text-zinc-500 font-mono text-xs transition-colors"
-          >GLOBAL VISA REQUIREMENTS MATRIX SYSTEM.</span
+          >GLOBAL VISA REQUIREMENT SYSTEM</span
         >
       </div>
       <div
         class="flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-[11px] text-zinc-400 dark:text-zinc-500 transition-colors"
       >
-        <a href="/" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Home</a>
-        <a href="/about" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">About Us</a>
-        <a href="/privacy" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy Policy</a>
-        <a href="/terms" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Terms & Conditions</a>
-        <a href="/contact" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Contact Us</a>
+        <a
+          href="/"
+          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+          >Home</a
+        >
+        <a
+          href="/about"
+          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+          >About Us</a
+        >
+        <a
+          href="/privacy"
+          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+          >Privacy Policy</a
+        >
+        <a
+          href="/terms"
+          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+          >Terms & Conditions</a
+        >
+        <a
+          href="/contact"
+          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+          >Contact Us</a
+        >
       </div>
     </div>
   </footer>
@@ -774,6 +957,37 @@ import visaDataMatrix from "../data/passport-index.json";
         });
       }
 
+      // Swap Countries Event Listener
+      const swapCountriesBtn = document.getElementById("swap-countries-btn");
+      if (swapCountriesBtn) {
+        swapCountriesBtn.addEventListener("click", () => {
+          const originCode = originInput.getAttribute("data-selected-code");
+          const originVal = originInput.value;
+          const destCode = destinationInput.getAttribute("data-selected-code");
+          const destVal = destinationInput.value;
+
+          // Swap values
+          originInput.value = destVal;
+          destinationInput.value = originVal;
+
+          // Swap code attributes
+          if (destCode) {
+            originInput.setAttribute("data-selected-code", destCode);
+          } else {
+            originInput.removeAttribute("data-selected-code");
+          }
+
+          if (originCode) {
+            destinationInput.setAttribute("data-selected-code", originCode);
+          } else {
+            destinationInput.removeAttribute("data-selected-code");
+          }
+
+          // Trigger update
+          checkStatus();
+        });
+      }
+
       // Helper to check if string is numeric (represents days/duration)
       const isNumerical = (str: string) => /^\d+$/.test(str);
 
@@ -815,16 +1029,21 @@ import visaDataMatrix from "../data/passport-index.json";
         );
       }
 
-      const defaultTitle = "Can I Fly There? | Instant Visa Requirement Checker";
-      const defaultDescription = "Instant visa requirement checker for international travelers. Verify bilateral visa rules, stay limits, and visa on arrival eligibility for 197+ countries instantly.";
+      const defaultTitle =
+        "Can I Fly There? | Instant Visa Requirement Checker";
+      const defaultDescription =
+        "Instant visa requirement checker for international travelers. Verify bilateral visa rules, stay limits, and visa on arrival eligibility for 197+ countries instantly.";
 
       function getVisaStatusFriendly(origin: string, destination: string) {
-        if (!visaDataMatrix[origin as keyof typeof visaDataMatrix]) return "Visa Required";
-        const rule = (visaDataMatrix[origin as keyof typeof visaDataMatrix] as any)[destination];
+        if (!visaDataMatrix[origin as keyof typeof visaDataMatrix])
+          return "Visa Required";
+        const rule = (
+          visaDataMatrix[origin as keyof typeof visaDataMatrix] as any
+        )[destination];
         if (!rule) return "Visa Required";
         const status = rule.status ? rule.status.toLowerCase() : "";
         const days = rule.days ? parseInt(rule.days) : 0;
-        
+
         if (status === "visa free" || !isNaN(Number(status))) {
           return `Visa-Free (${status === "visa free" ? (days ? days + " Days" : "Yes") : status + " Days"})`;
         } else if (status === "eta" || status === "e-visa") {
@@ -840,7 +1059,8 @@ import visaDataMatrix from "../data/passport-index.json";
         if (!faqSchema) return;
 
         let q3Name = "Do I need a visa to go to Japan, Mexico, or Italy?";
-        let q3Answer = "Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly.";
+        let q3Answer =
+          "Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly.";
 
         if (originName && originCode) {
           q3Name = `Do I need a visa to go to Japan, Mexico, or Italy from ${originName}?`;
@@ -853,32 +1073,32 @@ import visaDataMatrix from "../data/passport-index.json";
         const schemaData = {
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          "mainEntity": [
+          mainEntity: [
             {
               "@type": "Question",
-              "name": "Do I need a visa if I already hold a valid passport?",
-              "acceptedAnswer": {
+              name: "Do I need a visa if I already hold a valid passport?",
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": "A passport is required for all international travel, but it does not guarantee entry. Visa requirements depend strictly on your nationality and the bilateral agreements between your home country and your destination."
-              }
+                text: "A passport is required for all international travel, but it does not guarantee entry. Visa requirements depend strictly on your nationality and the bilateral agreements between your home country and your destination.",
+              },
             },
             {
               "@type": "Question",
-              "name": "What are the different global visa requirement categories?",
-              "acceptedAnswer": {
+              name: "What are the different global visa requirement categories?",
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": "Entry rules typically fall into four distinct tiers: Visa-Free (no prior approval needed), eVisa (electronic application processed online before departure), Visa on Arrival (issued instantly at the border checkpoint), and Embassy Visa Required (traditional paper application needed before flying)."
-              }
+                text: "Entry rules typically fall into four distinct tiers: Visa-Free (no prior approval needed), eVisa (electronic application processed online before departure), Visa on Arrival (issued instantly at the border checkpoint), and Embassy Visa Required (traditional paper application needed before flying).",
+              },
             },
             {
               "@type": "Question",
-              "name": q3Name,
-              "acceptedAnswer": {
+              name: q3Name,
+              acceptedAnswer: {
                 "@type": "Answer",
-                "text": q3Answer
-              }
-            }
-          ]
+                text: q3Answer,
+              },
+            },
+          ],
         };
 
         faqSchema.textContent = JSON.stringify(schemaData, null, 2);
@@ -887,12 +1107,14 @@ import visaDataMatrix from "../data/passport-index.json";
       function updateDynamicFAQ(origin: string | null) {
         const faqQ3Text = document.getElementById("faq-q3-text");
         const faqA3Text = document.getElementById("faq-a3-text");
-        
+
         if (!faqQ3Text || !faqA3Text) return;
 
         if (origin) {
           const originCountry = countries.find((c) => c.code === origin);
-          const originName = originCountry ? originCountry.name.split(" (")[0] : origin;
+          const originName = originCountry
+            ? originCountry.name.split(" (")[0]
+            : origin;
 
           faqQ3Text.textContent = `Do I need a visa to go to Japan, Mexico, or Italy from ${originName}?`;
 
@@ -909,11 +1131,13 @@ import visaDataMatrix from "../data/passport-index.json";
             </ul>
             <p class="mt-3">Use our instant lookup scanner above to cross-reference your specific nationality against any destination instantly.</p>
           `;
-          
+
           updateFAQSchema(originName, origin);
         } else {
-          faqQ3Text.textContent = "Do I need a visa to go to Japan, Mexico, or Italy?";
-          faqA3Text.innerHTML = "Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly.";
+          faqQ3Text.textContent =
+            "Do I need a visa to go to Japan, Mexico, or Italy?";
+          faqA3Text.innerHTML =
+            "Visa criteria for Japan, Mexico, and Italy vary completely based on your passport's country of origin. Use our instant lookup scanner above to cross-reference your specific nationality against these destinations instantly.";
           updateFAQSchema("", "");
         }
       }
@@ -956,7 +1180,7 @@ import visaDataMatrix from "../data/passport-index.json";
         slabs.forEach((slab) => {
           slab.classList.remove(
             "opacity-100",
-            "scale-[1.01]",
+            "scale-[1.02]",
             "shadow-glow-emerald",
             "shadow-glow-blue",
             "shadow-glow-amber",
@@ -1046,6 +1270,11 @@ import visaDataMatrix from "../data/passport-index.json";
           }
         }
 
+        // Collapse virtual keyboards instantly on iOS and Android
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+
         highlightVisaSlab(outcome.status_type, outcome.max_stay_days);
 
         const originCountry = countries.find((c) => c.code === origin);
@@ -1065,7 +1294,7 @@ import visaDataMatrix from "../data/passport-index.json";
         if (metaDesc) {
           metaDesc.setAttribute(
             "content",
-            `${originName} to ${destinationName} tourist visa rules, max stay limits, and visa on arrival requirements for ${originName} passport holding travelers. Verify official bilateral entry guidelines instantly.`
+            `${originName} to ${destinationName} tourist visa rules, max stay limits, and visa on arrival requirements for ${originName} passport holding travelers. Verify official bilateral entry guidelines instantly.`,
           );
         }
 
@@ -1096,10 +1325,12 @@ import visaDataMatrix from "../data/passport-index.json";
         // Fetch relevant news
         fetchNews(origin, destination);
 
-        // Auto-scroll to results on mobile viewports
-        const resultsSection = document.getElementById("results-section");
-        if (resultsSection && window.innerWidth < 1024) {
-          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Auto-scroll to results container on mobile/tablet viewports after keyboard dismissal
+        const resultsContainer = document.getElementById("results-container");
+        if (resultsContainer && window.innerWidth < 1024) {
+          setTimeout(() => {
+            resultsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+          }, 180); // 150ms-200ms delay to allow keyboard tray to close fully
         }
       }
 
@@ -1154,7 +1385,45 @@ import visaDataMatrix from "../data/passport-index.json";
         container.classList.remove("hidden");
       }
 
-      function filterRecentNews(items: any[]): any[] {
+      function isRelevantToSelected(title: string, originCode: string, destCode: string): boolean {
+        const titleLower = title.toLowerCase();
+        const originCountry = countries.find((c) => c.code === originCode);
+        const destCountry = countries.find((c) => c.code === destCode);
+        if (!originCountry || !destCountry) return false;
+        
+        const originName = originCountry.name.split(" (")[0].toLowerCase();
+        const destName = destCountry.name.split(" (")[0].toLowerCase();
+        
+        const originCodeLower = originCode.toLowerCase();
+        const destCodeLower = destCode.toLowerCase();
+
+        return titleLower.includes(originName) || 
+               titleLower.includes(originCodeLower) ||
+               titleLower.includes(destName) || 
+               titleLower.includes(destCodeLower);
+      }
+
+      function isThirdCountryNews(title: string, originCode: string, destCode: string): boolean {
+        const titleLower = title.toLowerCase();
+        
+        for (const country of countries) {
+          if (country.code === originCode || country.code === destCode) {
+            continue;
+          }
+          
+          const plainName = country.name.split(" (")[0].toLowerCase();
+          if (plainName.length <= 3) continue;
+          
+          const escapedName = plainName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          const regex = new RegExp(`\\b${escapedName}\\b`, 'i');
+          if (regex.test(titleLower)) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function filterRecentNews(items: any[], origin: string, destination: string): any[] {
         const now = new Date().getTime();
         const relevantKeywords = [
           "visa",
@@ -1193,7 +1462,19 @@ import visaDataMatrix from "../data/passport-index.json";
             titleLower.includes(keyword),
           );
 
-          return matchesKeyword;
+          if (!matchesKeyword) return false;
+
+          // Strict relevance check
+          if (!isRelevantToSelected(item.title, origin, destination)) {
+            return false;
+          }
+
+          // Exclude third country news
+          if (isThirdCountryNews(item.title, origin, destination)) {
+            return false;
+          }
+
+          return true;
         });
       }
 
@@ -1219,7 +1500,7 @@ import visaDataMatrix from "../data/passport-index.json";
           .then((res) => res.json())
           .then((data) => {
             if (data.status === "ok" && data.items && data.items.length > 0) {
-              const filtered = filterRecentNews(data.items);
+              const filtered = filterRecentNews(data.items, origin, destination);
               if (filtered.length > 0) {
                 displayNews(filtered);
               } else {
@@ -1243,7 +1524,7 @@ import visaDataMatrix from "../data/passport-index.json";
         ) as HTMLDivElement;
         if (activeSlab) {
           activeSlab.classList.remove("opacity-30", "scale-100");
-          activeSlab.classList.add("opacity-100", "scale-[1.01]");
+          activeSlab.classList.add("opacity-100", "scale-[1.02]");
 
           const textLabel = activeSlab.querySelector(".status-label");
           if (textLabel) {
@@ -1372,7 +1653,7 @@ import visaDataMatrix from "../data/passport-index.json";
           name: string;
           flag: string;
         }) {
-          input.value = country.name;
+          input.value = `${country.flag} ${country.name}`;
           input.setAttribute("data-selected-code", country.code);
           hideDropdown();
           checkStatus();
@@ -1408,7 +1689,7 @@ import visaDataMatrix from "../data/passport-index.json";
           const code = input.getAttribute("data-selected-code");
           const current = countries.find((c) => c.code === code);
           if (current) {
-            input.value = current.name;
+            input.value = `${current.flag} ${current.name}`;
           }
           setTimeout(hideDropdown, 150);
         });
@@ -1420,10 +1701,10 @@ import visaDataMatrix from "../data/passport-index.json";
           const destCode = destinationInput.getAttribute("data-selected-code");
 
           const originCountry = countries.find((c) => c.code === originCode);
-          if (originCountry) originInput.value = originCountry.name;
+          if (originCountry) originInput.value = `${originCountry.flag} ${originCountry.name}`;
 
           const destCountry = countries.find((c) => c.code === destCode);
-          if (destCountry) destinationInput.value = destCountry.name;
+          if (destCountry) destinationInput.value = `${destCountry.flag} ${destCountry.name}`;
         }
 
         setupCombobox(originInput, originDropdown);

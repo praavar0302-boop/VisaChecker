@@ -1,0 +1,108 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Page Not Found (404) | Can I Fly There?" description="The page you are looking for does not exist on Can I Fly There?. Verify your route and try again.">
+  <!-- Background Glow FX -->
+  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#007cf0]/10 via-[#7928ca]/10 to-[#ff0080]/5 blur-[130px] pointer-events-none"></div>
+  <div class="absolute bottom-10 right-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#00dfd8]/5 via-[#f9cb28]/5 to-emerald-500/5 blur-[120px] pointer-events-none"></div>
+
+  <!-- Header Nav -->
+  <header class="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 dark:border-zinc-900 dark:bg-black/80 backdrop-blur-md transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3">
+          <img src="/favicon-96x96.png" alt="Logo" class="w-6 h-6 object-contain" />
+          <span class="font-sans font-semibold tracking-tight text-zinc-950 dark:text-white text-base transition-colors">Global Visa Tracker</span>
+        </a>
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <nav class="hidden md:flex items-center gap-6 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          <a href="/" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Home</a>
+          <a href="/about" class="hover:text-zinc-950 dark:hover:text-white transition-colors">About</a>
+          <a href="/privacy" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Privacy</a>
+          <a href="/terms" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Terms</a>
+          <a href="/contact" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-4">
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode" class="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors cursor-pointer">
+            <svg class="w-4 h-4 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+            </svg>
+            <svg class="w-4 h-4 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
+
+          <span class="hidden sm:inline-block font-mono text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest bg-zinc-100 border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800 px-2 py-1 rounded transition-colors">
+            v1.0.0 Stable
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Error Content Section -->
+  <main class="flex-grow flex items-center justify-center max-w-5xl mx-auto px-4 py-24 relative w-full">
+    <div class="text-center space-y-6 max-w-md mx-auto">
+      <div class="flex justify-center">
+        <span class="font-mono text-[10px] text-red-600 dark:text-red-400 uppercase tracking-widest bg-red-50 border border-red-200/60 dark:bg-red-950/30 dark:border-red-900/40 px-2.5 py-1 rounded transition-colors">
+          404 // ROUTE_NOT_RESOLVED
+        </span>
+      </div>
+      
+      <h1 class="font-sans text-4xl md:text-5xl font-semibold tracking-tighter text-zinc-950 dark:text-white leading-none transition-colors">
+        Lost in Transit.
+      </h1>
+      
+      <p class="font-sans text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-sm mx-auto transition-colors">
+        The route you requested could not be resolved by our global border system. It might have been moved, deleted, or never existed.
+      </p>
+
+      <div class="pt-4 flex flex-col sm:flex-row justify-center items-center gap-3">
+        <a href="/" class="inline-flex items-center justify-center bg-zinc-950 text-white hover:bg-zinc-900 dark:bg-white dark:text-black dark:hover:bg-zinc-100 px-8 py-3 rounded-full font-sans font-medium text-xs transition-colors cursor-pointer shadow-sm whitespace-nowrap">
+          Return to Dashboard
+        </a>
+        <a href="/contact" class="inline-flex items-center justify-center border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 px-8 py-3 rounded-full font-sans font-medium text-xs transition-colors cursor-pointer whitespace-nowrap">
+          Report Issue
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-200 bg-white dark:border-zinc-900 dark:bg-black py-12 transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-2">
+        <img src="/favicon-96x96.png" alt="Logo" class="w-5 h-5 object-contain" />
+        <span class="text-zinc-400 dark:text-zinc-500 font-mono text-xs transition-colors">GLOBAL VISA REQUIREMENTS SYSTEM.</span>
+      </div>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-[11px] text-zinc-400 dark:text-zinc-500 transition-colors">
+        <a href="/" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Home</a>
+        <a href="/about" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">About Us</a>
+        <a href="/privacy" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Privacy Policy</a>
+        <a href="/terms" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Terms & Conditions</a>
+        <a href="/contact" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.contains("dark");
+        if (isDark) {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("theme", "light");
+        } else {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("theme", "dark");
+        }
+      });
+    }
+  </script>
+</Layout>

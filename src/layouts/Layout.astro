@@ -1,9 +1,29 @@
 ---
 import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Can I Fly There? | Instant Visa Requirement Checker",
+	description = "Instant visa requirement checker for international travelers. Verify bilateral visa rules, stay limits, and visa on arrival eligibility for 197+ countries instantly."
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDGEY3CY24" is:inline></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-QDGEY3CY24');
+		</script>
+
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -33,9 +53,10 @@ import '../styles/global.css';
 		</script>
 
 		<!-- SEO Meta Tags -->
-		<title>Can I Fly There? | Instant Visa Requirement Checker</title>
-		<meta name="description" content="Instant visa requirement checker for international travelers. Verify bilateral visa rules, stay limits, and visa on arrival eligibility for 197+ countries instantly." />
+		<title>{title}</title>
+		<meta name="description" content={description} />
 		<link rel="canonical" href={Astro.url.href} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
