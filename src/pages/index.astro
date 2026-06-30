@@ -102,7 +102,7 @@ import visaDataMatrix from "../data/passport-index.json";
           <span
             class="hidden sm:inline-block font-mono text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest bg-zinc-100 border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800 px-2 py-1 rounded transition-colors"
           >
-            v1.0.0 Stable
+            v2.0.1 Stable
           </span>
         </div>
       </div>
@@ -121,7 +121,7 @@ import visaDataMatrix from "../data/passport-index.json";
       <h1
         class="font-sans text-4xl md:text-5xl font-semibold tracking-tight text-zinc-950 dark:text-white mb-4 transition-colors"
       >
-        Can I Fly There? — Instant Visa Requirement Checker
+        Can I Fly There? Instant Visa Requirement Checker
       </h1>
       <p
         class="font-sans text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl leading-relaxed transition-colors"
@@ -207,7 +207,7 @@ import visaDataMatrix from "../data/passport-index.json";
             <div class="space-y-2 relative">
               <label
                 for="origin-input"
-                class="block font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider transition-colors"
+                class="block font-mono text-[10px] text-zinc-600 dark:text-zinc-300 uppercase tracking-wider transition-colors"
               >
                 Origin Nationality (Passport)
               </label>
@@ -216,11 +216,11 @@ import visaDataMatrix from "../data/passport-index.json";
                   type="text"
                   id="origin-input"
                   placeholder="Type origin passport country..."
-                  class="w-full bg-zinc-50 text-zinc-950 border border-zinc-200 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 dark:bg-[#0d0d0d] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-500 transition-colors cursor-text placeholder:text-zinc-400 dark:placeholder:text-zinc-600 placeholder:text-xs"
+                  class="w-full bg-zinc-100 text-zinc-950 border border-zinc-300 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-500 dark:bg-zinc-900 dark:text-white dark:border-zinc-700 dark:focus:border-zinc-400 transition-colors cursor-text placeholder:text-zinc-500 dark:placeholder:text-zinc-400 placeholder:text-xs"
                   autocomplete="off"
                 />
                 <div
-                  class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-400 dark:text-zinc-500 transition-colors pointer-events-none"
+                  class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-450 dark:text-zinc-400 transition-colors pointer-events-none"
                 >
                   <svg
                     class="h-4 w-4"
@@ -239,7 +239,7 @@ import visaDataMatrix from "../data/passport-index.json";
               <!-- Dropdown Options List -->
               <div
                 id="origin-dropdown"
-                class="absolute z-20 w-full mt-1 max-h-60 overflow-y-auto rounded-md border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#0d0d0d] hidden shadow-lg dark:shadow-[0_10px_20px_-10px_rgba(0,0,0,0.7)] divide-y divide-zinc-100 dark:divide-zinc-900/50 transition-colors"
+                class="absolute z-20 w-full mt-1 max-h-60 overflow-y-auto rounded-md border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-900 hidden shadow-lg dark:shadow-[0_10px_20px_-10px_rgba(0,0,0,0.7)] divide-y divide-zinc-100 dark:divide-zinc-800 transition-colors"
               >
               </div>
             </div>
@@ -271,20 +271,20 @@ import visaDataMatrix from "../data/passport-index.json";
             <div class="space-y-2 relative">
               <label
                 for="destination-input"
-                class="block font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-wider transition-colors"
+                class="block font-mono text-[10px] text-zinc-600 dark:text-zinc-300 uppercase tracking-wider transition-colors"
               >
-                Destination Territory
+                Destination Country
               </label>
               <div class="relative">
                 <input
                   type="text"
                   id="destination-input"
                   placeholder="Type destination country..."
-                  class="w-full bg-zinc-50 text-zinc-950 border border-zinc-200 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 dark:bg-[#0d0d0d] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-500 transition-colors cursor-text placeholder:text-zinc-400 dark:placeholder:text-zinc-600 placeholder:text-xs"
+                  class="w-full bg-zinc-100 text-zinc-950 border border-zinc-300 rounded px-3 py-3 font-sans text-sm focus:outline-none focus:border-zinc-500 dark:bg-zinc-900 dark:text-white dark:border-zinc-700 dark:focus:border-zinc-400 transition-colors cursor-text placeholder:text-zinc-500 dark:placeholder:text-zinc-400 placeholder:text-xs"
                   autocomplete="off"
                 />
                 <div
-                  class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-400 dark:text-zinc-500 transition-colors pointer-events-none"
+                  class="absolute inset-y-0 right-0 flex items-center px-3 text-zinc-450 dark:text-zinc-400 transition-colors pointer-events-none"
                 >
                   <svg
                     class="h-4 w-4"
@@ -303,7 +303,7 @@ import visaDataMatrix from "../data/passport-index.json";
               <!-- Dropdown Options List -->
               <div
                 id="destination-dropdown"
-                class="absolute z-20 w-full mt-1 max-h-60 overflow-y-auto rounded-md border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#0d0d0d] hidden shadow-lg dark:shadow-[0_10px_20px_-10px_rgba(0,0,0,0.7)] divide-y divide-zinc-100 dark:divide-zinc-900/50 transition-colors"
+                class="absolute z-20 w-full mt-1 max-h-60 overflow-y-auto rounded-md border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-900 hidden shadow-lg dark:shadow-[0_10px_20px_-10px_rgba(0,0,0,0.7)] divide-y divide-zinc-100 dark:divide-zinc-800 transition-colors"
               >
               </div>
             </div>
@@ -399,7 +399,9 @@ import visaDataMatrix from "../data/passport-index.json";
                   >
                     Visa-Free Travel
                   </div>
-                  <div class="text-[11px] text-zinc-500 mt-0.5">
+                  <div
+                    class="status-desc text-[11px] text-zinc-500 mt-0.5 transition-colors duration-300"
+                  >
                     Unrestricted bilateral transit access
                   </div>
                 </div>
@@ -437,7 +439,9 @@ import visaDataMatrix from "../data/passport-index.json";
                   >
                     e-Visa / Electronic Authorization
                   </div>
-                  <div class="text-[11px] text-zinc-500 mt-0.5">
+                  <div
+                    class="status-desc text-[11px] text-zinc-500 mt-0.5 transition-colors duration-300"
+                  >
                     Pre-departure registration portal required
                   </div>
                 </div>
@@ -474,7 +478,9 @@ import visaDataMatrix from "../data/passport-index.json";
                   >
                     Visa on Arrival
                   </div>
-                  <div class="text-[11px] text-zinc-500 mt-0.5">
+                  <div
+                    class="status-desc text-[11px] text-zinc-500 mt-0.5 transition-colors duration-300"
+                  >
                     Acquired at destination border terminal checkpoint
                   </div>
                 </div>
@@ -512,7 +518,9 @@ import visaDataMatrix from "../data/passport-index.json";
                   >
                     Embassy Visa Required
                   </div>
-                  <div class="text-[11px] text-zinc-500 mt-0.5">
+                  <div
+                    class="status-desc text-[11px] text-zinc-500 mt-0.5 transition-colors duration-300"
+                  >
                     Physical consul interview or agency filing compulsory
                   </div>
                 </div>
@@ -1207,8 +1215,22 @@ import visaDataMatrix from "../data/passport-index.json";
               "text-blue-400",
               "text-amber-400",
               "text-rose-500",
+              "text-emerald-800",
+              "dark:text-emerald-300",
+              "text-blue-800",
+              "dark:text-blue-300",
+              "text-amber-800",
+              "dark:text-amber-300",
+              "text-rose-800",
+              "dark:text-rose-300",
             );
             textLabel.classList.add("text-zinc-500", "dark:text-zinc-400");
+          }
+
+          const descLabel = slab.querySelector(".status-desc");
+          if (descLabel) {
+            descLabel.classList.remove("text-zinc-800", "dark:text-zinc-200");
+            descLabel.classList.add("text-zinc-500", "dark:text-zinc-500");
           }
 
           const stayBadge = slab.querySelector(".stay-badge");
@@ -1325,11 +1347,33 @@ import visaDataMatrix from "../data/passport-index.json";
         // Fetch relevant news
         fetchNews(origin, destination);
 
-        // Auto-scroll to results container on mobile/tablet viewports after keyboard dismissal
+        // Auto-scroll to results container if it is not fully visible on the screen
         const resultsContainer = document.getElementById("results-container");
-        if (resultsContainer && window.innerWidth < 1024) {
+        if (resultsContainer) {
           setTimeout(() => {
-            resultsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+            const rect = resultsContainer.getBoundingClientRect();
+            const viewportHeight =
+              window.innerHeight || document.documentElement.clientHeight;
+
+            // Check if the entire results container is within the viewport
+            const isFullyVisible =
+              rect.top >= 0 && rect.bottom <= viewportHeight;
+
+            if (!isFullyVisible) {
+              if (rect.height <= viewportHeight) {
+                // If it can fit on the screen fully, center it
+                resultsContainer.scrollIntoView({
+                  behavior: "smooth",
+                  block: "center",
+                });
+              } else {
+                // If it's too tall for the viewport, scroll to start so the user sees the top
+                resultsContainer.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }
           }, 180); // 150ms-200ms delay to allow keyboard tray to close fully
         }
       }
@@ -1385,37 +1429,50 @@ import visaDataMatrix from "../data/passport-index.json";
         container.classList.remove("hidden");
       }
 
-      function isRelevantToSelected(title: string, originCode: string, destCode: string): boolean {
+      function isRelevantToSelected(
+        title: string,
+        originCode: string,
+        destCode: string,
+      ): boolean {
         const titleLower = title.toLowerCase();
         const originCountry = countries.find((c) => c.code === originCode);
         const destCountry = countries.find((c) => c.code === destCode);
         if (!originCountry || !destCountry) return false;
-        
+
         const originName = originCountry.name.split(" (")[0].toLowerCase();
         const destName = destCountry.name.split(" (")[0].toLowerCase();
-        
+
         const originCodeLower = originCode.toLowerCase();
         const destCodeLower = destCode.toLowerCase();
 
-        return titleLower.includes(originName) || 
-               titleLower.includes(originCodeLower) ||
-               titleLower.includes(destName) || 
-               titleLower.includes(destCodeLower);
+        return (
+          titleLower.includes(originName) ||
+          titleLower.includes(originCodeLower) ||
+          titleLower.includes(destName) ||
+          titleLower.includes(destCodeLower)
+        );
       }
 
-      function isThirdCountryNews(title: string, originCode: string, destCode: string): boolean {
+      function isThirdCountryNews(
+        title: string,
+        originCode: string,
+        destCode: string,
+      ): boolean {
         const titleLower = title.toLowerCase();
-        
+
         for (const country of countries) {
           if (country.code === originCode || country.code === destCode) {
             continue;
           }
-          
+
           const plainName = country.name.split(" (")[0].toLowerCase();
           if (plainName.length <= 3) continue;
-          
-          const escapedName = plainName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-          const regex = new RegExp(`\\b${escapedName}\\b`, 'i');
+
+          const escapedName = plainName.replace(
+            /[-\/\\^$*+?.()|[\]{}]/g,
+            "\\$&",
+          );
+          const regex = new RegExp(`\\b${escapedName}\\b`, "i");
           if (regex.test(titleLower)) {
             return true;
           }
@@ -1423,7 +1480,11 @@ import visaDataMatrix from "../data/passport-index.json";
         return false;
       }
 
-      function filterRecentNews(items: any[], origin: string, destination: string): any[] {
+      function filterRecentNews(
+        items: any[],
+        origin: string,
+        destination: string,
+      ): any[] {
         const now = new Date().getTime();
         const relevantKeywords = [
           "visa",
@@ -1500,7 +1561,11 @@ import visaDataMatrix from "../data/passport-index.json";
           .then((res) => res.json())
           .then((data) => {
             if (data.status === "ok" && data.items && data.items.length > 0) {
-              const filtered = filterRecentNews(data.items, origin, destination);
+              const filtered = filterRecentNews(
+                data.items,
+                origin,
+                destination,
+              );
               if (filtered.length > 0) {
                 displayNews(filtered);
               } else {
@@ -1531,6 +1596,12 @@ import visaDataMatrix from "../data/passport-index.json";
             textLabel.classList.remove("text-zinc-500", "dark:text-zinc-400");
           }
 
+          const subLabel = activeSlab.querySelector(".status-desc");
+          if (subLabel) {
+            subLabel.classList.remove("text-zinc-500", "dark:text-zinc-500");
+            subLabel.classList.add("text-zinc-800", "dark:text-zinc-200");
+          }
+
           if (uiStatusType === "visa_free") {
             activeSlab.classList.add(
               "shadow-glow-emerald",
@@ -1538,24 +1609,24 @@ import visaDataMatrix from "../data/passport-index.json";
             );
             if (textLabel)
               textLabel.classList.add(
-                "text-emerald-600",
-                "dark:text-emerald-400",
+                "text-emerald-800",
+                "dark:text-emerald-300",
               );
           } else if (uiStatusType === "evisa") {
             activeSlab.classList.add("shadow-glow-blue", "border-blue-500/50");
             if (textLabel)
-              textLabel.classList.add("text-blue-600", "dark:text-blue-400");
+              textLabel.classList.add("text-blue-800", "dark:text-blue-300");
           } else if (uiStatusType === "visa_on_arrival") {
             activeSlab.classList.add(
               "shadow-glow-amber",
               "border-amber-500/50",
             );
             if (textLabel)
-              textLabel.classList.add("text-amber-600", "dark:text-amber-400");
+              textLabel.classList.add("text-amber-800", "dark:text-amber-300");
           } else if (uiStatusType === "visa_required") {
             activeSlab.classList.add("shadow-glow-rose", "border-rose-500/50");
             if (textLabel)
-              textLabel.classList.add("text-rose-600", "dark:text-rose-450");
+              textLabel.classList.add("text-rose-800", "dark:text-rose-300");
           }
 
           const stayBadge = activeSlab.querySelector(
@@ -1640,7 +1711,7 @@ import visaDataMatrix from "../data/passport-index.json";
               "px-4 py-3 text-sm text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-white cursor-pointer transition-colors flex items-center gap-2";
             option.innerHTML = `<span>${c.flag}</span> <span>${c.name}</span>`;
 
-            option.addEventListener("mousedown", (e) => {
+            option.addEventListener("pointerdown", (e) => {
               e.preventDefault();
               selectOption(c);
             });
@@ -1657,33 +1728,45 @@ import visaDataMatrix from "../data/passport-index.json";
           input.setAttribute("data-selected-code", country.code);
           hideDropdown();
           checkStatus();
+
+          // Auto-focus next input on mobile/tablet after origin country selection
+          if (input === originInput && window.innerWidth < 1024) {
+            destinationInput.focus();
+          }
         }
 
-        function showDropdown() {
-          dropdown.classList.remove("hidden");
-          renderOptions(input.value);
+        function showDropdown(delay = false) {
+          if (delay && window.innerWidth < 1024) {
+            setTimeout(() => {
+              dropdown.classList.remove("hidden");
+              renderOptions(input.value);
+            }, 150);
+          } else {
+            dropdown.classList.remove("hidden");
+            renderOptions(input.value);
+          }
         }
 
         function hideDropdown() {
           dropdown.classList.add("hidden");
         }
 
-        function resetInput() {
+        function resetInput(delay = false) {
           input.value = "";
           input.removeAttribute("data-selected-code");
-          showDropdown();
+          showDropdown(delay);
           checkStatus();
         }
 
-        input.addEventListener("focus", resetInput);
+        input.addEventListener("focus", () => resetInput(true));
         input.addEventListener("click", () => {
           if (input.value !== "") {
-            resetInput();
+            resetInput(true);
           } else {
-            showDropdown();
+            showDropdown(true);
           }
         });
-        input.addEventListener("input", showDropdown);
+        input.addEventListener("input", () => showDropdown(false));
 
         input.addEventListener("blur", () => {
           const code = input.getAttribute("data-selected-code");
@@ -1701,10 +1784,12 @@ import visaDataMatrix from "../data/passport-index.json";
           const destCode = destinationInput.getAttribute("data-selected-code");
 
           const originCountry = countries.find((c) => c.code === originCode);
-          if (originCountry) originInput.value = `${originCountry.flag} ${originCountry.name}`;
+          if (originCountry)
+            originInput.value = `${originCountry.flag} ${originCountry.name}`;
 
           const destCountry = countries.find((c) => c.code === destCode);
-          if (destCountry) destinationInput.value = `${destCountry.flag} ${destCountry.name}`;
+          if (destCountry)
+            destinationInput.value = `${destCountry.flag} ${destCountry.name}`;
         }
 
         setupCombobox(originInput, originDropdown);
