@@ -12,10 +12,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Download Latest Live Visa Dataset
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: scraper/go.mod
+          cache-dependency-path: scraper/go.sum
+
+      - name: Run Go Scraper
         run: |
           mkdir -p src/data
-          curl -s https://raw.githubusercontent.com/imorte/passport-index-data/master/passport-index.json -o src/data/passport-index.json
+          cd scraper
+          go run .
+          mv passport-index.json ../src/data/passport-index.json
 
       - name: Check for Data Variations
         id: git-check

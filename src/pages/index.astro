@@ -531,7 +531,7 @@ import visaDataMatrix from "../data/passport-index.json";
           <!-- Reference Link Row -->
           <div
             id="reference-link-container"
-            class="hidden pt-4 border-t border-zinc-200 dark:border-zinc-800 mt-4 flex justify-center md:justify-start transition-colors"
+            class="hidden pt-4 border-t border-zinc-200 dark:border-zinc-800 mt-4 flex flex-col items-center md:items-start gap-1.5 transition-colors"
           >
             <a
               id="reference-link"
@@ -555,6 +555,9 @@ import visaDataMatrix from "../data/passport-index.json";
                 ></path>
               </svg>
             </a>
+            <p class="text-[10px] text-zinc-400 dark:text-zinc-500 font-sans tracking-normal text-center md:text-left leading-normal">
+              Always verify visa requirements with the official embassy portal before booking travel.
+            </p>
           </div>
         </div>
 
@@ -919,6 +922,7 @@ import visaDataMatrix from "../data/passport-index.json";
   <!-- Interactivity controller script -->
   <script>
     import visaDataMatrix from "../data/passport-index.json";
+    import officialPortals from "../data/official-portals.json";
 
     document.addEventListener("DOMContentLoaded", () => {
       const originInput = document.getElementById(
@@ -1322,23 +1326,10 @@ import visaDataMatrix from "../data/passport-index.json";
 
         // Resolve external official reference URL
         if (referenceLinkContainer && referenceLink) {
-          const officialImmigrationDomains: Record<string, string> = {
-            US: "https://travel.state.gov",
-            DE: "https://www.auswaertiges-amt.de",
-            SG: "https://www.ica.gov.sg",
-            IN: "https://indianvisaonline.gov.in",
-            GB: "https://www.gov.uk",
-            FR: "https://france-visas.gouv.fr",
-            JP: "https://www.mofa.go.jp",
-            CA: "https://www.canada.ca",
-            AU: "https://immi.homeaffairs.gov.au",
-            AE: "https://smartservices.icp.gov.ae",
-          };
-
-          const destDomain = officialImmigrationDomains[destination];
+          const destDomain = officialPortals[destination as keyof typeof officialPortals];
           const finalUrl =
             destDomain ||
-            `https://www.google.com/search?q=official+${encodeURIComponent(destinationName)}+visa+requirements+for+${encodeURIComponent(originName)}+citizens+filetype:pdf`;
+            `https://en.wikipedia.org/wiki/Visa_policy_of_${encodeURIComponent(destinationName.replace(/\s+/g, "_"))}`;
 
           referenceLink.href = finalUrl;
           referenceLinkContainer.classList.remove("hidden");
