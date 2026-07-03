@@ -528,36 +528,129 @@ import visaDataMatrix from "../data/passport-index.json";
             </div>
           </div>
 
-          <!-- Reference Link Row -->
+          <!-- Detail on Demand Verification Layer -->
           <div
-            id="reference-link-container"
-            class="hidden pt-4 border-t border-zinc-200 dark:border-zinc-800 mt-4 flex flex-col items-center md:items-start gap-1.5 transition-colors"
+            id="detail-on-demand-container"
+            class="hidden pt-4 border-t border-zinc-200 dark:border-zinc-800 mt-4 flex flex-col gap-3 transition-all duration-300"
           >
-            <a
-              id="reference-link"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 text-xs font-mono transition-colors"
-            >
-              <span>View Official Destination Visa Rules (PDF/Portal)</span>
-              <svg
-                class="w-3.5 h-3.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
+            <!-- Minimalist Default State Row -->
+            <div class="flex items-center justify-between w-full text-xs">
+              <div class="flex items-center gap-1.5 font-mono text-[10px] text-zinc-400 dark:text-zinc-500">
+                <span>Last verified:</span>
+                <span id="details-date" class="font-medium text-zinc-500 dark:text-zinc-400">Today</span>
+                <span>•</span>
+                <span>Source: PassportIndex Daily Sync</span>
+              </div>
+              <button
+                id="details-toggle-btn"
+                type="button"
+                class="flex items-center gap-1 font-mono text-[11px] text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors cursor-pointer select-none focus:outline-none"
+                aria-expanded="false"
+                aria-controls="details-panel"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                ></path>
-              </svg>
-            </a>
-            <p class="text-[10px] text-zinc-400 dark:text-zinc-500 font-sans tracking-normal text-center md:text-left leading-normal">
-              Always verify visa requirements with the official embassy portal before booking travel.
-            </p>
+                <span>Click to expand details</span>
+                <svg
+                  id="details-chevron"
+                  class="w-3.5 h-3.5 transition-transform duration-300 transform"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Expandable Disclosure Panel -->
+            <div
+              id="details-panel"
+              class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
+            >
+              <div class="space-y-3 pt-2">
+                <!-- Disclaimer Box -->
+                <div class="flex items-start gap-2.5 p-3 rounded-lg border border-zinc-200 bg-zinc-50/50 text-zinc-500 dark:border-zinc-800/80 dark:bg-zinc-950/20 dark:text-zinc-400 text-[11px] leading-relaxed transition-colors">
+                  <svg
+                    class="w-4 h-4 text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <p>
+                    <strong>Disclaimer:</strong> Visa rules are dynamic and subject to sudden change. Users must verify travel eligibility and transit requirements directly with their operating airlines and the destination's embassy or consulate before booking.
+                  </p>
+                </div>
+
+                <!-- Primary Source Link Card -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-900 dark:bg-[#0c0c0c] transition-colors">
+                  <div class="flex items-center gap-2">
+                    <svg
+                      class="w-4 h-4 text-zinc-500 dark:text-zinc-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                      ></path>
+                    </svg>
+                    <span class="text-xs font-semibold text-zinc-950 dark:text-zinc-200 transition-colors">Primary Source</span>
+                  </div>
+                  <a
+                    id="official-source-link"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-xs font-medium text-[#0070f3] hover:text-[#0761d1] dark:text-blue-400 dark:hover:text-blue-350 transition-colors"
+                  >
+                    <span>Official Ministry of Foreign Affairs / Portal</span>
+                    <svg
+                      class="w-3.5 h-3.5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      ></path>
+                    </svg>
+                  </a>
+                </div>
+
+                <!-- Passport validity warning badge -->
+                <div class="flex items-start gap-2.5 p-3 rounded-lg border border-amber-200/50 bg-amber-50/20 text-amber-800 dark:border-amber-900/30 dark:bg-amber-950/10 dark:text-amber-400 text-[11px] leading-relaxed transition-colors">
+                  <svg
+                    class="w-4 h-4 text-amber-600 dark:text-amber-500 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    ></path>
+                  </svg>
+                  <p>
+                    <strong>Passport Requirement:</strong> Ensure your passport has at least <strong>6 months validity remaining</strong> from the entry date and has 2+ blank visa pages.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -947,13 +1040,68 @@ import visaDataMatrix from "../data/passport-index.json";
       const sameCountryWarning = document.getElementById(
         "same-country-warning",
       ) as HTMLDivElement;
-      const referenceLinkContainer = document.getElementById(
-        "reference-link-container",
+      const detailContainer = document.getElementById(
+        "detail-on-demand-container",
       ) as HTMLDivElement;
-      const referenceLink = document.getElementById(
-        "reference-link",
+      const detailsToggleBtn = document.getElementById(
+        "details-toggle-btn",
+      ) as HTMLButtonElement;
+      const detailsPanel = document.getElementById(
+        "details-panel",
+      ) as HTMLDivElement;
+      const detailsChevron = document.getElementById(
+        "details-chevron",
+      ) as HTMLElement;
+      const detailsDate = document.getElementById(
+        "details-date",
+      ) as HTMLSpanElement;
+      const officialSourceLink = document.getElementById(
+        "official-source-link",
       ) as HTMLAnchorElement;
       const themeToggleBtn = document.getElementById("theme-toggle");
+
+      // Accordion Toggle Logic
+      function collapseDetails() {
+        if (detailsPanel && detailsChevron && detailsToggleBtn) {
+          detailsPanel.style.maxHeight = "0px";
+          detailsPanel.classList.remove("opacity-100");
+          detailsPanel.classList.add("opacity-0");
+          detailsChevron.classList.remove("rotate-180");
+          detailsToggleBtn.setAttribute("aria-expanded", "false");
+          const toggleText = detailsToggleBtn.querySelector("span");
+          if (toggleText) {
+            toggleText.textContent = "Click to expand details";
+          }
+          setTimeout(() => {
+            if (detailsToggleBtn.getAttribute("aria-expanded") === "false") {
+              detailsPanel.classList.add("hidden");
+            }
+          }, 300);
+        }
+      }
+
+      if (detailsToggleBtn) {
+        detailsToggleBtn.addEventListener("click", () => {
+          if (!detailsPanel || !detailsChevron) return;
+          const isExpanded = detailsToggleBtn.getAttribute("aria-expanded") === "true";
+          if (isExpanded) {
+            collapseDetails();
+          } else {
+            detailsPanel.classList.remove("hidden");
+            // Force layout reflow to trigger transition
+            detailsPanel.offsetHeight;
+            detailsPanel.style.maxHeight = `${detailsPanel.scrollHeight}px`;
+            detailsPanel.classList.remove("opacity-0");
+            detailsPanel.classList.add("opacity-100");
+            detailsChevron.classList.add("rotate-180");
+            detailsToggleBtn.setAttribute("aria-expanded", "true");
+            const toggleText = detailsToggleBtn.querySelector("span");
+            if (toggleText) {
+              toggleText.textContent = "Click to collapse details";
+            }
+          }
+        });
+      }
 
       // Theme Toggle Event Listener
       if (themeToggleBtn) {
@@ -1171,8 +1319,9 @@ import visaDataMatrix from "../data/passport-index.json";
         updateDynamicFAQ(origin);
 
         if (!origin || !destination) {
-          if (referenceLinkContainer) {
-            referenceLinkContainer.classList.add("hidden");
+          if (detailContainer) {
+            detailContainer.classList.add("hidden");
+            collapseDetails();
           }
           hideNewsSection();
           resetSEO();
@@ -1185,8 +1334,9 @@ import visaDataMatrix from "../data/passport-index.json";
         }
 
         // Clean Reset routine for all slabs
-        if (referenceLinkContainer) {
-          referenceLinkContainer.classList.add("hidden");
+        if (detailContainer) {
+          detailContainer.classList.add("hidden");
+          collapseDetails();
         }
 
         slabs.forEach((slab) => {
@@ -1253,8 +1403,9 @@ import visaDataMatrix from "../data/passport-index.json";
             portalLinkContainer.classList.remove("flex");
             portalLinkContainer.classList.add("hidden");
           }
-          if (referenceLinkContainer) {
-            referenceLinkContainer.classList.add("hidden");
+          if (detailContainer) {
+            detailContainer.classList.add("hidden");
+            collapseDetails();
           }
           hideNewsSection();
           resetSEO();
@@ -1324,15 +1475,36 @@ import visaDataMatrix from "../data/passport-index.json";
           );
         }
 
-        // Resolve external official reference URL
-        if (referenceLinkContainer && referenceLink) {
+        // Resolve external official reference URL and update detail container
+        if (detailContainer && officialSourceLink) {
           const destDomain = officialPortals[destination as keyof typeof officialPortals];
           const finalUrl =
             destDomain ||
             `https://en.wikipedia.org/wiki/Visa_policy_of_${encodeURIComponent(destinationName.replace(/\s+/g, "_"))}`;
 
-          referenceLink.href = finalUrl;
-          referenceLinkContainer.classList.remove("hidden");
+          officialSourceLink.href = finalUrl;
+
+          const sourceLinkText = officialSourceLink.querySelector("span");
+          if (sourceLinkText) {
+            if (destDomain) {
+              sourceLinkText.textContent = `Official Government Portal of ${destinationName}`;
+            } else {
+              sourceLinkText.textContent = `Visa Policy of ${destinationName} (Wikipedia)`;
+            }
+          }
+
+          // Format dynamic date
+          if (detailsDate) {
+            const today = new Date();
+            const dateStr = today.toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric"
+            });
+            detailsDate.textContent = `${dateStr} at 06:00 UTC`;
+          }
+
+          detailContainer.classList.remove("hidden");
         }
 
         // Fetch relevant news

@@ -13,8 +13,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.9",
     "@astrojs/sitemap": "^3.7.3",
     "astro": "^6.4.7",
+    "typescript": "^6.0.3",
     "wrangler": "^4.105.0"
   },
   "devDependencies": {
