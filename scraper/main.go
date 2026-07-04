@@ -399,7 +399,7 @@ func main() {
 	csvFiles := []struct {
 		file    string
 		fn      func(string) string
-		writeFn func(string, map[string]visaInfo, func(string) string) error
+		writeFn func(string, map[string]map[string]visaInfo, func(string) string) error
 	}{
 		{"passport-index-matrix.csv", toName, writeMatrixCSV},
 		{"passport-index-matrix-iso2.csv", toISO2, writeMatrixCSV},
