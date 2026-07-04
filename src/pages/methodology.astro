@@ -1,0 +1,153 @@
+---
+// src/pages/methodology.astro
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout 
+  title="Data Methodology & Disclaimers | Global Visa Tracker" 
+  description="Learn about our automated daily data updates, public source repositories, open-source principles, and essential disclaimer guidelines for international travelers."
+>
+  <!-- Background Glow FX -->
+  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#007cf0]/10 via-[#7928ca]/10 to-[#ff0080]/5 blur-[130px] pointer-events-none"></div>
+  <div class="absolute bottom-10 right-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#00dfd8]/5 via-[#f9cb28]/5 to-emerald-500/5 blur-[120px] pointer-events-none"></div>
+
+  <!-- Header Nav -->
+  <header class="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 dark:border-zinc-900 dark:bg-black/80 backdrop-blur-md transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3">
+          <img src="/favicon-96x96.png" alt="Logo" class="w-6 h-6 object-contain" />
+          <span class="font-sans font-semibold tracking-tight text-zinc-950 dark:text-white text-base transition-colors">Global Visa Tracker</span>
+        </a>
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <nav class="hidden md:flex items-center gap-6 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+          <a href="/" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Home</a>
+          <a href="/methodology" class="text-zinc-950 dark:text-white font-semibold transition-colors">Methodology</a>
+          <a href="/about" class="hover:text-zinc-950 dark:hover:text-white transition-colors">About</a>
+          <a href="/privacy" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Privacy</a>
+          <a href="/terms" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Terms</a>
+          <a href="/contact" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Contact</a>
+        </nav>
+
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" type="button" aria-label="Toggle dark/light mode" class="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors cursor-pointer">
+          <svg class="w-4 h-4 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+          </svg>
+          <svg class="w-4 h-4 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content Section -->
+  <main class="max-w-3xl mx-auto px-4 py-16 relative">
+    <article class="space-y-12">
+      <!-- Title & Eyebrow -->
+      <div class="space-y-4">
+        <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-widest bg-zinc-100 border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800 px-2 py-1 rounded">
+          METHODOLOGY & TRANSPARENCY REPORT
+        </span>
+        <h1 class="font-sans text-3xl font-semibold text-zinc-950 dark:text-white tracking-tight transition-colors leading-tight">
+          How our data pipeline operates.
+        </h1>
+        <p class="font-sans text-sm text-zinc-550 dark:text-zinc-405 leading-relaxed">
+          To build trust, we believe in absolute transparency. We do not operate in the shadows, harvest passenger data, or hide behind paywalls. Below is an audit of our data provenance, project purpose, and operational parameters.
+        </p>
+      </div>
+
+      <hr class="border-zinc-200 dark:border-zinc-900" />
+
+      <!-- Methodology Content Cards -->
+      <div class="grid grid-cols-1 gap-6">
+        <!-- Section 1: Data Pipeline -->
+        <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#060606] p-6 rounded-lg space-y-3 transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-zinc-400">01 /</span>
+            <h3 class="font-sans text-base font-semibold text-zinc-950 dark:text-zinc-200">The Automated Daily Data Sync</h3>
+          </div>
+          <p class="font-sans text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed">
+            Our lookup database matrix does not rely on outdated spreadsheets or manual input. Instead, we run automated daily scraper crons via GitHub Actions. These crawlers query public, open-source passport data repositories hosted on GitHub by <strong>PassportIndex.org</strong>.
+          </p>
+          <p class="font-sans text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed">
+            Every 24 hours, the scheduler checks for changes in bilateral visa agreements, stay limits, and passport access permissions. It formats and compiles this data directly into our structured, high-speed static JSON matrix to serve search results instantly.
+          </p>
+        </div>
+
+        <!-- Section 2: Non-Profit Open Source Motivation -->
+        <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#060606] p-6 rounded-lg space-y-3 transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-zinc-400">02 /</span>
+            <h3 class="font-sans text-base font-semibold text-zinc-950 dark:text-zinc-200">Human-Centric & Open Source</h3>
+          </div>
+          <p class="font-sans text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed">
+            This application was created by travelers, for travelers. It is a 100% open-source project and is not a data-harvesting tool or a commercial enterprise.
+          </p>
+          <ul class="font-sans text-xs text-zinc-550 dark:text-zinc-400 space-y-1.5 list-disc pl-4">
+            <li><strong>Zero Tracking:</strong> No cookies, analytics tracking pixels, or marketing scripts are loaded on this utility.</li>
+            <li><strong>No Sign-ups:</strong> You do not need to register, provide an email, or submit passport scans.</li>
+            <li><strong>Auditability:</strong> The entire source code, including our deployment build and data matrices, is publicly viewable on GitHub for anyone to audit or replicate.</li>
+          </ul>
+        </div>
+
+        <!-- Section 3: Limitations & Discovery Engine Framing -->
+        <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#060606] p-6 rounded-lg space-y-3 transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-zinc-400">03 /</span>
+            <h3 class="font-sans text-base font-semibold text-zinc-950 dark:text-zinc-200">Bilateral Disclaimers & Limits</h3>
+          </div>
+          <p class="font-sans text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed">
+            This tool is designed strictly as a <strong>"Discovery Engine"</strong> to assist travelers in preliminary research. It is not an official legal advisory. International visa policies are highly dynamic and can change overnight due to:
+          </p>
+          <ul class="font-sans text-xs text-zinc-550 dark:text-zinc-400 space-y-1.5 list-disc pl-4">
+            <li>Emergency border closures or health declarations.</li>
+            <li>Temporary diplomatic suspensions or geopolitical shifts.</li>
+            <li>Carrier-specific boarding rules (airlines may refuse boarding based on passport validity timelines).</li>
+          </ul>
+          <p class="font-sans text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed">
+            Therefore, we explicitly state that while we sync daily, you **must** cross-reference the output with the official government portals or embassies before booking any travel.
+          </p>
+        </div>
+
+        <!-- Section 4: Collaborative Correction -->
+        <div class="border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#060606] p-6 rounded-lg space-y-3 transition-colors">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs text-zinc-400">04 /</span>
+            <h3 class="font-sans text-base font-semibold text-zinc-950 dark:text-zinc-200">How to Help Keep Data Verified</h3>
+          </div>
+          <p class="font-sans text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed">
+            If you identify a data mismatch or an outdated visa free stay limit, you can actively report it:
+          </p>
+          <ul class="font-sans text-xs text-zinc-550 dark:text-zinc-400 space-y-1.5 list-disc pl-4 font-mono text-[11px]">
+            <li>Use the <strong>"Report data mismatch"</strong> form located at the footer of any page.</li>
+            <li>Open a Pull Request or create an Issue directly in our <a href="https://github.com/praavar0302-boop/VisaChecker" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">GitHub Repository</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Reusable Footer -->
+  <Footer />
+
+  <script>
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    if (themeToggleBtn) {
+      themeToggleBtn.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.contains("dark");
+        if (isDark) {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("theme", "light");
+        } else {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("theme", "dark");
+        }
+      });
+    }
+  </script>
+</Layout>

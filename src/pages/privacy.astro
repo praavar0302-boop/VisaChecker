@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout>
@@ -20,6 +21,7 @@ import Layout from "../layouts/Layout.astro";
       <div class="flex items-center gap-6">
         <nav class="hidden md:flex items-center gap-6 text-xs font-mono text-zinc-500 dark:text-zinc-400">
           <a href="/" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Home</a>
+          <a href="/methodology" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Methodology</a>
           <a href="/about" class="hover:text-zinc-950 dark:hover:text-white transition-colors">About</a>
           <a href="/privacy" class="text-zinc-950 dark:text-white font-semibold transition-colors">Privacy</a>
           <a href="/terms" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Terms</a>
@@ -70,22 +72,8 @@ import Layout from "../layouts/Layout.astro";
     </article>
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-zinc-200 bg-white dark:border-zinc-900 dark:bg-black py-12 transition-colors duration-300">
-    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="flex items-center gap-2">
-        <img src="/favicon-96x96.png" alt="Logo" class="w-5 h-5 object-contain" />
-        <span class="text-zinc-400 dark:text-zinc-500 font-mono text-xs transition-colors">GLOBAL VISA REQUIREMENTS MATRIX SYSTEM.</span>
-      </div>
-      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-[11px] text-zinc-400 dark:text-zinc-500 transition-colors">
-        <a href="/" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Home</a>
-        <a href="/about" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">About Us</a>
-        <a href="/privacy" class="text-zinc-700 dark:text-zinc-300 font-semibold transition-colors">Privacy Policy</a>
-        <a href="/terms" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Terms & Conditions</a>
-        <a href="/contact" class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors">Contact Us</a>
-      </div>
-    </div>
-  </footer>
+  <!-- Reusable Footer -->
+  <Footer />
 
   <script>
     const themeToggleBtn = document.getElementById("theme-toggle");

@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import visaDataMatrix from "../data/passport-index.json";
+import Footer from "../components/Footer.astro";
+import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
 ---
 
 <Layout>
@@ -39,6 +41,11 @@ import visaDataMatrix from "../data/passport-index.json";
             href="/"
             class="text-zinc-950 dark:text-white font-semibold transition-colors"
             >Home</a
+          >
+          <a
+            href="/methodology"
+            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
+            >Methodology</a
           >
           <a
             href="/about"
@@ -528,6 +535,11 @@ import visaDataMatrix from "../data/passport-index.json";
             </div>
           </div>
 
+          <!-- Friction Warning Banner Wrapper -->
+          <div id="compliance-banner-container" class="hidden mt-4">
+            <FrictionWarningBanner />
+          </div>
+
           <!-- Detail on Demand Verification Layer -->
           <div
             id="detail-on-demand-container"
@@ -962,55 +974,8 @@ import visaDataMatrix from "../data/passport-index.json";
     </section>
   </main>
 
-  <!-- Sticky footer -->
-  <footer
-    class="border-t border-zinc-200 bg-white dark:border-zinc-900 dark:bg-black py-12 transition-colors duration-300"
-  >
-    <div
-      class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
-    >
-      <div class="flex items-center gap-2">
-        <img
-          src="/favicon-96x96.png"
-          alt="Logo"
-          class="w-5 h-5 object-contain"
-        />
-        <span
-          class="text-zinc-400 dark:text-zinc-500 font-mono text-xs transition-colors"
-          >GLOBAL VISA REQUIREMENT SYSTEM</span
-        >
-      </div>
-      <div
-        class="flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-[11px] text-zinc-400 dark:text-zinc-500 transition-colors"
-      >
-        <a
-          href="/"
-          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
-          >Home</a
-        >
-        <a
-          href="/about"
-          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
-          >About Us</a
-        >
-        <a
-          href="/privacy"
-          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
-          >Privacy Policy</a
-        >
-        <a
-          href="/terms"
-          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
-          >Terms & Conditions</a
-        >
-        <a
-          href="/contact"
-          class="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
-          >Contact Us</a
-        >
-      </div>
-    </div>
-  </footer>
+  <!-- Reusable footer -->
+  <Footer />
 
   <!-- Interactivity controller script -->
   <script>
@@ -1058,6 +1023,9 @@ import visaDataMatrix from "../data/passport-index.json";
       const officialSourceLink = document.getElementById(
         "official-source-link",
       ) as HTMLAnchorElement;
+      const complianceBanner = document.getElementById(
+        "compliance-banner-container",
+      ) as HTMLDivElement;
       const themeToggleBtn = document.getElementById("theme-toggle");
 
       // Accordion Toggle Logic
@@ -1323,6 +1291,9 @@ import visaDataMatrix from "../data/passport-index.json";
             detailContainer.classList.add("hidden");
             collapseDetails();
           }
+          if (complianceBanner) {
+            complianceBanner.classList.add("hidden");
+          }
           hideNewsSection();
           resetSEO();
           return;
@@ -1406,6 +1377,9 @@ import visaDataMatrix from "../data/passport-index.json";
           if (detailContainer) {
             detailContainer.classList.add("hidden");
             collapseDetails();
+          }
+          if (complianceBanner) {
+            complianceBanner.classList.add("hidden");
           }
           hideNewsSection();
           resetSEO();
@@ -1505,6 +1479,10 @@ import visaDataMatrix from "../data/passport-index.json";
           }
 
           detailContainer.classList.remove("hidden");
+        }
+
+        if (complianceBanner) {
+          complianceBanner.classList.remove("hidden");
         }
 
         // Fetch relevant news

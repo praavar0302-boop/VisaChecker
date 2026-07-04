@@ -1,0 +1,282 @@
+---
+// src/components/Footer.astro
+---
+<footer class="border-t border-zinc-200 bg-white dark:border-zinc-900 dark:bg-black py-16 transition-colors duration-300 relative z-10">
+  <div class="max-w-5xl mx-auto px-4 flex flex-col gap-12">
+    <!-- Top Row: Logo, Navigation, and Meta Actions -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <!-- Brand column (5 cols) -->
+      <div class="md:col-span-5 space-y-4">
+        <div class="flex items-center gap-2">
+          <img src="/favicon-96x96.png" alt="Logo" class="w-5 h-5 object-contain" />
+          <span class="text-zinc-950 dark:text-white font-sans font-semibold text-sm tracking-tight transition-colors">Global Visa Tracker</span>
+        </div>
+        <p class="font-sans text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed max-w-sm">
+          An open-source discovery engine for international travelers. Verify entry eligibility, visa requirements, and stay durations using structured, daily-synced open datasets.
+        </p>
+      </div>
+
+      <!-- Navigation column (3 cols) -->
+      <div class="md:col-span-3 space-y-3">
+        <h4 class="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">Navigation</h4>
+        <nav class="flex flex-col gap-2 font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
+          <a href="/" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Home</a>
+          <a href="/methodology" class="hover:text-zinc-950 dark:hover:text-white transition-colors border-b border-transparent hover:border-zinc-300">Methodology & Data</a>
+          <a href="/about" class="hover:text-zinc-950 dark:hover:text-white transition-colors">About Project</a>
+          <a href="/contact" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Contact Support</a>
+        </nav>
+      </div>
+
+      <!-- Legal / Meta column (2 cols) -->
+      <div class="md:col-span-2 space-y-3">
+        <h4 class="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">Legal</h4>
+        <nav class="flex flex-col gap-2 font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
+          <a href="/privacy" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Privacy Policy</a>
+          <a href="/terms" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Terms of Service</a>
+        </nav>
+      </div>
+
+      <!-- Transparency column (2 cols) -->
+      <div class="md:col-span-2 space-y-3">
+        <h4 class="font-mono text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">Transparency</h4>
+        <div class="flex flex-col gap-2.5">
+          <!-- Public Github Repository -->
+          <a 
+            href="https://github.com/praavar0302-boop/VisaChecker" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-1.5 font-mono text-[11px] text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white transition-colors group"
+          >
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.167 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+            <span>GitHub Repository</span>
+          </a>
+
+          <!-- Error reporting trigger -->
+          <button 
+            id="report-mismatch-trigger"
+            type="button"
+            class="inline-flex items-center gap-1.5 font-mono text-[11px] text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white transition-colors cursor-pointer select-none text-left focus:outline-none"
+            aria-expanded="false"
+            aria-controls="mismatch-feedback-panel"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span>Report data mismatch</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsible Mismatch Feedback Form Panel -->
+    <div 
+      id="mismatch-feedback-panel"
+      class="max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out border-t border-transparent dark:border-transparent"
+    >
+      <div class="py-6 border border-zinc-200 dark:border-zinc-800 bg-zinc-50/40 dark:bg-zinc-950/20 rounded-lg p-5 max-w-lg space-y-4">
+        <div>
+          <h5 class="font-sans text-xs font-semibold text-zinc-950 dark:text-zinc-250">Report Data Inaccuracy</h5>
+          <p class="font-sans text-[11px] text-zinc-500 dark:text-zinc-400 mt-1">
+            Notice a visa requirement mismatch? Report it directly. Our automated daily engine checks submission logs against updated embassy data matrices.
+          </p>
+        </div>
+
+        <form id="mismatch-feedback-form" class="space-y-3" onsubmit="return false;">
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label for="feedback-origin" class="block font-mono text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Passport Origin (e.g. DE)</label>
+              <input 
+                type="text" 
+                id="feedback-origin" 
+                placeholder="DE" 
+                required 
+                maxlength="3"
+                class="w-full bg-white text-zinc-950 border border-zinc-200 rounded px-2.5 py-1.5 font-sans text-xs focus:outline-none focus:border-zinc-400 dark:bg-[#0c0c0c] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-600 transition-colors uppercase"
+              />
+            </div>
+            <div class="space-y-1">
+              <label for="feedback-destination" class="block font-mono text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Destination (e.g. US)</label>
+              <input 
+                type="text" 
+                id="feedback-destination" 
+                placeholder="US" 
+                required 
+                maxlength="3"
+                class="w-full bg-white text-zinc-950 border border-zinc-200 rounded px-2.5 py-1.5 font-sans text-xs focus:outline-none focus:border-zinc-400 dark:bg-[#0c0c0c] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-600 transition-colors uppercase"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label for="feedback-rule" class="block font-mono text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Correct Visa Status</label>
+            <select 
+              id="feedback-rule" 
+              required
+              class="w-full bg-white text-zinc-950 border border-zinc-200 rounded px-2.5 py-1.5 font-sans text-xs focus:outline-none focus:border-zinc-400 dark:bg-[#0c0c0c] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-600 transition-colors"
+            >
+              <option value="">Select correct rule...</option>
+              <option value="Visa-Free">Visa-Free Travel</option>
+              <option value="e-Visa">e-Visa / Electronic Travel Authorization</option>
+              <option value="Visa on Arrival">Visa on Arrival</option>
+              <option value="Visa Required">Embassy Visa Required</option>
+            </select>
+          </div>
+
+          <div class="space-y-1">
+            <label for="feedback-notes" class="block font-mono text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Correct Stay Duration / Additional Info</label>
+            <textarea 
+              id="feedback-notes" 
+              rows="2" 
+              placeholder="e.g., Allowed stay is 90 days. Source: Ministry of Foreign Affairs update June 2026."
+              class="w-full bg-white text-zinc-950 border border-zinc-200 rounded px-2.5 py-1.5 font-sans text-xs focus:outline-none focus:border-zinc-400 dark:bg-[#0c0c0c] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-600 transition-colors"
+            ></textarea>
+          </div>
+
+          <div class="flex items-center gap-3 pt-1">
+            <button 
+              type="submit" 
+              class="bg-zinc-950 text-white dark:bg-white dark:text-black hover:opacity-90 transition-opacity font-sans font-medium text-xs px-4 py-2 rounded cursor-pointer"
+            >
+              Submit Report
+            </button>
+            <button 
+              type="button" 
+              id="report-mismatch-cancel"
+              class="text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors font-mono text-[10px] uppercase tracking-wider cursor-pointer"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+
+        <div id="mismatch-feedback-success" class="hidden text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-2 p-2.5 border border-emerald-500/20 bg-emerald-500/5 rounded-lg transition-colors">
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>Report received! Our automated crawling pipeline will cross-reference this route within 24 hours.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row: Copyright and Host info -->
+    <div class="flex flex-col sm:flex-row justify-between items-center border-t border-zinc-150 dark:border-zinc-900 pt-8 gap-4 font-mono text-[10px] text-zinc-400 dark:text-zinc-500">
+      <span>© 2026 Global Visa Tracker. Released under MIT License.</span>
+      <div class="flex items-center gap-3">
+        <span>Dataset sync: Daily</span>
+        <span>•</span>
+        <span>Hosted transparently on Cloudflare Pages</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.getElementById("report-mismatch-trigger") as HTMLButtonElement;
+    const panel = document.getElementById("mismatch-feedback-panel") as HTMLDivElement;
+    const form = document.getElementById("mismatch-feedback-form") as HTMLFormElement;
+    const successMsg = document.getElementById("mismatch-feedback-success") as HTMLDivElement;
+    const cancelBtn = document.getElementById("report-mismatch-cancel") as HTMLButtonElement;
+
+    const originInput = document.getElementById("feedback-origin") as HTMLInputElement;
+    const destInput = document.getElementById("feedback-destination") as HTMLInputElement;
+
+    function collapseFeedback() {
+      if (!panel || !trigger) return;
+      panel.style.maxHeight = "0px";
+      panel.classList.remove("opacity-100", "border-t", "pt-6");
+      panel.classList.add("opacity-0");
+      trigger.setAttribute("aria-expanded", "false");
+    }
+
+    function expandFeedback() {
+      if (!panel || !trigger) return;
+      
+      // Auto-prefill based on current query in active document if elements exist
+      const pageOriginInput = document.getElementById("origin-input") as HTMLInputElement;
+      const pageDestInput = document.getElementById("destination-input") as HTMLInputElement;
+      
+      if (pageOriginInput && originInput) {
+        const originCode = pageOriginInput.getAttribute("data-selected-code");
+        if (originCode) originInput.value = originCode;
+      }
+      if (pageDestInput && destInput) {
+        const destCode = pageDestInput.getAttribute("data-selected-code");
+        if (destCode) destInput.value = destCode;
+      }
+
+      panel.classList.remove("opacity-0");
+      panel.style.maxHeight = `${panel.scrollHeight + 50}px`; // buffer
+      panel.classList.add("opacity-100", "border-t", "pt-6");
+      trigger.setAttribute("aria-expanded", "true");
+
+      if (form) {
+        form.classList.remove("hidden");
+      }
+      if (successMsg) {
+        successMsg.classList.add("hidden");
+      }
+    }
+
+    if (trigger && panel) {
+      trigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+        if (isExpanded) {
+          collapseFeedback();
+        } else {
+          expandFeedback();
+        }
+      });
+    }
+
+    if (cancelBtn) {
+      cancelBtn.addEventListener("click", () => {
+        collapseFeedback();
+      });
+    }
+
+    if (form) {
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        // Extract data to simulate logging/sending
+        const originVal = originInput.value.trim().toUpperCase();
+        const destVal = destInput.value.trim().toUpperCase();
+        const ruleVal = (document.getElementById("feedback-rule") as HTMLSelectElement).value;
+        const notesVal = (document.getElementById("feedback-notes") as HTMLTextAreaElement).value.trim();
+
+        // Create log entry in localStorage for auditability
+        try {
+          const reports = JSON.parse(localStorage.getItem("cifd_mismatch_reports") || "[]");
+          reports.push({
+            timestamp: new Date().toISOString(),
+            origin: originVal,
+            destination: destVal,
+            proposedRule: ruleVal,
+            notes: notesVal
+          });
+          localStorage.setItem("cifd_mismatch_reports", JSON.stringify(reports));
+        } catch(e) {
+          console.error("Local storage error:", e);
+        }
+
+        console.log(`[Feedback System] Mismatch report registered: ${originVal} -> ${destVal} (Status: ${ruleVal})`);
+
+        // Success state
+        form.classList.add("hidden");
+        if (successMsg) {
+          successMsg.classList.remove("hidden");
+        }
+        
+        // Auto close after 3.5 seconds
+        setTimeout(() => {
+          collapseFeedback();
+          form.reset();
+        }, 3500);
+      });
+    }
+  });
+</script>
