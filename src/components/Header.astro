@@ -84,29 +84,29 @@ function isActive(href: string) {
       </button>
     </div>
   </div>
-
-  <!-- Mobile Drawer Menu (Visible on Mobile & Tablet) -->
-  <div
-    id="mobile-menu-drawer"
-    class="hidden fixed top-16 left-0 right-0 bottom-0 bg-white/95 dark:bg-black/95 backdrop-blur-lg border-t border-zinc-200 dark:border-zinc-900 z-40 transition-all duration-300 overflow-y-auto"
-  >
-    <nav class="flex flex-col p-6 space-y-4 font-mono text-[11px] uppercase tracking-wider text-zinc-550 dark:text-zinc-400">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          target={link.external ? "_blank" : undefined}
-          rel={link.external ? "noopener noreferrer" : undefined}
-          class={`hover:text-zinc-950 dark:hover:text-white transition-colors py-3 border-b border-zinc-100 dark:border-zinc-900/50 flex justify-between items-center ${
-            isActive(link.href) ? "text-zinc-950 dark:text-white font-semibold" : ""
-          }`}
-        >
-          <span>{link.label}</span>
-          {isActive(link.href) && <span class="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white" />}
-        </a>
-      ))}
-    </nav>
-  </div>
 </header>
+
+<!-- Mobile Drawer Menu (Visible on Mobile & Tablet) -->
+<div
+  id="mobile-menu-drawer"
+  class="hidden fixed top-16 left-0 right-0 bottom-0 bg-white/95 dark:bg-black/95 backdrop-blur-lg border-t border-zinc-200 dark:border-zinc-900 z-40 transition-all duration-300 overflow-y-auto"
+>
+  <nav class="flex flex-col p-6 space-y-4 font-mono text-[11px] uppercase tracking-wider text-zinc-550 dark:text-zinc-400">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noopener noreferrer" : undefined}
+        class={`hover:text-zinc-950 dark:hover:text-white transition-colors py-3 border-b border-zinc-100 dark:border-zinc-900/50 flex justify-between items-center ${
+          isActive(link.href) ? "text-zinc-950 dark:text-white font-semibold" : ""
+        }`}
+      >
+        <span>{link.label}</span>
+        {isActive(link.href) && <span class="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white" />}
+      </a>
+    ))}
+  </nav>
+</div>
 
 <script>
   function setupMobileMenu() {
@@ -123,6 +123,11 @@ function isActive(href: string) {
     hamburgerIcon.classList.add("block");
     closeIcon.classList.remove("block");
     closeIcon.classList.add("hidden");
+    document.body.style.overflow = "";
+
+    // Prevent duplicate event listener registration on the same element
+    if (toggleBtn.dataset.menuInitialized) return;
+    toggleBtn.dataset.menuInitialized = "true";
 
     toggleBtn.addEventListener("click", () => {
       const isHidden = drawer.classList.contains("hidden");
