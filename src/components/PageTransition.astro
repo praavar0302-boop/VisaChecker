@@ -32,43 +32,6 @@
 </div>
 
 <style is:global>
-  /* Define keyframe animations for swipe transition */
-  @keyframes swipe-in-left-to-right {
-    0% {
-      transform: translate3d(-100%, 0, 0);
-    }
-    100% {
-      transform: translate3d(0%, 0, 0);
-    }
-  }
-
-  @keyframes swipe-out-left-to-right {
-    0% {
-      transform: translate3d(0%, 0, 0);
-    }
-    100% {
-      transform: translate3d(100%, 0, 0);
-    }
-  }
-
-  @keyframes swipe-in-right-to-left {
-    0% {
-      transform: translate3d(100%, 0, 0);
-    }
-    100% {
-      transform: translate3d(0%, 0, 0);
-    }
-  }
-
-  @keyframes swipe-out-right-to-left {
-    0% {
-      transform: translate3d(0%, 0, 0);
-    }
-    100% {
-      transform: translate3d(-100%, 0, 0);
-    }
-  }
-
   @keyframes plane-bobbing {
     0%, 100% {
       transform: translate3d(-50%, -55%, 0);
@@ -76,23 +39,6 @@
     50% {
       transform: translate3d(-50%, -45%, 0);
     }
-  }
-
-  /* Classes to trigger animations */
-  .animate-swipe-in-ltr {
-    animation: swipe-in-left-to-right 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  }
-
-  .animate-swipe-out-ltr {
-    animation: swipe-out-left-to-right 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  }
-
-  .animate-swipe-in-rtl {
-    animation: swipe-in-right-to-left 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  }
-
-  .animate-swipe-out-rtl {
-    animation: swipe-out-right-to-left 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
   .plane-bob {
@@ -129,24 +75,28 @@
 
       if (!overlay || !panel || !planeContainer || !airplaneSvg) return;
 
-      // Clean up previous classes
+      // Set transition property to none for setup phase
+      panel.style.transition = "none";
+
+      // Clean up previous classes and set default layout
       panel.className = "absolute inset-y-0 w-full bg-[#fafafa] dark:bg-[#030303] shadow-[0_0_50px_rgba(0,0,0,0.15)] dark:shadow-[0_0_50px_rgba(0,0,0,0.5)] flex items-center justify-center";
       planeContainer.className = "absolute top-1/2 flex items-center justify-center z-10 plane-bob";
 
+      // Set explicit plane orientation and leading edge position
       if (direction === "ltr") {
-        // Position plane on the right (leading edge)
         planeContainer.style.left = "100%";
         planeContainer.style.right = "auto";
-        
-        // Face right
         airplaneSvg.style.transform = "rotate(90deg)";
+        
+        // Initial panel transform off-screen left
+        panel.style.transform = "translate3d(-100%, 0, 0)";
       } else {
-        // Position plane on the left (leading edge)
         planeContainer.style.right = "auto";
         planeContainer.style.left = "0%";
-        
-        // Face left
         airplaneSvg.style.transform = "rotate(-90deg)";
+        
+        // Initial panel transform off-screen right
+        panel.style.transform = "translate3d(100%, 0, 0)";
       }
 
       // Show overlay and block clicks
@@ -154,16 +104,13 @@
       overlay.classList.remove("pointer-events-none");
       overlay.classList.add("pointer-events-auto");
 
-      // Force layout reflows to ensure style changes are painted prior to animation trigger
+      // Force layout reflows to paint starting state before transition
       overlay.offsetWidth;
       panel.offsetWidth;
 
-      // Apply the swipe in animation class
-      if (direction === "ltr") {
-        panel.classList.add("animate-swipe-in-ltr");
-      } else {
-        panel.classList.add("animate-swipe-in-rtl");
-      }
+      // Apply transition properties and trigger target position
+      panel.style.transition = "transform 400ms cubic-bezier(0.25, 1, 0.5, 1)";
+      panel.style.transform = "translate3d(0%, 0, 0)";
 
       // Serialize page loading: let swipe-in finish first (450ms) so main thread stays idle, then fetch page
       const originalLoader = event.loader;
@@ -176,38 +123,46 @@
     document.addEventListener("astro:after-swap", () => {
       const overlay = document.getElementById("page-transition-overlay");
       const panel = document.getElementById("swipe-panel");
+      const planeContainer = document.getElementById("plane-container");
+      const airplaneSvg = document.getElementById("airplane-svg");
 
-      if (!overlay || !panel) return;
+      if (!overlay || !panel || !planeContainer || !airplaneSvg) return;
 
       const direction = transitionDirection;
 
-      // Remove the swipe-in animation class
-      panel.classList.remove("animate-swipe-in-ltr", "animate-swipe-in-rtl");
+      // Disable transition to set base state
+      panel.style.transition = "none";
 
-      // Force layout reflow before triggering swipe-out exit animation
+      // Re-apply plane position and rotation based on direction to guarantee state after DOM swap
+      if (direction === "ltr") {
+        planeContainer.style.left = "100%";
+        planeContainer.style.right = "auto";
+        airplaneSvg.style.transform = "rotate(90deg)";
+      } else {
+        planeContainer.style.right = "auto";
+        planeContainer.style.left = "0%";
+        airplaneSvg.style.transform = "rotate(-90deg)";
+      }
+
+      // Explicitly set panel on-screen
+      panel.style.transform = "translate3d(0%, 0, 0)";
+
+      // Force layout reflow
       panel.offsetWidth;
 
-      // Trigger the swipe-out animation
+      // Set transition and move panel off-screen (swipe-out)
+      panel.style.transition = "transform 400ms cubic-bezier(0.25, 1, 0.5, 1)";
       if (direction === "ltr") {
-        panel.classList.add("animate-swipe-out-ltr");
+        panel.style.transform = "translate3d(100%, 0, 0)";
       } else {
-        panel.classList.add("animate-swipe-out-rtl");
+        panel.style.transform = "translate3d(-100%, 0, 0)";
       }
 
       // Hide the overlay and restore interaction once transition is done
       setTimeout(() => {
-        // Only hide if we are in the finished state
-        if (
-          panel.classList.contains("animate-swipe-out-ltr") ||
-          panel.classList.contains("animate-swipe-out-rtl")
-        ) {
-          overlay.classList.add("hidden");
-          overlay.classList.add("pointer-events-none");
-          overlay.classList.remove("pointer-events-auto");
-          
-          // Clean classes
-          panel.classList.remove("animate-swipe-out-ltr", "animate-swipe-out-rtl");
-        }
+        overlay.classList.add("hidden");
+        overlay.classList.add("pointer-events-none");
+        overlay.classList.remove("pointer-events-auto");
       }, 400);
     });
   }
