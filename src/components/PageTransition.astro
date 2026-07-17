@@ -122,6 +122,36 @@
       };
     });
 
+    document.addEventListener("astro:before-swap", (e: any) => {
+      if (!e.newDocument) return;
+      const newOverlay = e.newDocument.getElementById("page-transition-overlay");
+      const newPanel = e.newDocument.getElementById("swipe-panel");
+      const newPlaneContainer = e.newDocument.getElementById("plane-container");
+      const newAirplaneSvg = e.newDocument.getElementById("airplane-svg");
+
+      if (newOverlay && newPanel && newPlaneContainer && newAirplaneSvg) {
+        // Ensure overlay is visible in the incoming DOM before it is painted
+        newOverlay.classList.remove("hidden");
+        newOverlay.classList.remove("pointer-events-none");
+        newOverlay.classList.add("pointer-events-auto");
+
+        // Keep panel fully on-screen covering the page swap
+        newPanel.style.transition = "none";
+        newPanel.style.transform = "translate3d(0%, 0, 0)";
+
+        // Set correct plane state in the new DOM
+        if (transitionDirection === "ltr") {
+          newPlaneContainer.style.left = "100%";
+          newPlaneContainer.style.right = "auto";
+          newAirplaneSvg.style.transform = "rotate(90deg)";
+        } else {
+          newPlaneContainer.style.right = "auto";
+          newPlaneContainer.style.left = "0%";
+          newAirplaneSvg.style.transform = "rotate(-90deg)";
+        }
+      }
+    });
+
     document.addEventListener("astro:after-swap", () => {
       const overlay = document.getElementById("page-transition-overlay");
       const panel = document.getElementById("swipe-panel");
