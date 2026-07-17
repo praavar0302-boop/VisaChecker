@@ -116,15 +116,22 @@
 
     // Wait 30ms to let Safari/Firefox paint display:block, then apply transition
     setTimeout(() => {
-      panel.style.transition = "transform 400ms cubic-bezier(0.25, 1, 0.5, 1)";
+      panel.style.transition = "transform 350ms cubic-bezier(0.25, 1, 0.5, 1)";
       panel.style.transform = "translate3d(0%, 0, 0)";
     }, 30);
 
-    // Serialize page loading: let swipe-in finish first (450ms) so main thread stays idle, then fetch page
+    // Parallelize network fetch: start original loader fetch instantly, but hold resolution until 350ms swipe finishes
+    const startTime = Date.now();
     const originalLoader = event.loader;
     event.loader = async function () {
-      await new Promise((resolve) => setTimeout(resolve, 450));
-      await originalLoader();
+      const loadPromise = originalLoader();
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, 380 - elapsedTime); // 350ms transition + 30ms setup buffer
+      
+      if (remainingTime > 0) {
+        await new Promise((resolve) => setTimeout(resolve, remainingTime));
+      }
+      await loadPromise;
     };
   }
 
@@ -200,7 +207,7 @@
     panel.offsetWidth;
 
     // Transition the opacity of the overlay to 0 (fade-out reveal)
-    overlay.style.transition = "opacity 350ms ease-out";
+    overlay.style.transition = "opacity 250ms ease-out";
     overlay.style.opacity = "0";
 
     // Hide the overlay and restore interaction once transition is done
@@ -212,7 +219,7 @@
       
       // Reset transition lock
       isTransitioning = false;
-    }, 350);
+    }, 250);
   }
 
   function initTransitions() {
