@@ -107,6 +107,8 @@
     overlay.classList.remove("hidden");
     overlay.classList.remove("pointer-events-none");
     overlay.classList.add("pointer-events-auto");
+    overlay.style.opacity = "1";
+    overlay.style.transition = "none";
 
     // Force layout reflows to paint starting state before transition
     overlay.offsetWidth;
@@ -141,6 +143,8 @@
       newOverlay.classList.remove("hidden");
       newOverlay.classList.remove("pointer-events-none");
       newOverlay.classList.add("pointer-events-auto");
+      newOverlay.style.opacity = "1";
+      newOverlay.style.transition = "none";
 
       // Keep panel fully on-screen covering the page swap
       newPanel.style.transition = "none";
@@ -174,7 +178,7 @@
 
     const direction = transitionDirection;
 
-    // Disable transition to set base state
+    // Disable transform transitions
     panel.style.transition = "none";
 
     // Re-apply plane position and rotation based on direction to guarantee state after DOM swap
@@ -192,27 +196,23 @@
     panel.style.transform = "translate3d(0%, 0, 0)";
 
     // Force layout reflow
+    overlay.offsetWidth;
     panel.offsetWidth;
 
-    // Wait 30ms before triggering swipe-out exit transition (forces Safari/Firefox layout paint)
-    setTimeout(() => {
-      panel.style.transition = "transform 400ms cubic-bezier(0.25, 1, 0.5, 1)";
-      if (direction === "ltr") {
-        panel.style.transform = "translate3d(100%, 0, 0)";
-      } else {
-        panel.style.transform = "translate3d(-100%, 0, 0)";
-      }
-    }, 30);
+    // Transition the opacity of the overlay to 0 (fade-out reveal)
+    overlay.style.transition = "opacity 350ms ease-out";
+    overlay.style.opacity = "0";
 
     // Hide the overlay and restore interaction once transition is done
     setTimeout(() => {
       overlay.classList.add("hidden");
       overlay.classList.add("pointer-events-none");
       overlay.classList.remove("pointer-events-auto");
+      overlay.style.opacity = "1"; // reset opacity for next transition
       
       // Reset transition lock
       isTransitioning = false;
-    }, 450);
+    }, 350);
   }
 
   function initTransitions() {
