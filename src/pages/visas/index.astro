@@ -1,0 +1,272 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import visaDataMatrix from "../../data/passport-index.json";
+
+function getMobilityScore(countryCode: string) {
+  const rules = (visaDataMatrix as any)[countryCode] || {};
+  return Object.values(rules).filter((rule: any) => {
+    const status = rule.status ? rule.status.toLowerCase() : "";
+    return (
+      status === "visa free" ||
+      !isNaN(Number(status)) ||
+      status === "eta" ||
+      status === "e-visa" ||
+      status === "visa on arrival"
+    );
+  }).length;
+}
+
+// Convert ISO-2 country code to flag emoji
+function getFlagEmoji(countryCode: string) {
+  if (!countryCode || countryCode.length !== 2) return "🏳️";
+  const codePoints = countryCode
+    .toUpperCase()
+    .split("")
+    .map((char) => 127397 + char.charCodeAt(0));
+  try {
+    return String.fromCodePoint(...codePoints);
+  } catch (e) {
+    return "🏳️";
+  }
+}
+
+const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
+
+const passportList = Object.keys(visaDataMatrix)
+  .map((code) => {
+    let name = code;
+    try {
+      name = regionNames.of(code) || code;
+    } catch (e) {}
+    return {
+      code,
+      name,
+      flag: getFlagEmoji(code),
+      score: getMobilityScore(code),
+    };
+  })
+  .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+---
+
+<Layout title="Global Passport Power Rankings & Visa Directory | CIFD" description="Explore the complete list of 197 global passports sorted by travel freedom and mobility score. Access detailed visa-free travel guides for every nationality.">
+  <!-- Background Glow FX (Vercel atmospheric depth) -->
+  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#007cf0]/10 via-[#7928ca]/10 to-[#ff0080]/5 blur-[130px] pointer-events-none"></div>
+  <div class="absolute bottom-10 right-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#00dfd8]/5 via-[#f9cb28]/5 to-emerald-500/5 blur-[120px] pointer-events-none"></div>
+
+  <main class="max-w-5xl mx-auto px-4 pt-12 pb-24 relative">
+    <!-- Hero Header -->
+    <div class="text-center md:text-left mb-10 space-y-4">
+      <span class="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest block">
+        Global Passport Index
+      </span>
+      <h1 class="font-sans text-4xl md:text-5xl font-semibold tracking-tight text-zinc-950 dark:text-white leading-tight transition-colors">
+        Global Passport Power Rankings.
+      </h1>
+      <p class="font-sans text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl leading-relaxed transition-colors">
+        Browse passport travel freedom. Select any passport to view a detailed, comprehensive guide of visa-free destinations, eVisa requirements, and embassy requirements.
+      </p>
+    </div>
+
+    <!-- Search Input & Interactive controls -->
+    <section class="mb-10 max-w-lg">
+      <div class="relative">
+        <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+          <svg class="h-4 w-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </span>
+        <input
+          type="text"
+          id="passport-search"
+          placeholder="Search passports (e.g. Germany, Japan)..."
+          class="w-full bg-white text-zinc-950 border border-zinc-200 rounded-lg pl-10 pr-4 py-3 font-sans text-sm focus:outline-none focus:border-zinc-400 focus:ring-1 focus:ring-zinc-400 dark:bg-[#080808] dark:text-white dark:border-zinc-800 dark:focus:border-zinc-600 transition-all shadow-[0_1px_2px_rgba(0,0,0,0.02)]"
+        />
+      </div>
+      <div class="flex items-center justify-between mt-2 px-1">
+        <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-wider" id="passport-count">
+          Showing 197 passports
+        </span>
+        <button 
+          id="sort-toggle" 
+          class="font-mono text-[9px] text-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-colors uppercase tracking-wider cursor-pointer"
+        >
+          Sort: Rank (High to Low)
+        </button>
+      </div>
+    </section>
+
+    <!-- Passports Grid -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="passports-grid">
+      {passportList.map((p, idx) => (
+        <a
+          href={`/visas/${p.code.toLowerCase()}`}
+          data-passport-code={p.code}
+          data-passport-name={p.name.toLowerCase()}
+          data-passport-score={p.score}
+          class="passport-card flex items-center justify-between p-4 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] hover:border-zinc-400 dark:hover:border-zinc-700 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-all group"
+        >
+          <div class="flex items-center gap-3.5 min-w-0">
+            <span class="text-2xl select-none" role="img" aria-label={p.name}>{p.flag}</span>
+            <div class="flex flex-col min-w-0">
+              <span class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200 group-hover:text-blue-500 transition-colors truncate">
+                {p.name}
+              </span>
+              <span class="font-mono text-[9px] text-zinc-500 mt-0.5 uppercase tracking-wider">
+                {p.code}
+              </span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-xs font-semibold text-zinc-900 dark:text-zinc-200">
+              {p.score}
+            </span>
+            <span class="font-mono text-[9px] text-zinc-400">
+              Rank {idx + 1}
+            </span>
+          </div>
+        </a>
+      ))}
+    </section>
+
+    <!-- Empty State -->
+    <div id="no-results" class="hidden text-center py-16 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-lg">
+      <svg class="mx-auto h-8 w-8 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
+      <h3 class="mt-4 text-sm font-sans font-medium text-zinc-900 dark:text-zinc-100">No passports found</h3>
+      <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Try adjusting your search keywords.</p>
+    </div>
+
+    <!-- Informational Content (Anti-Low Value / High SEO Value) -->
+    <section class="mt-20 pt-12 border-t border-zinc-200 dark:border-zinc-900/50 space-y-8 text-zinc-600 dark:text-zinc-300">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <h2 class="font-sans text-lg font-semibold text-zinc-950 dark:text-white transition-colors">
+          Understanding passport rankings and mobility.
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-[12px] leading-relaxed">
+          <div class="space-y-4">
+            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              How is Passport Mobility calculated?
+            </h3>
+            <p>
+              Passport mobility scores represent the total count of sovereign territories and countries a passport holder can access without acquiring a traditional, pre-cleared embassy visa. We calculate this rank using three primary categories of travel clearance:
+            </p>
+            <ul class="list-disc pl-4 space-y-1">
+              <li><strong>Visa-Free Access:</strong> Direct border entry with just a valid passport.</li>
+              <li><strong>Visa on Arrival (VoA):</strong> Instantly granted visa at the arrival border checkpoint.</li>
+              <li><strong>e-Visa / eTA:</strong> Rapid online approval certificates obtained before travel.</li>
+            </ul>
+            <p>
+              By combining these elements, we establish a unified "travel freedom index" that ranks nations globally based on bilateral diplomatic strength.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              Where does the rankings data come from?
+            </h3>
+            <p>
+              To ensure absolute data transparency, our passport visa requirement matrix is sourced from public, open-source dataset repositories hosted on GitHub by <a href="https://github.com/mledoze/countries" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline dark:text-blue-400">PassportIndex.org</a>.
+            </p>
+            <p>
+              We run automated daily synchronization scripts via GitHub Actions. These crons pull the latest bilateral agreements, stay limits, and electronic portals directly into our static database, providing a transparent, verifiable starting point for global travel planning.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+              Why do entry requirements change?
+            </h3>
+            <p>
+              Visa requirements are not static; they shift continuously due to diplomatic negotiations, economic treaties, security parameters, and geopolitical alignments. For example, bilateral agreements often grant mutual visa exemptions to foster trade and tourism. 
+            </p>
+            <p>
+              Conversely, political disputes or security emergencies can trigger swift visa suspensions or border constraints. Travelers must verify current consular databases before booking travel. Our automated crawling scripts sync daily with public passport databases to keep the matrix updated.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const searchInput = document.getElementById("passport-search") as HTMLInputElement;
+      if (!searchInput) return;
+      const grid = document.getElementById("passports-grid") as HTMLDivElement;
+      const cards = document.querySelectorAll(".passport-card") as NodeListOf<HTMLAnchorElement>;
+      const noResults = document.getElementById("no-results") as HTMLDivElement;
+      const countLabel = document.getElementById("passport-count") as HTMLSpanElement;
+      const sortToggleBtn = document.getElementById("sort-toggle") as HTMLButtonElement;
+
+      let currentSort = "rank"; // "rank" or "alpha"
+
+      function filterCards() {
+        if (!searchInput || !cards || !countLabel || !noResults || !grid) return;
+        const query = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const name = card.getAttribute("data-passport-name") || "";
+          const code = card.getAttribute("data-passport-code") || "";
+          
+          if (name.includes(query) || code.toLowerCase().includes(query)) {
+            card.classList.remove("hidden");
+            visibleCount++;
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        countLabel.textContent = `Showing ${visibleCount} passport${visibleCount === 1 ? "" : "s"}`;
+        
+        if (visibleCount === 0) {
+          grid.classList.add("hidden");
+          noResults.classList.remove("hidden");
+        } else {
+          grid.classList.remove("hidden");
+          noResults.classList.add("hidden");
+        }
+      }
+
+      function sortCards() {
+        if (!grid || !cards) return;
+        const cardsArray = Array.from(cards);
+
+        if (currentSort === "rank") {
+          cardsArray.sort((a, b) => {
+            const scoreA = parseInt(a.getAttribute("data-passport-score") || "0");
+            const scoreB = parseInt(b.getAttribute("data-passport-score") || "0");
+            const nameA = a.getAttribute("data-passport-name") || "";
+            const nameB = b.getAttribute("data-passport-name") || "";
+            return scoreB - scoreA || nameA.localeCompare(nameB);
+          });
+          sortToggleBtn.textContent = "Sort: Rank (High to Low)";
+        } else {
+          cardsArray.sort((a, b) => {
+            const nameA = a.getAttribute("data-passport-name") || "";
+            const nameB = b.getAttribute("data-passport-name") || "";
+            return nameA.localeCompare(nameB);
+          });
+          sortToggleBtn.textContent = "Sort: Alphabetical";
+        }
+
+        cardsArray.forEach((card) => grid.appendChild(card));
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", filterCards);
+      }
+
+      if (sortToggleBtn) {
+        sortToggleBtn.addEventListener("click", () => {
+          currentSort = currentSort === "rank" ? "alpha" : "rank";
+          sortCards();
+        });
+      }
+    });
+  </script>
+</Layout>

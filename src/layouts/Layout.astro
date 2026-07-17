@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import PageTransition from '../components/PageTransition.astro';
+import Header from '../components/Header.astro';
 
 interface Props {
 	title?: string;
@@ -65,10 +68,49 @@ const {
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+		
+		<ClientRouter />
 	</head>
 	<body class="bg-[#fafafa] text-[#171717] dark:bg-[#030303] dark:text-[#fafafa] antialiased selection:bg-zinc-900 selection:text-white dark:selection:bg-[#fafafa] dark:selection:text-[#030303]">
+		<Header />
 		<div class="relative overflow-x-hidden min-h-screen w-full flex flex-col justify-between">
 			<slot />
 		</div>
+		<PageTransition />
+		<script>
+			function applyTheme() {
+				const theme = (() => {
+					if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+						return localStorage.getItem('theme');
+					}
+					return 'dark';
+				})();
+				
+				if (theme === 'dark') {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			}
+
+			document.addEventListener("astro:after-swap", applyTheme);
+
+			document.addEventListener("astro:page-load", () => {
+				applyTheme();
+				const themeToggleBtn = document.getElementById("theme-toggle");
+				if (themeToggleBtn) {
+					themeToggleBtn.addEventListener("click", () => {
+						const isDark = document.documentElement.classList.contains("dark");
+						if (isDark) {
+							document.documentElement.classList.remove("dark");
+							localStorage.setItem("theme", "light");
+						} else {
+							document.documentElement.classList.add("dark");
+							localStorage.setItem("theme", "dark");
+						}
+					});
+				}
+			});
+		</script>
 	</body>
 </html>

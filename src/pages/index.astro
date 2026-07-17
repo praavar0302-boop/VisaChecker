@@ -3,6 +3,32 @@ import Layout from "../layouts/Layout.astro";
 import visaDataMatrix from "../data/passport-index.json";
 import Footer from "../components/Footer.astro";
 import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
+
+function getMobilityScore(countryCode: string) {
+  const rules = (visaDataMatrix as any)[countryCode] || {};
+  return Object.values(rules).filter((rule: any) => {
+    const status = rule.status ? rule.status.toLowerCase() : "";
+    return (
+      status === "visa free" ||
+      !isNaN(Number(status)) ||
+      status === "eta" ||
+      status === "e-visa" ||
+      status === "visa on arrival"
+    );
+  }).length;
+}
+
+const popularPassports = [
+  { code: "US", name: "United States", flag: "🇺🇸" },
+  { code: "GB", name: "United Kingdom", flag: "🇬🇧" },
+  { code: "DE", name: "Germany", flag: "🇩🇪" },
+  { code: "CA", name: "Canada", flag: "🇨🇦" },
+  { code: "AU", name: "Australia", flag: "🇦🇺" },
+  { code: "IN", name: "India", flag: "🇮🇳" },
+].map((p) => ({
+  ...p,
+  score: getMobilityScore(p.code),
+}));
 ---
 
 <Layout>
@@ -16,119 +42,19 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
   >
   </div>
 
-  <!-- Header Nav -->
-  <header
-    class="sticky top-0 z-50 border-b border-zinc-200 bg-white/80 dark:border-zinc-900 dark:bg-black/80 backdrop-blur-md transition-colors duration-300"
-  >
-    <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <img
-          src="/favicon-96x96.png"
-          alt="Logo"
-          class="w-6 h-6 object-contain"
-        />
-        <span
-          class="font-sans font-semibold tracking-tight text-zinc-950 dark:text-white text-base transition-colors"
-          >Global Visa Tracker</span
-        >
-      </div>
-
-      <div class="flex items-center gap-6">
-        <nav
-          class="hidden md:flex items-center gap-6 text-xs font-mono text-zinc-500 dark:text-zinc-400"
-        >
-          <a
-            href="/"
-            class="text-zinc-950 dark:text-white font-semibold transition-colors"
-            >Home</a
-          >
-          <a
-            href="/methodology"
-            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
-            >Methodology</a
-          >
-          <a
-            href="/about"
-            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
-            >About</a
-          >
-          <a
-            href="/privacy"
-            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
-            >Privacy</a
-          >
-          <a
-            href="/terms"
-            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
-            >Terms</a
-          >
-          <a
-            href="/contact"
-            class="hover:text-zinc-950 dark:hover:text-white transition-colors"
-            >Contact</a
-          >
-        </nav>
-        <div class="flex items-center gap-4">
-          <!-- Theme Toggle Button -->
-          <button
-            id="theme-toggle"
-            type="button"
-            aria-label="Toggle dark/light mode"
-            class="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors cursor-pointer"
-          >
-            <!-- Sun Icon (visible in dark mode) -->
-            <svg
-              class="w-4 h-4 hidden dark:block"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z"
-              ></path>
-            </svg>
-            <!-- Moon Icon (visible in light mode) -->
-            <svg
-              class="w-4 h-4 block dark:hidden"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-              ></path>
-            </svg>
-          </button>
-
-          <span
-            class="hidden sm:inline-block font-mono text-[10px] text-zinc-500 dark:text-zinc-400 uppercase tracking-widest bg-zinc-100 border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800 px-2 py-1 rounded transition-colors"
-          >
-            v2.0.1 Stable
-          </span>
-        </div>
-      </div>
-    </div>
-  </header>
-
   <!-- Main Hero Section -->
   <main class="max-w-5xl mx-auto px-4 pt-12 pb-24 relative">
     <!-- Title Area -->
     <div class="text-center md:text-left mb-10">
-      <div
-        class="inline-block mb-3 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-100/60 dark:border-zinc-800 dark:bg-zinc-900/60 font-mono text-xs text-zinc-600 dark:text-zinc-400 transition-colors"
-      >
-        Instant VISA Search Engine
+      <div class="mb-4">
+        <span class="inline-block font-mono text-[9px] text-zinc-550 dark:text-zinc-400 uppercase tracking-widest bg-zinc-100 border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800 px-2 py-0.5 rounded transition-colors">
+          v2.0.1 Stable
+        </span>
       </div>
       <h1
         class="font-sans text-4xl md:text-5xl font-semibold tracking-tight text-zinc-950 dark:text-white mb-4 transition-colors"
       >
-        Can I Fly There? Instant Visa Requirement Checker
+        Can I Fly There? Instant Visa Search Engine
       </h1>
       <p
         class="font-sans text-zinc-600 dark:text-zinc-400 text-lg max-w-2xl leading-relaxed transition-colors"
@@ -547,11 +473,17 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
           >
             <!-- Minimalist Default State Row -->
             <div class="flex items-center justify-between w-full text-xs">
-              <div class="flex items-center gap-1.5 font-mono text-[10px] text-zinc-400 dark:text-zinc-500">
+              <div
+                class="flex items-center gap-1.5 font-mono text-[10px] text-zinc-400 dark:text-zinc-500"
+              >
                 <span>Last verified:</span>
-                <span id="details-date" class="font-medium text-zinc-500 dark:text-zinc-400">Today</span>
+                <span
+                  id="details-date"
+                  class="font-medium text-zinc-500 dark:text-zinc-400"
+                  >Today</span
+                >
                 <span>•</span>
-                <span>Source: PassportIndex Daily Sync</span>
+                <span>Source: Daily Sync from PassportIndex</span>
               </div>
               <button
                 id="details-toggle-btn"
@@ -569,7 +501,10 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
                   stroke="currentColor"
                   stroke-width="2.5"
                 >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19 9l-7 7-7-7"></path>
                 </svg>
               </button>
             </div>
@@ -581,7 +516,9 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
             >
               <div class="space-y-3 pt-2">
                 <!-- Disclaimer Box -->
-                <div class="flex items-start gap-2.5 p-3 rounded-lg border border-zinc-200 bg-zinc-50/50 text-zinc-500 dark:border-zinc-800/80 dark:bg-zinc-950/20 dark:text-zinc-400 text-[11px] leading-relaxed transition-colors">
+                <div
+                  class="flex items-start gap-2.5 p-3 rounded-lg border border-zinc-200 bg-zinc-50/50 text-zinc-500 dark:border-zinc-800/80 dark:bg-zinc-950/20 dark:text-zinc-400 text-[11px] leading-relaxed transition-colors"
+                >
                   <svg
                     class="w-4 h-4 text-zinc-400 dark:text-zinc-500 flex-shrink-0 mt-0.5"
                     fill="none"
@@ -596,12 +533,17 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
                     ></path>
                   </svg>
                   <p>
-                    <strong>Disclaimer:</strong> Visa rules are dynamic and subject to sudden change. Users must verify travel eligibility and transit requirements directly with their operating airlines and the destination's embassy or consulate before booking.
+                    <strong>Disclaimer:</strong> Visa rules are dynamic and subject
+                    to sudden change. Users must verify travel eligibility and transit
+                    requirements directly with their operating airlines and the destination's
+                    embassy or consulate before booking.
                   </p>
                 </div>
 
                 <!-- Primary Source Link Card -->
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-900 dark:bg-[#0c0c0c] transition-colors">
+                <div
+                  class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-900 dark:bg-[#0c0c0c] transition-colors"
+                >
                   <div class="flex items-center gap-2">
                     <svg
                       class="w-4 h-4 text-zinc-500 dark:text-zinc-400"
@@ -616,7 +558,10 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
                         d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
                       ></path>
                     </svg>
-                    <span class="text-xs font-semibold text-zinc-950 dark:text-zinc-200 transition-colors">Primary Source</span>
+                    <span
+                      class="text-xs font-semibold text-zinc-950 dark:text-zinc-200 transition-colors"
+                      >Primary Source</span
+                    >
                   </div>
                   <a
                     id="official-source-link"
@@ -643,7 +588,9 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
                 </div>
 
                 <!-- Passport validity warning badge -->
-                <div class="flex items-start gap-2.5 p-3 rounded-lg border border-amber-200/50 bg-amber-50/20 text-amber-800 dark:border-amber-900/30 dark:bg-amber-950/10 dark:text-amber-400 text-[11px] leading-relaxed transition-colors">
+                <div
+                  class="flex items-start gap-2.5 p-3 rounded-lg border border-amber-200/50 bg-amber-50/20 text-amber-800 dark:border-amber-900/30 dark:bg-amber-950/10 dark:text-amber-400 text-[11px] leading-relaxed transition-colors"
+                >
                   <svg
                     class="w-4 h-4 text-amber-600 dark:text-amber-500 flex-shrink-0 mt-0.5"
                     fill="none"
@@ -658,7 +605,9 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
                     ></path>
                   </svg>
                   <p>
-                    <strong>Passport Requirement:</strong> Ensure your passport has at least <strong>6 months validity remaining</strong> from the entry date and has 2+ blank visa pages.
+                    <strong>Passport Requirement:</strong> Ensure your passport has
+                    at least <strong>6 months validity remaining</strong> from the
+                    entry date and has 2+ blank visa pages.
                   </p>
                 </div>
               </div>
@@ -690,6 +639,55 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
         </div>
       </section>
     </div>
+
+    <!-- Browse Visa Requirements by Passport Section -->
+    <section class="mt-16 pt-12 border-t border-zinc-200 dark:border-zinc-900/50 space-y-8">
+      <div class="max-w-3xl mx-auto space-y-6">
+        <h2 class="font-sans text-xl font-semibold text-zinc-950 dark:text-white transition-colors">
+          Browse visa requirements by passport.
+        </h2>
+        <p class="font-sans text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed">
+          Access the complete, daily-updated database of visa-free, eVisa, and consular visa requirements for popular passports.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
+          {popularPassports.map((p) => (
+            <a
+              href={`/visas/${p.code.toLowerCase()}`}
+              class="flex items-center gap-3.5 p-4 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] hover:border-zinc-400 dark:hover:border-zinc-700 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-all group"
+            >
+              <span class="text-2xl select-none" role="img" aria-label={p.name}>{p.flag}</span>
+              <div class="flex flex-col min-w-0">
+                <span class="font-sans text-xs font-semibold text-zinc-900 dark:text-zinc-200 group-hover:text-blue-500 transition-colors truncate">
+                  {p.name}
+                </span>
+                <span class="font-mono text-[9px] text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mt-0.5">
+                  {p.score} destinations
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="pt-2 text-center">
+          <a
+            href="/visas"
+            class="inline-flex items-center gap-1.5 font-mono text-[10px] text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-white uppercase tracking-wider group transition-colors"
+          >
+            <span>Explore all 197 passports</span>
+            <svg
+              class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <!-- Frequently Asked Questions (FAQ) Section -->
     <section
@@ -982,10 +980,11 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
     import visaDataMatrix from "../data/passport-index.json";
     import officialPortals from "../data/official-portals.json";
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
       const originInput = document.getElementById(
         "origin-input",
       ) as HTMLInputElement;
+      if (!originInput) return;
       const originDropdown = document.getElementById(
         "origin-dropdown",
       ) as HTMLDivElement;
@@ -1026,7 +1025,6 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
       const complianceBanner = document.getElementById(
         "compliance-banner-container",
       ) as HTMLDivElement;
-      const themeToggleBtn = document.getElementById("theme-toggle");
 
       // Accordion Toggle Logic
       function collapseDetails() {
@@ -1051,7 +1049,8 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
       if (detailsToggleBtn) {
         detailsToggleBtn.addEventListener("click", () => {
           if (!detailsPanel || !detailsChevron) return;
-          const isExpanded = detailsToggleBtn.getAttribute("aria-expanded") === "true";
+          const isExpanded =
+            detailsToggleBtn.getAttribute("aria-expanded") === "true";
           if (isExpanded) {
             collapseDetails();
           } else {
@@ -1067,20 +1066,6 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
             if (toggleText) {
               toggleText.textContent = "Click to collapse details";
             }
-          }
-        });
-      }
-
-      // Theme Toggle Event Listener
-      if (themeToggleBtn) {
-        themeToggleBtn.addEventListener("click", () => {
-          const isDark = document.documentElement.classList.contains("dark");
-          if (isDark) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-          } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
           }
         });
       }
@@ -1157,8 +1142,7 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
         );
       }
 
-      const defaultTitle =
-        "Can I Fly There? | Instant Visa Requirement Checker";
+      const defaultTitle = "Can I Fly There? | Instant Visa Search Engine";
       const defaultDescription =
         "Instant visa requirement checker for international travelers. Verify bilateral visa rules, stay limits, and visa on arrival eligibility for 197+ countries instantly.";
 
@@ -1451,7 +1435,8 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
 
         // Resolve external official reference URL and update detail container
         if (detailContainer && officialSourceLink) {
-          const destDomain = officialPortals[destination as keyof typeof officialPortals];
+          const destDomain =
+            officialPortals[destination as keyof typeof officialPortals];
           const finalUrl =
             destDomain ||
             `https://en.wikipedia.org/wiki/Visa_policy_of_${encodeURIComponent(destinationName.replace(/\s+/g, "_"))}`;
@@ -1473,7 +1458,7 @@ import FrictionWarningBanner from "../components/FrictionWarningBanner.astro";
             const dateStr = today.toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
-              year: "numeric"
+              year: "numeric",
             });
             detailsDate.textContent = `${dateStr} at 06:00 UTC`;
           }

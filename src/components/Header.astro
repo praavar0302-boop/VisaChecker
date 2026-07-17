@@ -1,0 +1,162 @@
+---
+// src/components/Header.astro
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/visas", label: "Passport Directory" },
+  { href: "/methodology", label: "Methodology" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+  { href: "https://github.com/praavar0302-boop/VisaChecker", label: "GitHub", external: true },
+];
+
+function isActive(href: string) {
+  if (href === "/") {
+    return pathname === "/" || pathname === "/index.html";
+  }
+  return pathname.startsWith(href);
+}
+---
+
+<header class="sticky top-0 z-50 border-b border-zinc-200 bg-white/85 dark:border-zinc-900 dark:bg-black/85 backdrop-blur-md transition-colors duration-300">
+  <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between relative">
+    <!-- Brand Logo -->
+    <div class="flex items-center gap-3">
+      <a href="/" class="flex items-center gap-3 group">
+        <img src="/favicon-96x96.png" alt="Logo" class="w-6 h-6 object-contain group-hover:scale-105 transition-transform" />
+        <span class="font-sans font-semibold tracking-tight text-zinc-950 dark:text-white text-sm md:text-base transition-colors">
+          Global Visa Tracker
+        </span>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation Links (Visible on Large Screens) -->
+    <nav class="hidden lg:flex items-center gap-5 font-mono text-[10px] uppercase tracking-wider text-zinc-550 dark:text-zinc-400">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noopener noreferrer" : undefined}
+          class={`hover:text-zinc-950 dark:hover:text-white transition-colors py-1 relative ${
+            isActive(link.href) ? "text-zinc-950 dark:text-white font-semibold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-zinc-950 dark:after:bg-white" : ""
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Header Actions (Theme Toggle & Mobile Menu) -->
+    <div class="flex items-center gap-3">
+      <!-- Theme Toggle Button -->
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Toggle dark/light mode"
+        class="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors cursor-pointer"
+      >
+        <!-- Sun Icon (visible in dark mode) -->
+        <svg class="w-4 h-4 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+        </svg>
+        <!-- Moon Icon (visible in light mode) -->
+        <svg class="w-4 h-4 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+
+      <!-- Mobile Hamburger Button (Visible on Mobile & Tablet) -->
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        class="lg:hidden flex items-center justify-center w-8 h-8 rounded-full border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 transition-colors cursor-pointer"
+      >
+        <svg id="hamburger-icon" class="w-4 h-4 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu (Visible on Mobile & Tablet) -->
+  <div
+    id="mobile-menu-drawer"
+    class="hidden fixed top-16 left-0 right-0 bottom-0 bg-white/95 dark:bg-black/95 backdrop-blur-lg border-t border-zinc-200 dark:border-zinc-900 z-40 transition-all duration-300 overflow-y-auto"
+  >
+    <nav class="flex flex-col p-6 space-y-4 font-mono text-[11px] uppercase tracking-wider text-zinc-550 dark:text-zinc-400">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noopener noreferrer" : undefined}
+          class={`hover:text-zinc-950 dark:hover:text-white transition-colors py-3 border-b border-zinc-100 dark:border-zinc-900/50 flex justify-between items-center ${
+            isActive(link.href) ? "text-zinc-950 dark:text-white font-semibold" : ""
+          }`}
+        >
+          <span>{link.label}</span>
+          {isActive(link.href) && <span class="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white" />}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  function setupMobileMenu() {
+    const toggleBtn = document.getElementById("mobile-menu-toggle");
+    const drawer = document.getElementById("mobile-menu-drawer");
+    const hamburgerIcon = document.getElementById("hamburger-icon");
+    const closeIcon = document.getElementById("close-icon");
+
+    if (!toggleBtn || !drawer || !hamburgerIcon || !closeIcon) return;
+
+    // Reset drawer state on new page load
+    drawer.classList.add("hidden");
+    hamburgerIcon.classList.remove("hidden");
+    hamburgerIcon.classList.add("block");
+    closeIcon.classList.remove("block");
+    closeIcon.classList.add("hidden");
+
+    toggleBtn.addEventListener("click", () => {
+      const isHidden = drawer.classList.contains("hidden");
+      if (isHidden) {
+        drawer.classList.remove("hidden");
+        hamburgerIcon.classList.remove("block");
+        hamburgerIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        closeIcon.classList.add("block");
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      } else {
+        drawer.classList.add("hidden");
+        hamburgerIcon.classList.remove("hidden");
+        hamburgerIcon.classList.add("block");
+        closeIcon.classList.remove("block");
+        closeIcon.classList.add("hidden");
+        document.body.style.overflow = ""; // Enable scrolling
+      }
+    });
+
+    // Close menu on click of any mobile link
+    const mobileLinks = drawer.querySelectorAll("a");
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        drawer.classList.add("hidden");
+        hamburgerIcon.classList.remove("hidden");
+        hamburgerIcon.classList.add("block");
+        closeIcon.classList.remove("block");
+        closeIcon.classList.add("hidden");
+        document.body.style.overflow = "";
+      });
+    });
+  }
+
+  // Setup mobile menu on page load and navigation
+  document.addEventListener("astro:page-load", setupMobileMenu);
+</script>
