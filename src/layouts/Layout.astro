@@ -121,24 +121,33 @@ const {
 				}
 			}
 
-			document.addEventListener("astro:after-swap", applyTheme);
+			function toggleTheme() {
+				const isDark = document.documentElement.classList.contains("dark");
+				if (isDark) {
+					document.documentElement.classList.remove("dark");
+					localStorage.setItem("theme", "light");
+				} else {
+					document.documentElement.classList.add("dark");
+					localStorage.setItem("theme", "dark");
+				}
+			}
 
-			document.addEventListener("astro:page-load", () => {
+			function setupThemeToggle() {
 				applyTheme();
 				const themeToggleBtn = document.getElementById("theme-toggle");
 				if (themeToggleBtn) {
-					themeToggleBtn.addEventListener("click", () => {
-						const isDark = document.documentElement.classList.contains("dark");
-						if (isDark) {
-							document.documentElement.classList.remove("dark");
-							localStorage.setItem("theme", "light");
-						} else {
-							document.documentElement.classList.add("dark");
-							localStorage.setItem("theme", "dark");
-						}
-					});
+					themeToggleBtn.removeEventListener("click", toggleTheme);
+					themeToggleBtn.addEventListener("click", toggleTheme);
 				}
-			});
+			}
+
+			document.addEventListener("astro:after-swap", applyTheme);
+
+			// Run on initial page load
+			setupThemeToggle();
+
+			// Re-run on every view transition swap
+			document.addEventListener("astro:page-load", setupThemeToggle);
 		</script>
 	</body>
 </html>

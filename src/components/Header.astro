@@ -157,6 +157,9 @@ function isActive(href: string) {
     });
   }
 
-  // Setup mobile menu on page load and navigation
+  // Run on initial page load
+  setupMobileMenu();
+
+  // Re-run on every view transition navigation
   document.addEventListener("astro:page-load", setupMobileMenu);
 </script>
