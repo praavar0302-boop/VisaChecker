@@ -108,9 +108,11 @@
       overlay.offsetWidth;
       panel.offsetWidth;
 
-      // Apply transition properties and trigger target position
-      panel.style.transition = "transform 400ms cubic-bezier(0.25, 1, 0.5, 1)";
-      panel.style.transform = "translate3d(0%, 0, 0)";
+      // Wait 30ms to let Safari/Firefox paint display:block, then apply transition
+      setTimeout(() => {
+        panel.style.transition = "transform 400ms cubic-bezier(0.25, 1, 0.5, 1)";
+        panel.style.transform = "translate3d(0%, 0, 0)";
+      }, 30);
 
       // Serialize page loading: let swipe-in finish first (450ms) so main thread stays idle, then fetch page
       const originalLoader = event.loader;
@@ -150,20 +152,22 @@
       // Force layout reflow
       panel.offsetWidth;
 
-      // Set transition and move panel off-screen (swipe-out)
-      panel.style.transition = "transform 400ms cubic-bezier(0.25, 1, 0.5, 1)";
-      if (direction === "ltr") {
-        panel.style.transform = "translate3d(100%, 0, 0)";
-      } else {
-        panel.style.transform = "translate3d(-100%, 0, 0)";
-      }
+      // Wait 30ms before triggering swipe-out exit transition (forces Safari/Firefox layout paint)
+      setTimeout(() => {
+        panel.style.transition = "transform 400ms cubic-bezier(0.25, 1, 0.5, 1)";
+        if (direction === "ltr") {
+          panel.style.transform = "translate3d(100%, 0, 0)";
+        } else {
+          panel.style.transform = "translate3d(-100%, 0, 0)";
+        }
+      }, 30);
 
-      // Hide the overlay and restore interaction once transition is done
+      // Hide the overlay and restore interaction once transition is done (450ms = 30ms delay + 400ms animation + 20ms buffer)
       setTimeout(() => {
         overlay.classList.add("hidden");
         overlay.classList.add("pointer-events-none");
         overlay.classList.remove("pointer-events-auto");
-      }, 400);
+      }, 450);
     });
   }
 
