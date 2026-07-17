@@ -35,64 +35,64 @@
   /* Define keyframe animations for swipe transition */
   @keyframes swipe-in-left-to-right {
     0% {
-      transform: translateX(-100%);
+      transform: translate3d(-100%, 0, 0);
     }
     100% {
-      transform: translateX(0%);
+      transform: translate3d(0%, 0, 0);
     }
   }
 
   @keyframes swipe-out-left-to-right {
     0% {
-      transform: translateX(0%);
+      transform: translate3d(0%, 0, 0);
     }
     100% {
-      transform: translateX(100%);
+      transform: translate3d(100%, 0, 0);
     }
   }
 
   @keyframes swipe-in-right-to-left {
     0% {
-      transform: translateX(100%);
+      transform: translate3d(100%, 0, 0);
     }
     100% {
-      transform: translateX(0%);
+      transform: translate3d(0%, 0, 0);
     }
   }
 
   @keyframes swipe-out-right-to-left {
     0% {
-      transform: translateX(0%);
+      transform: translate3d(0%, 0, 0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translate3d(-100%, 0, 0);
     }
   }
 
   @keyframes plane-bobbing {
     0%, 100% {
-      transform: translate(-50%, -55%);
+      transform: translate3d(-50%, -55%, 0);
     }
     50% {
-      transform: translate(-50%, -45%);
+      transform: translate3d(-50%, -45%, 0);
     }
   }
 
   /* Classes to trigger animations */
   .animate-swipe-in-ltr {
-    animation: swipe-in-left-to-right 650ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    animation: swipe-in-left-to-right 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
   .animate-swipe-out-ltr {
-    animation: swipe-out-left-to-right 650ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    animation: swipe-out-left-to-right 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
   .animate-swipe-in-rtl {
-    animation: swipe-in-right-to-left 650ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    animation: swipe-in-right-to-left 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
   .animate-swipe-out-rtl {
-    animation: swipe-out-right-to-left 650ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+    animation: swipe-out-right-to-left 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
   }
 
   .plane-bob {
@@ -101,7 +101,16 @@
 </style>
 
 <script>
+  declare global {
+    interface Window {
+      __page_transitions_initialized?: boolean;
+    }
+  }
+
   function initTransitions() {
+    if (window.__page_transitions_initialized) return;
+    window.__page_transitions_initialized = true;
+
     document.addEventListener("astro:before-preparation", (event) => {
       const to = event.to.pathname;
 
@@ -151,11 +160,12 @@
         panel.classList.add("animate-swipe-in-rtl");
       }
 
-      // Delay page loading until screen is fully covered (650ms)
+      // Start loader and 400ms timer in parallel
       const originalLoader = event.loader;
       event.loader = async function () {
-        await new Promise((resolve) => setTimeout(resolve, 650));
-        await originalLoader();
+        const timerPromise = new Promise((resolve) => setTimeout(resolve, 400));
+        const loaderPromise = originalLoader();
+        await Promise.all([timerPromise, loaderPromise]);
       };
     });
 
@@ -191,7 +201,7 @@
           // Clean classes
           panel.classList.remove("animate-swipe-out-ltr", "animate-swipe-out-rtl");
         }
-      }, 650);
+      }, 400);
     });
   }
 
