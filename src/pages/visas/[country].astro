@@ -142,6 +142,31 @@ const faqSchema = {
   })),
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": Astro.url.origin
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Passport Directory",
+      "item": `${Astro.url.origin}/visas`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": `${name} Visa Guide`,
+      "item": Astro.url.href
+    }
+  ]
+};
+
 const flagEmoji = getFlagEmoji(code);
 ---
 
@@ -446,6 +471,7 @@ const flagEmoji = getFlagEmoji(code);
 
   <!-- Embed JSON-LD Schema -->
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema, null, 2)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema, null, 2)} />
 
   <script>
     document.addEventListener("astro:page-load", () => {

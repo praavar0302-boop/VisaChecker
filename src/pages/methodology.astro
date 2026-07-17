@@ -12,8 +12,14 @@ import Footer from "../components/Footer.astro";
   <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#007cf0]/10 via-[#7928ca]/10 to-[#ff0080]/5 blur-[130px] pointer-events-none"></div>
   <div class="absolute bottom-10 right-1/4 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-[#00dfd8]/5 via-[#f9cb28]/5 to-emerald-500/5 blur-[120px] pointer-events-none"></div>
 
-  <!-- Content Section -->
   <main class="max-w-3xl mx-auto px-4 py-16 relative">
+    <!-- Breadcrumbs -->
+    <nav class="flex items-center gap-2 font-mono text-[9px] text-zinc-500 uppercase tracking-widest mb-6">
+      <a href="/" class="hover:text-zinc-950 dark:hover:text-white transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-zinc-400">Methodology</span>
+    </nav>
+
     <article class="space-y-12">
       <!-- Title & Eyebrow -->
       <div class="space-y-4">
@@ -102,5 +108,27 @@ import Footer from "../components/Footer.astro";
   <!-- Reusable Footer -->
   <Footer />
 
-
+  <!-- Embed JSON-LD Dataset Schema for Google Dataset Search -->
+  <script type="application/ld+json" is:inline set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Global Bilateral Visa Requirements and Passport Mobility Index Dataset",
+    "description": "A comprehensive structured dataset mapping visa-free stay limits, electronic travel authorization (eTA) requirements, visa on arrival (VoA) durations, and consular embassy rules for 197 global passports and destination countries. Synced daily with public registries.",
+    "url": "https://github.com/praavar0302-boop/VisaChecker",
+    "license": "https://opensource.org/licenses/MIT",
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "application/json",
+        "contentUrl": "https://raw.githubusercontent.com/imorte/passport-index-data/main/passport-index.json"
+      }
+    ],
+    "creator": {
+      "@type": "Organization",
+      "name": "Global Visa Tracker Contributors",
+      "url": "https://github.com/praavar0302-boop/VisaChecker"
+    },
+    "temporalCoverage": "2026",
+    "spatialCoverage": "Global"
+  })} />
 </Layout>

@@ -63,6 +63,34 @@ const {
 		<meta name="description" content={description} />
 		<link rel="canonical" href={Astro.url.href} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- OpenGraph Meta Tags -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url.href} />
+		<meta property="og:image" content={new URL('/favicon-96x96.png', Astro.url).href} />
+		<meta property="og:site_name" content="Global Visa Tracker" />
+
+		<!-- Twitter Card Meta Tags -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL('/favicon-96x96.png', Astro.url).href} />
+
+		{Astro.url.pathname === '/' && (
+			<script type="application/ld+json" is:inline set:html={JSON.stringify({
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "Global Visa Tracker",
+				"url": Astro.url.origin,
+				"potentialAction": {
+					"@type": "SearchAction",
+					"target": `${Astro.url.origin}/visas?q={search_term_string}`,
+					"query-input": "required name=search_term_string"
+				}
+			})} />
+		)}
 		
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
