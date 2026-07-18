@@ -33,6 +33,8 @@ function getFlagEmoji(countryCode: string) {
 
 const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
+let currentRank = 0;
+let prevScore = -1;
 const passportList = Object.keys(visaDataMatrix)
   .map((code) => {
     let name = code;
@@ -46,7 +48,14 @@ const passportList = Object.keys(visaDataMatrix)
       score: getMobilityScore(code),
     };
   })
-  .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
+  .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
+  .map((p) => {
+    if (p.score !== prevScore) {
+      currentRank++;
+      prevScore = p.score;
+    }
+    return { ...p, rank: currentRank };
+  });
 ---
 
 <Layout title="Global Passport Power Rankings & Visa Directory | CIFD" description="Explore the complete list of 197 global passports sorted by travel freedom and mobility score. Access detailed visa-free travel guides for every nationality.">
@@ -92,7 +101,7 @@ const passportList = Object.keys(visaDataMatrix)
       </div>
       <div class="flex items-center justify-between mt-2 px-1">
         <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-wider" id="passport-count">
-          Showing 197 passports
+          Showing {passportList.length} passports
         </span>
         <button 
           id="sort-toggle" 
@@ -129,7 +138,7 @@ const passportList = Object.keys(visaDataMatrix)
               {p.score}
             </span>
             <span class="font-mono text-[9px] text-zinc-400">
-              Rank {idx + 1}
+              Rank {p.rank}
             </span>
           </div>
         </a>

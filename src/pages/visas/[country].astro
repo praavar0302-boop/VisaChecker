@@ -86,7 +86,7 @@ const requiredCount = destinations.filter((d: any) => d.category === "required")
 const mobilityScore = freeCount + voaCount + etaCount;
 
 // Calculate ranking
-const rankings = Object.keys(visaDataMatrix)
+const rawRankings = Object.keys(visaDataMatrix)
   .map((cCode) => {
     const cRules = (visaDataMatrix as any)[cCode] || {};
     const score = Object.values(cRules).filter((r: any) => {
@@ -97,8 +97,18 @@ const rankings = Object.keys(visaDataMatrix)
   })
   .sort((a, b) => b.score - a.score);
 
-const rankIndex = rankings.findIndex((r) => r.code === code);
-const globalRank = rankIndex !== -1 ? rankIndex + 1 : 1;
+let currentRank = 0;
+let prevScore = -1;
+const rankings = rawRankings.map((r) => {
+  if (r.score !== prevScore) {
+    currentRank++;
+    prevScore = r.score;
+  }
+  return { ...r, rank: currentRank };
+});
+
+const myRankObj = rankings.find((r) => r.code === code);
+const globalRank = myRankObj ? myRankObj.rank : 1;
 
 // Generate Dynamic FAQs for popular countries
 const popularTargets = ["US", "GB", "JP", "AU", "DE", "FR", "IN"];
