@@ -2,7 +2,13 @@
 // src/components/Header.astro
 const pathname = Astro.url.pathname;
 
-const navLinks = [
+interface NavLink {
+  href: string;
+  label: string;
+  external?: boolean;
+}
+
+const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/visas", label: "Passport Directory" },
   { href: "/methodology", label: "Methodology" },

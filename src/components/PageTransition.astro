@@ -56,16 +56,44 @@
   // Script closure to guarantee direction preservation and prevent duplicate triggers
   let transitionDirection = "ltr";
   let isTransitioning = false;
+  let transitionStartTime = 0;
+  let safetyTimeout: any;
 
-  function onBeforePreparation(e: any) {
-    const event = e as any;
+  function clearSafetyTimeout() {
+    if (safetyTimeout) {
+      clearTimeout(safetyTimeout);
+      safetyTimeout = undefined;
+    }
+  }
+
+  function resetTransitionOverlay() {
+    const overlay = document.getElementById("page-transition-overlay");
+    const panel = document.getElementById("swipe-panel");
+    if (overlay && panel) {
+      overlay.classList.add("hidden");
+      overlay.classList.add("pointer-events-none");
+      overlay.classList.remove("pointer-events-auto");
+      overlay.style.opacity = "1";
+      panel.style.transition = "none";
+      panel.style.transform = "translate3d(0%, 0, 0)";
+    }
+    isTransitioning = false;
+    clearSafetyTimeout();
+  }
+
+  function startTransition(toPath: string) {
     if (isTransitioning) return;
     isTransitioning = true;
+    transitionStartTime = Date.now();
 
-    const to = event.to.pathname;
+    // Start 8-second safety timeout fallback
+    clearSafetyTimeout();
+    safetyTimeout = setTimeout(() => {
+      resetTransitionOverlay();
+    }, 8000);
 
     // Determine transition direction based on destination page
-    const isGoingToIndex = to === "/" || to === "/index.html" || to === "";
+    const isGoingToIndex = toPath === "/" || toPath === "/index.html" || toPath === "";
     const direction = isGoingToIndex ? "rtl" : "ltr";
     transitionDirection = direction;
 
@@ -76,6 +104,7 @@
 
     if (!overlay || !panel || !planeContainer || !airplaneSvg) {
       isTransitioning = false;
+      clearSafetyTimeout();
       return;
     }
 
@@ -119,13 +148,22 @@
       panel.style.transition = "transform 350ms cubic-bezier(0.25, 1, 0.5, 1)";
       panel.style.transform = "translate3d(0%, 0, 0)";
     }, 30);
+  }
+
+  function onBeforePreparation(e: any) {
+    const event = e as any;
+    const to = event.to.pathname;
+
+    // If the transition hasn't started yet (e.g. browser back/forward or programmatic navigate()), start it now
+    if (!isTransitioning) {
+      startTransition(to);
+    }
 
     // Parallelize network fetch: start original loader fetch instantly, but hold resolution until 350ms swipe finishes
-    const startTime = Date.now();
     const originalLoader = event.loader;
     event.loader = async function () {
       const loadPromise = originalLoader();
-      const elapsedTime = Date.now() - startTime;
+      const elapsedTime = Date.now() - transitionStartTime;
       const remainingTime = Math.max(0, 380 - elapsedTime); // 350ms transition + 30ms setup buffer
       
       if (remainingTime > 0) {
@@ -172,6 +210,7 @@
 
   function onAfterSwap() {
     if (!isTransitioning) return;
+    clearSafetyTimeout();
 
     const overlay = document.getElementById("page-transition-overlay");
     const panel = document.getElementById("swipe-panel");
@@ -231,6 +270,44 @@
     document.addEventListener("astro:before-preparation", onBeforePreparation);
     document.addEventListener("astro:before-swap", onBeforeSwap);
     document.addEventListener("astro:after-swap", onAfterSwap);
+
+    // Register window click interceptor to run transition instantly on link clicks
+    window.addEventListener("click", (e) => {
+      // Only handle left clicks without modifier keys
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      
+      // Check if click was already prevented by another script
+      if (e.defaultPrevented) return;
+      
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (!anchor) return;
+      
+      // Check attributes that disable client-side routing
+      if (
+        anchor.hasAttribute("download") || 
+        anchor.getAttribute("rel") === "external" || 
+        anchor.hasAttribute("data-astro-reload")
+      ) return;
+      
+      const href = anchor.getAttribute("href");
+      if (!href) return;
+      if (anchor.target === "_blank") return;
+      if (
+        href.startsWith("#") || 
+        href.startsWith("mailto:") || 
+        href.startsWith("tel:") || 
+        href.startsWith("javascript:")
+      ) return;
+      
+      try {
+        const url = new URL(href, window.location.href);
+        if (url.origin !== window.location.origin) return;
+        
+        // Start transition overlay instantly
+        startTransition(url.pathname);
+      } catch (err) {}
+    });
   }
 
   // Initialize event listeners

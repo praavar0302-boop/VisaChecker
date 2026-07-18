@@ -657,11 +657,11 @@ const popularPassports = [
           Access the complete, daily-updated database of visa-free, eVisa, and consular visa requirements for popular passports.
         </p>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 pt-2">
           {popularPassports.map((p) => (
             <a
               href={`/visas/${p.code.toLowerCase()}`}
-              class="flex items-center gap-3.5 p-4 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] hover:border-zinc-400 dark:hover:border-zinc-700 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-all group"
+              class="flex items-center gap-2.5 sm:gap-3.5 p-3 sm:p-4 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] hover:border-zinc-400 dark:hover:border-zinc-700 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-all group"
             >
               <span class="text-2xl select-none" role="img" aria-label={p.name}>{p.flag}</span>
               <div class="flex flex-col min-w-0">

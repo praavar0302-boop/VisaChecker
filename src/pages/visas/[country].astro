@@ -217,33 +217,32 @@ const flagEmoji = getFlagEmoji(code);
         </div>
         <div class="px-3 py-1.5 rounded bg-zinc-100 border border-zinc-200 dark:bg-zinc-950 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 tracking-wider uppercase">
           Global Rank: <span class="text-zinc-950 dark:text-white font-bold">#{globalRank}</span>
-        </div>
-      </div>
+           </div>
     </div>
 
     <!-- Mobility Dashboard Grid -->
-    <section class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
-      <div class="p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+    <section class="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4 mb-10">
+      <div class="p-4 sm:p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
         <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest">Mobility Score</span>
         <span class="block font-mono text-3xl font-semibold text-zinc-950 dark:text-white mt-1">{mobilityScore}</span>
         <p class="font-sans text-[10px] text-zinc-400 mt-2">Total visa-free or eVisa access destinations.</p>
       </div>
-      <div class="p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+      <div class="p-4 sm:p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
         <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-emerald-600 dark:text-emerald-450">Visa-Free</span>
         <span class="block font-mono text-3xl font-semibold text-emerald-600 dark:text-emerald-400 mt-1">{freeCount}</span>
         <p class="font-sans text-[10px] text-zinc-400 mt-2">Destinations permitting entry without pre-clearing.</p>
       </div>
-      <div class="p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+      <div class="p-4 sm:p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
         <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-blue-600 dark:text-blue-450">eTA</span>
         <span class="block font-mono text-3xl font-semibold text-blue-600 dark:text-blue-400 mt-1">{etaCount}</span>
         <p class="font-sans text-[10px] text-zinc-400 mt-2">Electronic travel authorization applied for online before flight.</p>
       </div>
-      <div class="p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+      <div class="p-4 sm:p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
         <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-teal-600 dark:text-teal-450">Visa on Arrival</span>
-        <span class="block font-mono text-3xl font-semibold text-teal-600 dark:text-teal-400 mt-1">{voaCount}</span>
+        <span class="block font-mono text-3xl font-semibold text-teal-600 dark:text-teal-450 mt-1">{voaCount}</span>
         <p class="font-sans text-[10px] text-zinc-400 mt-2">Permits issued instantly upon landing at borders.</p>
       </div>
-      <div class="col-span-2 lg:col-span-1 p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+      <div class="col-span-2 lg:col-span-1 p-4 sm:p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
         <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-red-600 dark:text-red-400">Visa Required</span>
         <span class="block font-mono text-3xl font-semibold text-red-600 dark:text-red-400 mt-1">{requiredCount}</span>
         <p class="font-sans text-[10px] text-zinc-400 mt-2">Requires traditional consular passport stamping.</p>
