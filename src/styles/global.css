@@ -167,3 +167,60 @@ html.dark::-webkit-scrollbar-thumb {
 html.dark::-webkit-scrollbar-thumb:hover {
   background: #404040;
 }
+
+/* Standard inline text links styling */
+main p a:not([class]),
+article p a:not([class]),
+.link-inline {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  color: #0070f3;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+main p a:not([class]):hover,
+article p a:not([class]):hover,
+.link-inline:hover {
+  color: #0761d1;
+  text-decoration-thickness: 2px;
+}
+
+.dark main p a:not([class]),
+.dark article p a:not([class]),
+.dark .link-inline {
+  color: #60a5fa;
+}
+
+.dark main p a:not([class]):hover,
+.dark article p a:not([class]):hover,
+.dark .link-inline:hover {
+  color: #93c5fd;
+}
+
+/* Active navigating feedback state (for cards and clickable blocks) */
+.active-navigating {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
+  opacity: 0.85 !important;
+  background-color: rgba(59, 130, 246, 0.02) !important;
+  transition: all 0.15s ease-in-out;
+}
+
+.dark .active-navigating {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2) !important;
+  background-color: rgba(96, 165, 250, 0.02) !important;
+}
+
+/* Active navigating feedback state (for inline text links) */
+.active-navigating-text {
+  color: #2563eb !important;
+  text-shadow: 0 0 8px rgba(37, 99, 235, 0.15);
+  opacity: 0.8 !important;
+}
+
+.dark .active-navigating-text {
+  color: #60a5fa !important;
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.25);
+}

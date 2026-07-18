@@ -271,6 +271,16 @@
     document.addEventListener("astro:before-swap", onBeforeSwap);
     document.addEventListener("astro:after-swap", onAfterSwap);
 
+    // Clean up active navigating classes on new page loads
+    document.addEventListener("astro:page-load", () => {
+      document.querySelectorAll(".active-navigating").forEach((el) => {
+        el.classList.remove("active-navigating");
+      });
+      document.querySelectorAll(".active-navigating-text").forEach((el) => {
+        el.classList.remove("active-navigating-text");
+      });
+    });
+
     // Register window click interceptor to run transition instantly on link clicks
     window.addEventListener("click", (e) => {
       // Only handle left clicks without modifier keys
@@ -303,6 +313,22 @@
       try {
         const url = new URL(href, window.location.href);
         if (url.origin !== window.location.origin) return;
+
+        // Skip adding visual selection highlights inside the mobile menu drawer (since menu closes instantly)
+        const isInsideHamburger = anchor.closest("#mobile-menu-drawer");
+        if (!isInsideHamburger) {
+          // If the link is card-like or has display block / padding, use border highlight
+          if (
+            anchor.classList.contains("passport-card") || 
+            anchor.classList.contains("dest-card") || 
+            anchor.querySelector("div") || 
+            anchor.offsetHeight > 30
+          ) {
+            anchor.classList.add("active-navigating");
+          } else {
+            anchor.classList.add("active-navigating-text");
+          }
+        }
         
         // Start transition overlay instantly
         startTransition(url.pathname);
