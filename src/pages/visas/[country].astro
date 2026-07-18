@@ -58,9 +58,9 @@ const destinations = Object.keys(visaDataMatrix)
     if (status === "visa free" || !isNaN(Number(status))) {
       friendlyStatus = "Visa-Free";
       category = "free";
-    } else if (status === "eta" || status === "e-visa") {
-      friendlyStatus = "eVisa";
-      category = "evisa";
+    } else if (status === "eta") {
+      friendlyStatus = "eTA";
+      category = "eta";
     } else if (status === "visa on arrival") {
       friendlyStatus = "Visa on Arrival";
       category = "voa";
@@ -80,10 +80,10 @@ const destinations = Object.keys(visaDataMatrix)
   .sort((a: any, b: any) => a.name.localeCompare(b.name));
 
 const freeCount = destinations.filter((d: any) => d.category === "free").length;
-const evisaCount = destinations.filter((d: any) => d.category === "evisa").length;
+const etaCount = destinations.filter((d: any) => d.category === "eta").length;
 const voaCount = destinations.filter((d: any) => d.category === "voa").length;
 const requiredCount = destinations.filter((d: any) => d.category === "required").length;
-const mobilityScore = freeCount + voaCount + evisaCount;
+const mobilityScore = freeCount + voaCount + etaCount;
 
 // Calculate ranking
 const rankings = Object.keys(visaDataMatrix)
@@ -91,7 +91,7 @@ const rankings = Object.keys(visaDataMatrix)
     const cRules = (visaDataMatrix as any)[cCode] || {};
     const score = Object.values(cRules).filter((r: any) => {
       const s = r.status ? r.status.toLowerCase() : "";
-      return s === "visa free" || !isNaN(Number(s)) || s === "eta" || s === "e-visa" || s === "visa on arrival";
+      return s === "visa free" || !isNaN(Number(s)) || s === "eta" || s === "visa on arrival";
     }).length;
     return { code: cCode, score };
   })
@@ -113,8 +113,8 @@ const faqs = popularTargets
     let text = "";
     if (status === "visa free" || !isNaN(Number(status))) {
       text = `${destName} is **Visa-Free** for ${name} citizens. You can stay for up to ${rule.days || "90"} days without acquiring a visa prior to travel.`;
-    } else if (status === "eta" || status === "e-visa") {
-      text = `An **eVisa or eTA** is required for ${name} citizens visiting ${destName}. You can easily apply online before your departure date. ${rule.days ? `The stay limit is generally ${rule.days} days.` : ""}`;
+    } else if (status === "eta") {
+      text = `An **eTA** is required for ${name} citizens visiting ${destName}. You can easily apply online before your departure date. ${rule.days ? `The stay limit is generally ${rule.days} days.` : ""}`;
     } else if (status === "visa on arrival") {
       text = `${name} passport holders can obtain a **Visa on Arrival** upon landing at the border checkpoints in ${destName}. ${rule.days ? `This permits stays up to ${rule.days} days.` : ""}`;
     } else {
@@ -172,7 +172,7 @@ const flagEmoji = getFlagEmoji(code);
 
 <Layout 
   title={`${name} Passport Visa Requirements 2026 | Visa-Free Countries`}
-  description={`Comprehensive travel guide for ${name} passport holders. Discover the list of ${freeCount} visa-free, ${evisaCount} eVisa, and ${voaCount} visa on arrival destinations for ${name} citizens.`}
+  description={`Comprehensive travel guide for ${name} passport holders. Discover the list of ${freeCount} visa-free, ${etaCount} eTA, and ${voaCount} visa on arrival destinations for ${name} citizens.`}
 >
   <!-- Background Glow FX -->
   <div class="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-[#007cf0]/10 via-[#7928ca]/10 to-[#ff0080]/5 blur-[130px] pointer-events-none"></div>
@@ -224,9 +224,9 @@ const flagEmoji = getFlagEmoji(code);
         <p class="font-sans text-[10px] text-zinc-400 mt-2">Destinations permitting entry without pre-clearing.</p>
       </div>
       <div class="p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-        <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-blue-600 dark:text-blue-450">eVisa / eTA</span>
-        <span class="block font-mono text-3xl font-semibold text-blue-600 dark:text-blue-400 mt-1">{evisaCount}</span>
-        <p class="font-sans text-[10px] text-zinc-400 mt-2">Electronic clearance applied for online before flight.</p>
+        <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-blue-600 dark:text-blue-450">eTA</span>
+        <span class="block font-mono text-3xl font-semibold text-blue-600 dark:text-blue-400 mt-1">{etaCount}</span>
+        <p class="font-sans text-[10px] text-zinc-400 mt-2">Electronic travel authorization applied for online before flight.</p>
       </div>
       <div class="p-5 rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-[#080808] transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
         <span class="font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-teal-600 dark:text-teal-450">Visa on Arrival</span>
@@ -263,8 +263,8 @@ const flagEmoji = getFlagEmoji(code);
         <button data-filter="free" class="filter-btn px-2.5 py-1.5 rounded border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer select-none text-zinc-500 dark:text-zinc-400">
           Visa-Free ({freeCount})
         </button>
-        <button data-filter="evisa" class="filter-btn px-2.5 py-1.5 rounded border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer select-none text-zinc-500 dark:text-zinc-400">
-          eVisa ({evisaCount})
+        <button data-filter="eta" class="filter-btn px-2.5 py-1.5 rounded border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer select-none text-zinc-500 dark:text-zinc-400">
+          eTA ({etaCount})
         </button>
         <button data-filter="voa" class="filter-btn px-2.5 py-1.5 rounded border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer select-none text-zinc-500 dark:text-zinc-400">
           On Arrival ({voaCount})
@@ -304,9 +304,9 @@ const flagEmoji = getFlagEmoji(code);
                     Visa-Free
                   </span>
                 )}
-                {d.category === "evisa" && (
+                {d.category === "eta" && (
                   <span class="px-2 py-0.5 rounded-full font-mono text-[9px] bg-blue-50 text-blue-700 dark:bg-blue-950/20 dark:text-blue-400 border border-blue-250 dark:border-blue-900/30 uppercase font-semibold">
-                    eVisa / eTA
+                    eTA
                   </span>
                 )}
                 {d.category === "voa" && (
@@ -366,9 +366,9 @@ const flagEmoji = getFlagEmoji(code);
                   Visa-Free
                 </span>
               )}
-              {d.category === "evisa" && (
+              {d.category === "eta" && (
                 <span class="px-2 py-0.5 rounded-full font-mono text-[9px] bg-blue-50 text-blue-700 dark:bg-blue-950/20 dark:text-blue-400 border border-blue-250 dark:border-blue-900/30 uppercase font-semibold">
-                  eVisa / eTA
+                  eTA
                 </span>
               )}
               {d.category === "voa" && (

@@ -1,8 +1,8 @@
-name: Daily Visa Data Sync
+name: Monthly Visa Data Sync
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 1 * *'
   workflow_dispatch:
 
 jobs:
@@ -36,5 +36,5 @@ jobs:
           git config --global user.name "Visa Tracker Sync Bot"
           git config --global user.email "actions@github.com"
           git add src/data/passport-index.json
-          git commit -m "chore: automated daily global visa dataset refresh"
+          git commit -m "chore: automated monthly global visa dataset refresh"
           git push

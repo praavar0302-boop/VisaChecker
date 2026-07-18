@@ -7,8 +7,8 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"net/url"
 	"os"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -20,11 +20,8 @@ import (
 )
 
 const (
-	apiURL = "https://www.passportindex.org/core/visachecker.php"
-	// apiToken is a some salt or hash, idk. may be changed in the future, but now it works
-	apiToken = "1510b5a79a9413083d0342baf7086a5c"
-	workers  = 6
-	delay    = 50 * time.Millisecond
+	workers = 6
+	delay   = 100 * time.Millisecond
 )
 
 // visaInfo holds the normalized visa requirement for a country pair.
@@ -33,49 +30,131 @@ type visaInfo struct {
 	Days   int    `json:"days,omitempty"`
 }
 
-// --- Status normalization ---------------------------------------------------
+// getURLSlug returns the URL name used on passportindex.org.
+func getURLSlug(iso2 string) string {
+	overrides := map[string]string{
+		"cd": "congo-(dem.-rep.)",
+		"ci": "cote-d'ivoire-(ivory-coast)",
+		"sz": "eswatini",
+		"ps": "palestinian-territories",
+		"ru": "russian-federation",
+		"vn": "viet-nam",
+		"va": "vatican-city",
+		"us": "united-states-of-america",
+		"kp": "north-korea",
+		"kr": "south-korea",
+		"mk": "north-macedonia",
+		"ss": "south-sudan",
+		"cv": "cape-verde",
+		"tl": "timor-leste",
+		"tt": "trinidad-and-tobago",
+		"tr": "türkiye",
+		"vc": "st.-vincent-and-the-grenadines",
+	}
 
-// statusSuffixes are stripped from API status values (applied after lowercase).
-var statusSuffixes = []string{" (ease)", " (fast track)"}
+	if slug, ok := overrides[iso2]; ok {
+		return slug
+	}
 
-// statusReplace maps normalized lowercase statuses to unified values.
-var statusReplace = map[string]string{
-	"exit-entry permit":        "visa required",
-	"e-ticket":                 "visa free",
-	"visa-free":                "visa free",
-	"tourist registration":     "visa free",
-	"digital arrival card":     "visa free",
-	"arrival card":             "visa free",
-	"evisa":                    "e-visa",
-	"pre-enrollment":           "eta",
-	"evisitors":                "eta",
-	"tourist card":             "eta",
-	"visa waiver registration": "eta",
-	"not admitted":             "no admission",
-	"trump ban":                "no admission",
+	name := iso2ToName[iso2]
+	slug := strings.ToLower(name)
+	slug = strings.ReplaceAll(slug, " and ", "-and-")
+	slug = strings.ReplaceAll(slug, " ", "-")
+	slug = strings.ReplaceAll(slug, "'", "")
+	slug = strings.ReplaceAll(slug, ",", "")
+	slug = strings.ReplaceAll(slug, ".", "")
+	return slug
 }
 
-// parseText splits "visa-free / 90 days" into status and days,
-// normalizing the status to lowercase with unified naming.
-func parseText(text string) (status string, days int) {
-	parts := strings.SplitN(text, " / ", 2)
-	status = strings.TrimSpace(parts[0])
-	// "eVisa · visa on arrival" → take only the last part.
-	if i := strings.LastIndex(status, " \u00b7 "); i >= 0 {
-		status = status[i+len(" \u00b7 "):]
+var (
+	reTR     = regexp.MustCompile(`(?s)<tr[^>]*class="[^"]*show-tr[^"]*"[^>]*>.*?</tr>`)
+	reClass  = regexp.MustCompile(`class="([^"]*)"`)
+	reCode   = regexp.MustCompile(`flag-icon-([a-z]{2})`)
+	reVrules = regexp.MustCompile(`class=['"]vrules['"]>(.*?)</span>`)
+	reVdays  = regexp.MustCompile(`class=['"]vdays['"]>(?:\d+)</span>`)
+)
+
+func parseHTML(htmlContent string) (map[string]visaInfo, error) {
+	trMatches := reTR.FindAllString(htmlContent, -1)
+	if len(trMatches) == 0 {
+		return nil, fmt.Errorf("no rows found")
 	}
-	status = strings.ToLower(status)
-	for _, suffix := range statusSuffixes {
-		status = strings.TrimSuffix(status, suffix)
+
+	result := make(map[string]visaInfo)
+	for _, tr := range trMatches {
+		classMatch := reClass.FindStringSubmatch(tr)
+		codeMatch := reCode.FindStringSubmatch(tr)
+		vrulesMatch := reVrules.FindStringSubmatch(tr)
+
+		if len(classMatch) < 2 || len(codeMatch) < 2 || len(vrulesMatch) < 2 {
+			continue
+		}
+
+		trClass := classMatch[1]
+		destCode := strings.ToUpper(codeMatch[1])
+
+		// Determine visa status from the class
+		var status string
+		if strings.Contains(trClass, "vf") {
+			status = "visa free"
+		} else if strings.Contains(trClass, "voa") {
+			status = "visa on arrival"
+		} else if strings.Contains(trClass, "eta") {
+			status = "eta"
+		} else if strings.Contains(trClass, "vr") {
+			status = "visa required"
+		} else {
+			status = "visa required"
+		}
+
+		days := 0
+		vdaysMatch := reVdays.FindStringSubmatch(tr)
+		if len(vdaysMatch) >= 1 {
+			// Extract number from match: e.g. class='vdays'>90</span>
+			// Let's parse the digits inside the tag
+			reDigits := regexp.MustCompile(`\d+`)
+			digits := reDigits.FindString(vdaysMatch[0])
+			if digits != "" {
+				fmt.Sscanf(digits, "%d", &days)
+			}
+		}
+
+		result[destCode] = visaInfo{
+			Status: status,
+			Days:   days,
+		}
 	}
-	if r, ok := statusReplace[status]; ok {
-		status = r
+	return result, nil
+}
+
+func scrapeCountry(client *http.Client, from string) (map[string]visaInfo, error) {
+	slug := getURLSlug(from)
+	url := fmt.Sprintf("https://www.passportindex.org/passport/%s/", slug)
+
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("creating request: %w", err)
 	}
-	if len(parts) == 2 {
-		daysStr := strings.TrimSuffix(strings.TrimSpace(parts[1]), " days")
-		fmt.Sscanf(daysStr, "%d", &days)
+
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36")
+	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("doing request: %w", err)
 	}
-	return
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("status %d", resp.StatusCode)
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading body: %w", err)
+	}
+
+	return parseHTML(string(body))
 }
 
 // --- Sorting ----------------------------------------------------------------
@@ -105,8 +184,6 @@ func sortCountries(keyFunc func(string) string) []string {
 
 // --- CSV output -------------------------------------------------------------
 
-// visaValue returns the CSV display value for a visaInfo.
-// For "visa free" entries returns the number of days; otherwise the status text.
 func visaValue(vi visaInfo) string {
 	if strings.HasPrefix(vi.Status, "visa free") && vi.Days > 0 {
 		return strconv.Itoa(vi.Days)
@@ -189,86 +266,36 @@ func writeTidyCSV(filename string, data map[string]map[string]visaInfo, codeFunc
 	return nil
 }
 
-// --- API --------------------------------------------------------------------
-
-type visaResponse struct {
-	Text string `json:"text"`
-	Col  string `json:"col"`
-	Link int    `json:"link"`
-	Dest string `json:"dest"`
-	Pass string `json:"pass"`
-}
-
-func checkVisa(client *http.Client, from, to string) (*visaResponse, error) {
-	form := url.Values{
-		"s":  {from},
-		"d":  {to},
-		"cl": {apiToken},
-	}
-
-	req, err := http.NewRequest(http.MethodPost, apiURL, strings.NewReader(form.Encode()))
-	if err != nil {
-		return nil, fmt.Errorf("creating request: %w", err)
-	}
-
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36")
-	req.Header.Set("Referer", "https://www.passportindex.org/visa-checker/")
-	req.Header.Set("Origin", "https://www.passportindex.org")
-	req.Header.Set("Accept", "*/*")
-	req.Header.Set("X-Requested-With", "XMLHttpRequest")
-
-	resp, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("doing request: %w", err)
-	}
-	defer resp.Body.Close()
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, fmt.Errorf("reading body: %w", err)
-	}
-
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("status %d: %s", resp.StatusCode, string(body))
-	}
-
-	var vr visaResponse
-	if err := json.Unmarshal(body, &vr); err != nil {
-		return nil, fmt.Errorf("parsing JSON %q: %w", string(body), err)
-	}
-
-	return &vr, nil
-}
-
 // --- Main -------------------------------------------------------------------
-
-type pair struct{ from, to string }
 
 func main() {
 	// Test mode: single request.
 	if len(os.Args) >= 3 {
 		client := &http.Client{Timeout: 10 * time.Second}
-		vr, err := checkVisa(client, os.Args[1], os.Args[2])
+		from := os.Args[1]
+		to := strings.ToUpper(os.Args[2])
+		res, err := scrapeCountry(client, from)
 		if err != nil {
 			log.Fatalf("Error: %v", err)
 		}
-		status, days := parseText(vr.Text)
-		fmt.Printf("From=%s To=%s Status=%q Days=%d\n", os.Args[1], os.Args[2], status, days)
+		vi, ok := res[to]
+		if !ok {
+			log.Fatalf("Destination %s not found in results for %s", to, from)
+		}
+		fmt.Printf("From=%s To=%s Status=%q Days=%d\n", from, to, vi.Status, vi.Days)
 		return
 	}
 
 	// Full scrape mode.
-	total := int64(len(countryCodes) * (len(countryCodes) - 1))
-	log.Printf("Starting full scrape: %d countries, %d pairs, %d workers",
-		len(countryCodes), total, workers)
+	total := int64(len(countryCodes))
+	log.Printf("Starting full HTML scrape: %d passports, %d workers", total, workers)
 
 	bar := progressbar.NewOptions64(total,
-		progressbar.OptionSetDescription("Scraping"),
+		progressbar.OptionSetDescription("Scraping Passports"),
 		progressbar.OptionSetWriter(os.Stderr),
 		progressbar.OptionShowCount(),
 		progressbar.OptionShowIts(),
-		progressbar.OptionSetItsString("pairs"),
+		progressbar.OptionSetItsString("passports"),
 		progressbar.OptionThrottle(200*time.Millisecond),
 		progressbar.OptionShowElapsedTimeOnFinish(),
 		progressbar.OptionSetPredictTime(true),
@@ -282,24 +309,19 @@ func main() {
 		}),
 	)
 
-	pairs := make(chan pair, 100)
+	countriesChan := make(chan string, 100)
 	go func() {
 		for _, from := range countryCodes {
-			for _, to := range countryCodes {
-				if from != to {
-					pairs <- pair{from, to}
-				}
-			}
+			countriesChan <- from
 		}
-		close(pairs)
+		close(countriesChan)
 	}()
 
-	type result struct {
-		from, to string
-		status   string
-		days     int
+	type scrapeResult struct {
+		from  string
+		rules map[string]visaInfo
 	}
-	results := make(chan result, 100)
+	results := make(chan scrapeResult, 100)
 	var errCount atomic.Int64
 
 	var wg sync.WaitGroup
@@ -308,25 +330,19 @@ func main() {
 		go func() {
 			defer wg.Done()
 			client := &http.Client{Timeout: 15 * time.Second}
-			for p := range pairs {
-				vr, err := checkVisa(client, p.from, p.to)
+			for from := range countriesChan {
+				res, err := scrapeCountry(client, from)
 				bar.Add(1)
 				if err != nil {
 					errCount.Add(1)
 					bar.Describe(fmt.Sprintf("Scraping (errors: %d)", errCount.Load()))
-					if errCount.Load() > 50 {
-						log.Printf("Too many errors, worker stopping")
-						return
-					}
-					time.Sleep(2 * time.Second)
+					log.Printf("Error scraping passport %s: %v", from, err)
+					time.Sleep(1 * time.Second)
 					continue
 				}
-				status, days := parseText(vr.Text)
-				results <- result{
-					from:   strings.ToUpper(p.from),
-					to:     strings.ToUpper(p.to),
-					status: status,
-					days:   days,
+				results <- scrapeResult{
+					from:  strings.ToUpper(from),
+					rules: res,
 				}
 				time.Sleep(delay)
 			}
@@ -340,10 +356,7 @@ func main() {
 	data := make(map[string]map[string]visaInfo)
 	var written int
 	for r := range results {
-		if data[r.from] == nil {
-			data[r.from] = make(map[string]visaInfo)
-		}
-		data[r.from][r.to] = visaInfo{Status: r.status, Days: r.days}
+		data[r.from] = r.rules
 		written++
 	}
 	bar.Finish()
@@ -389,7 +402,7 @@ func main() {
 		log.Fatalf("Writing JSON: %v", err)
 	}
 	jf.Close()
-	log.Printf("Done! %d pairs written, %d errors", written, errCount.Load())
+	log.Printf("Done! %d passports written, %d errors", written, errCount.Load())
 
 	// Write CSVs.
 	toName := func(iso2 string) string { return iso2ToName[iso2] }
