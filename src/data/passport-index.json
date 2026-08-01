@@ -302,8 +302,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -2440,8 +2439,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -3162,8 +3160,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -4512,8 +4509,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -5209,8 +5205,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -5949,8 +5944,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -6625,8 +6619,7 @@
       "days": 360
     },
     "GH": {
-      "status": "visa on arrival",
-      "days": 90
+      "status": "visa required"
     },
     "GM": {
       "status": "visa free",
@@ -6695,8 +6688,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -8829,8 +8821,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -10200,8 +10191,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -10840,7 +10830,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -10898,8 +10888,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -11579,8 +11568,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -12901,7 +12889,8 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "visa required"
+      "status": "eta",
+      "days": 30
     },
     "GM": {
       "status": "visa free",
@@ -12960,8 +12949,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -13551,7 +13539,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -13610,8 +13598,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -15015,8 +15002,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -16477,8 +16463,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -17176,8 +17161,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -17839,8 +17823,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -19198,8 +19181,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -19848,8 +19830,7 @@
       "days": 360
     },
     "GH": {
-      "status": "visa on arrival",
-      "days": 90
+      "status": "visa required"
     },
     "GM": {
       "status": "visa free",
@@ -20625,8 +20606,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -21276,8 +21256,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -21924,8 +21903,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -22605,8 +22583,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -23243,7 +23220,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -23301,8 +23278,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -23994,8 +23970,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -24703,8 +24678,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -25306,8 +25280,7 @@
       "days": 30
     },
     "GH": {
-      "status": "visa on arrival",
-      "days": 90
+      "status": "visa required"
     },
     "GM": {
       "status": "visa required"
@@ -25622,7 +25595,8 @@
       "days": 90
     },
     "SD": {
-      "status": "visa required"
+      "status": "visa on arrival",
+      "days": 60
     },
     "SE": {
       "status": "visa required"
@@ -26798,8 +26772,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -28097,7 +28070,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -28156,8 +28129,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -28841,8 +28813,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -29569,8 +29540,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -30300,8 +30270,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -31000,8 +30969,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -31682,8 +31650,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -32412,8 +32379,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -33107,8 +33073,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -33775,8 +33740,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -34447,8 +34411,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -35153,8 +35116,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -36499,8 +36461,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -37177,8 +37138,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -37874,8 +37834,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -38553,8 +38512,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -39268,8 +39226,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -39963,8 +39920,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -40611,8 +40567,7 @@
       "days": 360
     },
     "GH": {
-      "status": "visa on arrival",
-      "days": 90
+      "status": "visa required"
     },
     "GM": {
       "status": "visa free",
@@ -40677,8 +40632,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -41380,8 +41334,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -42015,8 +41968,7 @@
       "days": 360
     },
     "GH": {
-      "status": "visa on arrival",
-      "days": 90
+      "status": "visa required"
     },
     "GM": {
       "status": "visa free",
@@ -42828,8 +42780,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -44234,8 +44185,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -44836,7 +44786,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GN": {
@@ -44890,8 +44840,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -45485,7 +45434,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -45541,8 +45490,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -46194,8 +46142,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -46878,8 +46825,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -47608,8 +47554,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -48240,7 +48185,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -48294,8 +48239,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -48957,8 +48901,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -50406,8 +50349,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -51822,8 +51764,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -52503,8 +52444,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -53912,8 +53852,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -55300,8 +55239,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "visa on arrival",
-      "days": 90
+      "status": "visa required"
     },
     "GM": {
       "status": "visa free",
@@ -55357,8 +55295,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -56814,8 +56751,7 @@
       "status": "visa required"
     },
     "NP": {
-      "status": "visa on arrival",
-      "days": 150
+      "status": "visa required"
     },
     "NR": {
       "status": "visa required"
@@ -57327,8 +57263,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IT": {
       "status": "visa free"
@@ -58054,8 +57989,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -58769,8 +58703,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -60863,8 +60796,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -62868,8 +62800,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -63556,8 +63487,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -64177,7 +64107,7 @@
     },
     "GH": {
       "status": "eta",
-      "days": 60
+      "days": 90
     },
     "GM": {
       "status": "visa free",
@@ -64244,8 +64174,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -64936,8 +64865,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -65625,8 +65553,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -67712,8 +67639,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -69040,8 +68966,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -69759,8 +69684,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -70454,8 +70378,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -71043,7 +70966,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -71101,8 +71024,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -71753,8 +71675,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -72444,8 +72365,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -73174,8 +73094,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -73904,8 +73823,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -74600,8 +74518,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -75255,8 +75172,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -75960,8 +75876,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -76697,8 +76612,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -77407,8 +77321,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -78101,8 +78014,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -78786,8 +78698,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -79505,8 +79416,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -80132,7 +80042,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -80191,8 +80101,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -80833,8 +80742,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -81492,8 +81400,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -83566,8 +83473,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -85007,8 +84913,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -85687,8 +85592,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -87853,8 +87757,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -88512,8 +88415,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -89115,7 +89017,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -89174,8 +89076,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -89758,7 +89659,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -89815,8 +89716,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -90483,8 +90383,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -91200,8 +91099,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -91931,8 +91829,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -92627,8 +92524,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -93282,8 +93178,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -93994,8 +93889,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -95420,8 +95314,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -96091,8 +95984,7 @@
       "days": 90
     },
     "GH": {
-      "status": "visa on arrival",
-      "days": 90
+      "status": "visa required"
     },
     "GM": {
       "status": "visa required"
@@ -96867,8 +96759,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -97537,8 +97428,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -98865,8 +98755,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -99561,8 +99450,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -100237,8 +100125,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -100960,8 +100847,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -101680,8 +101566,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -103108,8 +102993,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -104557,8 +104441,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -105244,8 +105127,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -106622,8 +106504,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -108045,8 +107926,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -108720,8 +108600,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -109399,7 +109278,8 @@
       "days": 360
     },
     "GH": {
-      "status": "visa required"
+      "status": "eta",
+      "days": 90
     },
     "GM": {
       "status": "visa free",
@@ -110211,8 +110091,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -110940,8 +110819,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free"
@@ -111580,7 +111458,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -111638,8 +111516,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -112333,8 +112210,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -112980,7 +112856,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -113038,8 +112914,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -114335,8 +114210,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -114995,8 +114869,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -115643,8 +115516,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -116332,8 +116204,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -117654,8 +117525,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -118316,8 +118186,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -118904,7 +118773,7 @@
       "status": "visa required"
     },
     "GH": {
-      "status": "eta",
+      "status": "visa free",
       "days": 90
     },
     "GM": {
@@ -118962,8 +118831,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -119619,8 +119487,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -120967,8 +120834,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -121638,8 +121504,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -122981,8 +122846,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -124416,8 +124280,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -125141,8 +125004,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -125855,8 +125717,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -127242,8 +127103,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -127942,8 +127802,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -128574,8 +128433,7 @@
       "days": 360
     },
     "GH": {
-      "status": "visa on arrival",
-      "days": 90
+      "status": "visa required"
     },
     "GM": {
       "status": "visa on arrival"
@@ -129395,8 +129253,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -130800,8 +130657,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -131534,8 +131390,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -133615,8 +133470,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -134315,8 +134169,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -135019,8 +134872,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa free",
@@ -135675,8 +135527,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -136339,8 +136190,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
@@ -137021,8 +136871,7 @@
       "status": "visa required"
     },
     "IR": {
-      "status": "visa on arrival",
-      "days": 30
+      "status": "visa required"
     },
     "IS": {
       "status": "visa required"
